@@ -1,15 +1,19 @@
-# Agitprop: Posterplätze
+# Agitprop: Entwürfe für die originalen Posterplätze
 
-Die Motive werden später vom Nutzer geliefert. Bis dahin verwenden die acht
-Slots klar erkennbare Abzeichen als transparente Platzhalter. Die endgültigen
-Poster sollen im Verhältnis **3:4** vorliegen (beispielsweise 600 × 800 Pixel).
-Die Spieldateien sind **150 × 200 Pixel, DDS/DXT5**. Bei gleichem Dateipfad ist
-keine Änderung an Entscheidungen oder Sprite-Namen nötig.
+Die bisherige eigenständige Entscheidungskategorie mit einem wechselnden Bild
+ist seit **0.5.3 entfernt**. Sie war keine Anbindung an die originalen drei
+Agitprop-Posterplätze. Es gibt derzeit noch keinen eingebauten nativen Ersatz.
 
-Es kann nur eine Kampagne gleichzeitig laufen. Boni sind zeitlich begrenzt;
-dieselbe Kampagne hat 180 Tage Abklingzeit. Die aktive Kampagne bestimmt das
-Bild in der Agitprop-Kategorie. Entscheidungen verwenden getrennte kleine
-Icons, damit ein großes Poster nicht in die Symbolzeile gepresst wird.
+Die acht Titel und Bonusentwürfe bleiben als Designvorlage erhalten. Die Motive
+werden später vom Nutzer geliefert. Als Quellen eignen sich **3:4**-Bilder,
+beispielsweise 600 × 800 Pixel. Die bisherigen 150 × 200 DDS/DXT5-Platzhalter
+liegen weiterhin vor, sind aber nicht an eine aktive Oberfläche gebunden.
+
+Die endgültigen Frame-IDs, Texturdateien, Freischaltungen und die mögliche
+gleichzeitige Belegung werden anhand der vollständigen Original-GUI und ihrer
+Effekte verbunden. Die bisherige Beschränkung auf eine Kampagne wird nicht als
+vorgebliches Originalsystem weitergeführt. Auch die folgenden Kosten und
+Laufzeiten sind Entwürfe, keine derzeit auswählbaren Entscheidungen.
 
 | Titel | Politische Macht | Dauer | Boni und Freischaltung | Bilddatei |
 | --- | ---: | ---: | --- | --- |
@@ -22,9 +26,13 @@ Icons, damit ein großes Poster nicht in die Symbolzeile gepresst wird.
 | Die Erde gehört den Arbeitenden | 85 | 180 Tage | Unterhaltskosten verbesserter Beziehungen −20 %; tägliche politische Macht +0,10. Nur im Frieden verfügbar. Fokus: `sr_lito_balkan_partnership`. | `sr_agitprop_earth.dds` |
 | Für die Union bis zum letzten Licht | 90 | 90 Tage | Erholungsrate des Heeres +6 %; Kriegsunterstützung +5 Prozentpunkte; Nachschubverbrauch −3 %. Nur im Krieg verfügbar. Fokus: `sr_lito_army_homeland_defence`. | `sr_agitprop_light.dds` |
 
-Die acht Dateien liegen unter `soviet_renewal/gfx/interface/agitprop/`.
-`interface/sr_agitprop_icons.gfx` registriert `GFX_sr_agitprop_<Slot>` für die
-Poster und `GFX_decision_sr_agitprop_<Slot>` für die kleinen Entscheidungsicons.
+Die acht ungebundenen Dateien liegen unter
+`soviet_renewal/gfx/interface/agitprop/`. Die alte Registrierung
+`interface/sr_agitprop_icons.gfx` und ihre Decision-Icons wurden entfernt.
+
+Für den Originalabgleich erstellt `collect_lito_agitprop.ps1` lokal einen
+Textbericht mit den passenden Spielquellen. Der Bericht wird nicht automatisch
+übertragen. Siehe [NATIVE_AGITPROP.md](NATIVE_AGITPROP.md).
 
 Die Unionsrats-Erweiterung ergänzt acht Aktionen im bestehenden Balance-Menü:
 Delegiertenkongress, Krisenkompromiss, öffentliche Planprüfung, einmalige

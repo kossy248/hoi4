@@ -1,0 +1,51 @@
+on_actions = {
+    on_startup = {
+        effect = {
+            SOV = {
+                if = {
+                    limit = { NOT = { has_country_flag = sr_lito_initialized } }
+                    recruit_character = SOV_cosif_kozs_lito
+                    set_politics = {
+                        ruling_party = communism
+                        elections_allowed = no
+                    }
+                    promote_character = {
+                        character = SOV_cosif_kozs_lito
+                        ideology = titoism
+                    }
+                    sr_initialize_union_effect = yes
+                    set_country_flag = sr_lito_initialized
+                }
+                sr_retire_legacy_agitprop_effect = yes
+                sr_story_initialize_effect = yes
+                sr_ensure_yugoslav_communist_leader_effect = yes
+                sr_campaign_initialize_effect = yes
+            }
+        }
+    }
+    # on_monthly already runs for each country: never re-scope every call to SOV.
+    on_monthly = {
+        effect = {
+            if = {
+                limit = {
+                    tag = SOV
+                    has_country_flag = sr_lito_initialized
+                }
+                sr_retire_legacy_agitprop_effect = yes
+                sr_union_monthly_effect = yes
+                sr_story_monthly_effect = yes
+                sr_ensure_yugoslav_communist_leader_effect = yes
+                sr_campaign_monthly_effect = yes
+            }
+        }
+    }
+    # Fires after the whole government-changing block, including federation setup.
+    on_ruling_party_change = {
+        effect = {
+            if = {
+                limit = { tag = YUG }
+                sr_ensure_yugoslav_communist_leader_effect = yes
+            }
+        }
+    }
+}

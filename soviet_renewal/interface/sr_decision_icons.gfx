@@ -1,40 +1,8 @@
-# All 56 decision/mission icons and all 6 category icons.
+# All 48 decision/mission icons and all 5 category icons.
 # Decision: icon = <id> resolves to GFX_decision_<id>.
 # Category: icon = <id> resolves to GFX_decision_category_<id>.
 spriteTypes = {
     # Decisions and missions
-    spriteType = {
-        name = "GFX_decision_sr_agitprop_councils"
-        texturefile = "gfx/interface/goals/sr_lito_workers_councils.dds"
-    }
-    spriteType = {
-        name = "GFX_decision_sr_agitprop_earth"
-        texturefile = "gfx/interface/goals/sr_lito_socialist_partnership.dds"
-    }
-    spriteType = {
-        name = "GFX_decision_sr_agitprop_horizon"
-        texturefile = "gfx/interface/goals/sr_lito_knowledge_for_all.dds"
-    }
-    spriteType = {
-        name = "GFX_decision_sr_agitprop_light"
-        texturefile = "gfx/interface/goals/sr_lito_army_homeland_defence.dds"
-    }
-    spriteType = {
-        name = "GFX_decision_sr_agitprop_peoples"
-        texturefile = "gfx/interface/goals/sr_lito_republic_congress.dds"
-    }
-    spriteType = {
-        name = "GFX_decision_sr_agitprop_sky"
-        texturefile = "gfx/interface/goals/sr_lito_air_command.dds"
-    }
-    spriteType = {
-        name = "GFX_decision_sr_agitprop_star"
-        texturefile = "gfx/interface/goals/sr_lito_union_future.dds"
-    }
-    spriteType = {
-        name = "GFX_decision_sr_agitprop_steel"
-        texturefile = "gfx/interface/goals/sr_lito_industrial_union.dds"
-    }
     spriteType = {
         name = "GFX_decision_sr_balkan_form_federation"
         texturefile = "gfx/interface/decisions/focus_LITO_the_molotov_line.dds"
@@ -228,10 +196,6 @@ spriteTypes = {
         texturefile = "gfx/interface/goals/sr_lito_constitutional_guarantees.dds"
     }
     # Decision categories
-    spriteType = {
-        name = "GFX_decision_category_sr_agitprop"
-        texturefile = "gfx/interface/goals/sr_lito_union_future.dds"
-    }
     spriteType = {
         name = "GFX_decision_category_sr_balkan_federation"
         texturefile = "gfx/interface/decisions/focus_LITO_the_molotov_line_category.dds"

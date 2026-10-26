@@ -1,0 +1,53 @@
+# Retire the removed standalone poster category without resetting the campaign.
+# Startup covers new games; the monthly hook also reaches initialized old saves.
+sr_retire_legacy_agitprop_effect = {
+    if = {
+        limit = {
+            tag = SOV
+            has_country_flag = sr_lito_initialized
+            NOT = { has_country_flag = sr_legacy_agitprop_removed }
+        }
+        clr_country_flag = sr_agitprop_active
+        clr_country_flag = sr_agitprop_star_active
+        if = {
+            limit = { has_idea = sr_agitprop_star_spirit }
+            remove_ideas = sr_agitprop_star_spirit
+        }
+        clr_country_flag = sr_agitprop_peoples_active
+        if = {
+            limit = { has_idea = sr_agitprop_peoples_spirit }
+            remove_ideas = sr_agitprop_peoples_spirit
+        }
+        clr_country_flag = sr_agitprop_steel_active
+        if = {
+            limit = { has_idea = sr_agitprop_steel_spirit }
+            remove_ideas = sr_agitprop_steel_spirit
+        }
+        clr_country_flag = sr_agitprop_councils_active
+        if = {
+            limit = { has_idea = sr_agitprop_councils_spirit }
+            remove_ideas = sr_agitprop_councils_spirit
+        }
+        clr_country_flag = sr_agitprop_sky_active
+        if = {
+            limit = { has_idea = sr_agitprop_sky_spirit }
+            remove_ideas = sr_agitprop_sky_spirit
+        }
+        clr_country_flag = sr_agitprop_horizon_active
+        if = {
+            limit = { has_idea = sr_agitprop_horizon_spirit }
+            remove_ideas = sr_agitprop_horizon_spirit
+        }
+        clr_country_flag = sr_agitprop_earth_active
+        if = {
+            limit = { has_idea = sr_agitprop_earth_spirit }
+            remove_ideas = sr_agitprop_earth_spirit
+        }
+        clr_country_flag = sr_agitprop_light_active
+        if = {
+            limit = { has_idea = sr_agitprop_light_spirit }
+            remove_ideas = sr_agitprop_light_spirit
+        }
+        set_country_flag = sr_legacy_agitprop_removed
+    }
+}

@@ -1,0 +1,54 @@
+# Compatibility IDs for pre-removal saves only. No bonuses or acquisition path.
+# The retirement effect removes these once from initialized Lito countries.
+ideas = {
+    country = {
+        sr_agitprop_star_spirit = {
+            picture = sr_story_politics
+            allowed = { always = no }
+            visible = { always = no }
+            removal_cost = -1
+        }
+        sr_agitprop_peoples_spirit = {
+            picture = sr_story_politics
+            allowed = { always = no }
+            visible = { always = no }
+            removal_cost = -1
+        }
+        sr_agitprop_steel_spirit = {
+            picture = sr_story_politics
+            allowed = { always = no }
+            visible = { always = no }
+            removal_cost = -1
+        }
+        sr_agitprop_councils_spirit = {
+            picture = sr_story_politics
+            allowed = { always = no }
+            visible = { always = no }
+            removal_cost = -1
+        }
+        sr_agitprop_sky_spirit = {
+            picture = sr_story_politics
+            allowed = { always = no }
+            visible = { always = no }
+            removal_cost = -1
+        }
+        sr_agitprop_horizon_spirit = {
+            picture = sr_story_politics
+            allowed = { always = no }
+            visible = { always = no }
+            removal_cost = -1
+        }
+        sr_agitprop_earth_spirit = {
+            picture = sr_story_politics
+            allowed = { always = no }
+            visible = { always = no }
+            removal_cost = -1
+        }
+        sr_agitprop_light_spirit = {
+            picture = sr_story_politics
+            allowed = { always = no }
+            visible = { always = no }
+            removal_cost = -1
+        }
+    }
+}

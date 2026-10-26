@@ -1,4 +1,4 @@
-# Grafiken und Bildplätze — 0.5.2
+# Grafiken und Bildplätze — 0.5.3
 
 Die Mod verwendet rotes Emaille, gealtertes Gold und dunkles Metall für ihre
 Abzeichen. Führerporträt, Flagge und die drei Entscheidungsbilder wurden auf
@@ -22,8 +22,8 @@ Sprite-Verweis beibehalten oder beide gemeinsam aktualisieren.
 
 ## Icons aller Decisions und Kategorien
 
-Alle **56 Decisions und Missionen** sowie **sechs Kategorien** besitzen einen
-eigenen Icon-Schlüssel. Ihre **62 vollständigen Sprite-Blöcke** stehen zusammen
+Alle **48 Decisions und Missionen** sowie **fünf Kategorien** besitzen einen
+eigenen Icon-Schlüssel. Ihre **53 vollständigen Sprite-Blöcke** stehen zusammen
 in `soviet_renewal/interface/sr_decision_icons.gfx`:
 
 ```text
@@ -48,10 +48,10 @@ Für jedes Icon lässt sich `texturefile` einzeln austauschen. Der Sprite-Name
 bleibt dabei bestehen. Unionsgespräche verwenden das Republikkongressmotiv,
 Regierungsprojekte Werkstätten, Bildung oder Versorgung; Innenpolitik und
 Unionspolitiken verwenden passende Motive des Fokusbaums. Diese Texturen
-werden bewusst mehrfach verwendet. Es sind keine 62 neuen Zeichnungen.
+werden bewusst mehrfach verwendet. Es sind keine 53 neuen Zeichnungen.
 
-Die acht Agitprop-Decision-Icons sind ebenfalls in dieser zentralen Datei
-registriert. `sr_agitprop_icons.gfx` enthält weiter die separaten Posterbilder.
+Die acht Agitprop-Decision-Icons und die eigene Agitprop-Kategorie wurden mit
+der bisherigen Nachbildung entfernt; ihre Poster-Registrierung ist gelöscht.
 Die älteren Namen der drei gelieferten Entscheidungsbilder bleiben als Aliase
 in `sr_lito_decision_icons.gfx` verfügbar. Generische Spielsprites werden
 dabei nicht überschrieben.
@@ -90,17 +90,17 @@ den thematisch passenden Ereignisdateien zu.
 
 ## Agitprop-Poster
 
-Die acht Kampagnen besitzen feste Posterplätze und einen Übersichtsplatz.
-Zurzeit zeigen sie vorläufige Grafiken; die vom Nutzer geplanten Poster sind
-noch nicht geliefert. Titel, Dateinamen und Bonusprofile stehen in
+Die acht geplanten Kampagnen besitzen ungebundene Platzhalterdateien; die
+bisherige Einzelbild-Kategorie wurde entfernt. Die vom Nutzer geplanten Poster
+sind noch nicht geliefert. Titel, Quellnamen und Bonusentwürfe stehen in
 [AGITPROP_POSTERS.md](AGITPROP_POSTERS.md).
 
 Für eigene Poster sind PNG-Quellen im Verhältnis **3:4** vorgesehen,
 beispielsweise 600 × 800 Pixel. Die Spieltexturen verwenden **150 × 200 Pixel**
-und DDS/DXT5. Die hochauflösende Quelle wird dafür passend verkleinert;
-Sprite-Name und Dateipfad bleiben erhalten. Ein Austausch des Posters ändert
-keine Kosten, Laufzeiten oder Boni. Zunächst nur im installierten Modordner
-ersetzte Bilder vor dem nächsten Update in das Quellpaket übernehmen.
+und DDS/DXT5. Das sind vorläufige Dateiformate der bisherigen Quellen. Die
+endgültige Sprite-/Atlas-Zuordnung für die originale Anzeige ist noch offen und
+wird erst anhand der Originaldateien festgelegt. Zunächst nur im installierten
+Modordner ersetzte Bilder vor dem nächsten Update in das Quellpaket übernehmen.
 
 ## Porträts
 

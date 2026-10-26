@@ -1,0 +1,300 @@
+add_namespace = sr_focus_story
+
+country_event = {
+    picture = GFX_sr_campaign_workshops
+    id = sr_focus_story.1
+    title = sr_focus_story_1_title
+    desc = sr_focus_story_1_desc
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_story_initialized }
+    immediate = { add_ideas = sr_workers_councils }
+    option = {
+        name = sr_focus_story_1_councils
+        trigger = { has_political_power > 39 }
+        ai_chance = { base = 60 }
+        add_political_power = -40
+        set_country_flag = sr_fs_workers_decide
+        add_to_variable = { sr_story_trust = 8 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_power_balance_value = { id = sr_union_balance value = 0.02 }
+        add_timed_idea = { idea = sr_fs_factory_debate days = 90 }
+        country_event = { id = sr_focus_story.9 months = 3 }
+    }
+    option = {
+        name = sr_focus_story_1_director
+        ai_chance = { base = 40 }
+        add_political_power = 25
+        set_country_flag = sr_fs_director_decides
+        subtract_from_variable = { sr_story_trust = 8 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_power_balance_value = { id = sr_union_balance value = -0.03 }
+        add_timed_idea = { idea = sr_fs_factory_quota days = 180 }
+        country_event = { id = sr_focus_story.9 months = 3 }
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_workshops
+    id = sr_focus_story.2
+    title = sr_focus_story_2_title
+    desc = sr_focus_story_2_desc
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_story_initialized }
+    immediate = { add_ideas = sr_agricultural_cooperatives }
+    option = {
+        name = sr_focus_story_2_contracts
+        trigger = { has_political_power > 49 }
+        ai_chance = { base = 55 }
+        add_political_power = -50
+        set_country_flag = sr_fs_grain_contracts
+        add_stability = 0.03
+        add_to_variable = { sr_story_trust = 6 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        if = {
+            limit = { sr_union_ukraine_represented = yes }
+            subtract_from_variable = { sr_resistance_ukraine = 10 }
+            clamp_variable = { var = sr_resistance_ukraine min = 0 max = 100 }
+            sr_update_union_resistance_ideas_effect = yes
+        }
+    }
+    option = {
+        name = sr_focus_story_2_quota
+        ai_chance = { base = 45 }
+        set_country_flag = sr_fs_grain_quota
+        add_timed_idea = { idea = sr_fs_procurement_drive days = 180 }
+        subtract_from_variable = { sr_story_trust = 8 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        if = {
+            limit = { sr_union_ukraine_represented = yes }
+            add_to_variable = { sr_resistance_ukraine = 10 }
+            clamp_variable = { var = sr_resistance_ukraine min = 0 max = 100 }
+            sr_update_union_resistance_ideas_effect = yes
+        }
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_workshops
+    id = sr_focus_story.3
+    title = sr_focus_story_3_title
+    desc = sr_focus_story_3_desc
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_story_initialized }
+    immediate = { add_tech_bonus = { name = sr_fs_electronics_bonus bonus = 0.5 uses = 1 category = electronics } }
+    option = {
+        name = sr_focus_story_3_open
+        trigger = { has_political_power > 34 }
+        ai_chance = { base = 60 }
+        add_political_power = -35
+        set_country_flag = sr_fs_open_laboratories
+        add_timed_idea = { idea = sr_fs_open_research days = 365 }
+        add_to_variable = { sr_story_trust = 5 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        country_event = { id = sr_focus_story.10 months = 4 }
+    }
+    option = {
+        name = sr_focus_story_3_secret
+        ai_chance = { base = 40 }
+        set_country_flag = sr_fs_secret_laboratories
+        add_timed_idea = { idea = sr_fs_military_laboratories days = 365 }
+        army_experience = 10
+        subtract_from_variable = { sr_story_trust = 4 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        country_event = { id = sr_focus_story.10 months = 4 }
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_workshops
+    id = sr_focus_story.4
+    title = sr_focus_story_4_title
+    desc = sr_focus_story_4_desc
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_story_initialized }
+    immediate = { add_timed_idea = { idea = sr_lito_officer_schools days = 730 } }
+    option = {
+        name = sr_focus_story_4_initiative
+        trigger = { has_political_power > 29 }
+        ai_chance = { base = 55 }
+        add_political_power = -30
+        set_country_flag = sr_fs_field_initiative
+        add_timed_idea = { idea = sr_fs_field_command days = 365 }
+        add_to_variable = { sr_story_trust = 3 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+    }
+    option = {
+        name = sr_focus_story_4_plans
+        ai_chance = { base = 45 }
+        set_country_flag = sr_fs_staff_planning
+        add_timed_idea = { idea = sr_fs_central_planning days = 365 }
+        army_experience = 10
+        subtract_from_variable = { sr_story_trust = 3 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_workshops
+    id = sr_focus_story.5
+    title = sr_focus_story_5_title
+    desc = sr_focus_story_5_desc
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_story_initialized }
+    immediate = { air_experience = 25 }
+    option = {
+        name = sr_focus_story_5_workshops
+        trigger = { has_political_power > 34 }
+        ai_chance = { base = 55 }
+        add_political_power = -35
+        set_country_flag = sr_fs_air_spares
+        add_timed_idea = { idea = sr_fs_air_workshops days = 365 }
+        add_to_variable = { sr_story_trust = 3 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+    }
+    option = {
+        name = sr_focus_story_5_training
+        ai_chance = { base = 45 }
+        set_country_flag = sr_fs_air_flying_hours
+        air_experience = 15
+        add_timed_idea = { idea = sr_fs_extended_flying days = 180 }
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_workshops
+    id = sr_focus_story.6
+    title = sr_focus_story_6_title
+    desc = sr_focus_story_6_desc
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_story_initialized }
+    immediate = { navy_experience = 25 }
+    option = {
+        name = sr_focus_story_6_escorts
+        trigger = { has_political_power > 29 }
+        ai_chance = { base = 65 }
+        add_political_power = -30
+        set_country_flag = sr_fs_naval_escorts
+        add_timed_idea = { idea = sr_fs_merchant_escorts days = 365 }
+    }
+    option = {
+        name = sr_focus_story_6_prestige
+        ai_chance = { base = 35 }
+        set_country_flag = sr_fs_naval_prestige
+        add_war_support = 0.02
+        add_timed_idea = { idea = sr_fs_fleet_presence days = 180 }
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_workshops
+    id = sr_focus_story.7
+    title = sr_focus_story_7_title
+    desc = sr_focus_story_7_desc
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_story_initialized }
+    option = {
+        name = sr_focus_story_7_independent
+        trigger = { has_political_power > 49 }
+        ai_chance = { base = 60 }
+        add_political_power = -50
+        set_country_flag = sr_fs_independent_inquiry
+        add_stability = 0.05
+        add_to_variable = { sr_story_trust = 10 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_timed_idea = { idea = sr_fs_privileges_review days = 180 }
+    }
+    option = {
+        name = sr_focus_story_7_limited
+        ai_chance = { base = 40 }
+        set_country_flag = sr_fs_protected_cadres
+        add_political_power = 25
+        add_stability = -0.01
+        subtract_from_variable = { sr_story_trust = 10 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_workshops
+    id = sr_focus_story.8
+    title = sr_focus_story_8_title
+    desc = sr_focus_story_8_desc
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_story_initialized }
+    option = {
+        name = sr_focus_story_8_trusted
+        trigger = { check_variable = { sr_story_trust > 64 } }
+        ai_chance = { base = 100 }
+        set_country_flag = sr_fs_union_built_on_trust
+        add_stability = 0.02
+    }
+    option = {
+        name = sr_focus_story_8_contested
+        trigger = { NOT = { check_variable = { sr_story_trust > 64 } } }
+        ai_chance = { base = 100 }
+        set_country_flag = sr_fs_union_still_contested
+        add_political_power = 25
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_workshops
+    id = sr_focus_story.9
+    title = sr_focus_story_9_title
+    desc = sr_focus_story_9_desc
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_story_initialized }
+    option = {
+        name = sr_focus_story_9_councils
+        trigger = { has_country_flag = sr_fs_workers_decide }
+        ai_chance = { base = 100 }
+        add_timed_idea = { idea = sr_fs_learned_self_management days = 365 }
+        add_to_variable = { sr_story_trust = 4 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+    }
+    option = {
+        name = sr_focus_story_9_directors
+        trigger = { has_country_flag = sr_fs_director_decides }
+        ai_chance = { base = 100 }
+        add_political_power = 15
+        add_stability = -0.02
+        subtract_from_variable = { sr_story_trust = 4 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_workshops
+    id = sr_focus_story.10
+    title = sr_focus_story_10_title
+    desc = sr_focus_story_10_desc
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_story_initialized }
+    option = {
+        name = sr_focus_story_10_open
+        trigger = { has_country_flag = sr_fs_open_laboratories }
+        ai_chance = { base = 100 }
+        add_tech_bonus = { name = sr_fs_open_science_bonus bonus = 0.25 uses = 1 category = industry }
+        add_to_variable = { sr_story_trust = 3 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+    }
+    option = {
+        name = sr_focus_story_10_secret
+        trigger = { has_country_flag = sr_fs_secret_laboratories }
+        ai_chance = { base = 100 }
+        add_tech_bonus = { name = sr_fs_military_science_bonus bonus = 0.25 uses = 1 category = electronics }
+        army_experience = 5
+        subtract_from_variable = { sr_story_trust = 3 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+    }
+}

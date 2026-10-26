@@ -1,0 +1,52 @@
+ideas = {
+    country = {
+        sr_bs_homeland_grants = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { political_power_gain = -0.10 }
+        }
+        sr_bs_equal_exchange = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { improve_relations_maintain_cost_factor = -0.10 }
+        }
+        sr_bs_cultural_front = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { research_speed_factor = 0.01 }
+        }
+        sr_bs_exposed_operations = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { political_power_gain = -0.15 stability_factor = -0.02 }
+        }
+        sr_bs_republic_assembly = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { stability_factor = 0.05 political_power_gain = 0.10 }
+        }
+        sr_bs_soviet_advisers = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { industrial_capacity_factory = 0.05 stability_factor = -0.03 }
+        }
+        sr_bs_federal_compact = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { stability_factor = 0.03 research_speed_factor = 0.02 }
+        }
+        sr_bs_federal_discontent = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { stability_factor = -0.05 industrial_capacity_factory = -0.05 }
+        }
+    }
+}

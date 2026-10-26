@@ -1,0 +1,70 @@
+ideas = {
+    country = {
+        sr_story_open_deliberation = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { stability_factor = 0.03 production_speed_buildings_factor = -0.03 }
+        }
+        sr_story_central_administration = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { political_power_gain = 0.10 stability_factor = -0.02 }
+        }
+        sr_story_untouched_privileges = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { industrial_capacity_factory = -0.03 }
+        }
+        sr_story_emergency_secretariat = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { political_power_gain = 0.15 stability_factor = -0.04 }
+        }
+        sr_story_compromise_committees = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { political_power_gain = -0.05 stability_factor = 0.02 }
+        }
+        sr_story_government_in_crisis = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { political_power_gain = -0.15 stability_factor = -0.03 }
+        }
+        sr_story_relief_budget = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { consumer_goods_factor = 0.03 }
+        }
+        sr_story_cultural_autonomy = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { political_power_gain = -0.05 stability_factor = 0.02 }
+        }
+        sr_story_eastern_investment = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { industrial_capacity_factory = -0.03 }
+        }
+        sr_story_mediation = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { production_speed_buildings_factor = -0.05 }
+        }
+        sr_story_security_campaign = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { stability_factor = -0.04 political_power_gain = 0.10 }
+        }
+    }
+}

@@ -1,0 +1,206 @@
+sr_government_program = {
+    sr_project_start_workshops = {
+        icon = sr_project_start_workshops
+        cost = 75
+        fire_only_once = yes
+        visible = {
+            has_country_flag = sr_story_first_hundred_days
+            NOT = { has_country_flag = sr_project_workshops_started }
+        }
+        available = {
+            has_government = communism
+            NOT = { has_country_flag = sr_project_active }
+            has_completed_focus = sr_lito_workers_councils
+            OR = { has_country_flag = sr_fs_workers_decide has_country_flag = sr_fs_director_decides }
+        }
+        complete_effect = {
+            set_country_flag = sr_project_active
+            set_country_flag = sr_project_workshops_started
+            set_country_flag = sr_project_workshops_active
+            add_ideas = sr_project_workshop_budget
+            activate_mission = sr_project_finish_workshops
+            country_event = { id = sr_projects.1 days = 1 }
+            country_event = { id = sr_projects.2 days = 90 }
+        }
+        ai_will_do = { factor = 2 modifier = { factor = 2 has_completed_focus = sr_lito_local_investment } }
+    }
+    sr_project_finish_workshops = {
+        icon = sr_project_finish_workshops
+        cost = 25
+        fire_only_once = yes
+        activation = { always = no }
+        visible = { has_country_flag = sr_project_workshops_active }
+        days_mission_timeout = 240
+        selectable_mission = yes
+        available = {
+            has_government = communism
+            has_country_flag = sr_project_workshops_midpoint
+            has_completed_focus = sr_lito_regional_workshops
+        }
+        complete_effect = {
+            sr_project_clear_workshops_effect = yes
+            set_country_flag = sr_project_workshops_completed
+            if = {
+                limit = { has_country_flag = sr_project_workshop_councils }
+                add_timed_idea = { idea = sr_project_practical_councils days = 365 }
+                add_to_variable = { sr_story_trust = 10 }
+            }
+            else = {
+                add_timed_idea = { idea = sr_project_standardized_workshops days = 365 }
+                add_to_variable = { sr_story_trust = 4 }
+                if = {
+                    limit = { has_country_flag = sr_fs_workers_decide }
+                    subtract_from_variable = { sr_story_trust = 7 }
+                }
+            }
+            clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+            add_power_balance_value = { id = sr_union_balance value = 0.03 }
+            country_event = { id = sr_projects.3 days = 1 }
+        }
+        timeout_effect = {
+            sr_project_clear_workshops_effect = yes
+            set_country_flag = sr_project_workshops_failed
+            subtract_from_variable = { sr_story_trust = 8 }
+            clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+            add_power_balance_value = { id = sr_union_balance value = -0.03 }
+            add_timed_idea = { idea = sr_project_unfinished_program days = 180 }
+            country_event = { id = sr_projects.3 days = 1 }
+        }
+        cancel_trigger = { NOT = { has_government = communism } }
+        cancel_effect = { sr_project_clear_workshops_effect = yes set_country_flag = sr_project_workshops_cancelled }
+        ai_will_do = { factor = 6 }
+    }
+    sr_project_start_education = {
+        icon = sr_project_start_education
+        cost = 60
+        fire_only_once = yes
+        visible = {
+            has_country_flag = sr_story_first_hundred_days
+            NOT = { has_country_flag = sr_project_education_started }
+        }
+        available = {
+            has_government = communism
+            NOT = { has_country_flag = sr_project_active }
+            has_completed_focus = sr_lito_academy_network
+        }
+        complete_effect = {
+            set_country_flag = sr_project_active
+            set_country_flag = sr_project_education_started
+            set_country_flag = sr_project_education_active
+            add_ideas = sr_project_teacher_release
+            activate_mission = sr_project_finish_education
+            country_event = { id = sr_projects.4 days = 1 }
+            country_event = { id = sr_projects.5 days = 90 }
+        }
+        ai_will_do = { factor = 2 modifier = { factor = 2 has_completed_focus = sr_lito_electronics_laboratories } }
+    }
+    sr_project_finish_education = {
+        icon = sr_project_finish_education
+        cost = 40
+        fire_only_once = yes
+        activation = { always = no }
+        visible = { has_country_flag = sr_project_education_active }
+        days_mission_timeout = 270
+        selectable_mission = yes
+        available = {
+            has_government = communism
+            has_country_flag = sr_project_education_midpoint
+            has_completed_focus = sr_lito_technical_education
+        }
+        complete_effect = {
+            sr_project_clear_education_effect = yes
+            set_country_flag = sr_project_education_completed
+            if = {
+                limit = { has_country_flag = sr_project_open_classes }
+                add_timed_idea = { idea = sr_project_public_learning days = 365 }
+                add_to_variable = { sr_story_trust = 8 }
+            }
+            else = {
+                add_timed_idea = { idea = sr_project_technical_cadres days = 365 }
+                add_to_variable = { sr_story_trust = 3 }
+            }
+            clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+            add_power_balance_value = { id = sr_union_balance value = 0.03 }
+            country_event = { id = sr_projects.6 days = 1 }
+        }
+        timeout_effect = {
+            sr_project_clear_education_effect = yes
+            set_country_flag = sr_project_education_failed
+            subtract_from_variable = { sr_story_trust = 8 }
+            clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+            add_power_balance_value = { id = sr_union_balance value = -0.03 }
+            add_timed_idea = { idea = sr_project_unfinished_program days = 180 }
+            country_event = { id = sr_projects.6 days = 1 }
+        }
+        cancel_trigger = { NOT = { has_government = communism } }
+        cancel_effect = { sr_project_clear_education_effect = yes set_country_flag = sr_project_education_cancelled }
+        ai_will_do = { factor = 6 }
+    }
+    sr_project_start_supply = {
+        icon = sr_project_start_supply
+        cost = 60
+        fire_only_once = yes
+        visible = {
+            has_country_flag = sr_story_first_hundred_days
+            NOT = { has_country_flag = sr_project_supply_started }
+        }
+        available = {
+            has_government = communism
+            NOT = { has_country_flag = sr_project_active }
+            OR = { has_completed_focus = sr_lito_army_supply has_completed_focus = sr_lito_supply_corridors }
+        }
+        complete_effect = {
+            set_country_flag = sr_project_active
+            set_country_flag = sr_project_supply_started
+            set_country_flag = sr_project_supply_active
+            add_ideas = sr_project_transport_budget
+            activate_mission = sr_project_finish_supply
+            country_event = { id = sr_projects.7 days = 1 }
+            country_event = { id = sr_projects.8 days = 90 }
+        }
+        ai_will_do = { factor = 2 modifier = { factor = 2 has_war = yes } }
+    }
+    sr_project_finish_supply = {
+        icon = sr_project_finish_supply
+        cost = 40
+        fire_only_once = yes
+        activation = { always = no }
+        visible = { has_country_flag = sr_project_supply_active }
+        days_mission_timeout = 240
+        selectable_mission = yes
+        available = {
+            has_government = communism
+            has_country_flag = sr_project_supply_midpoint
+            has_completed_focus = sr_lito_army_supply
+            has_completed_focus = sr_lito_supply_corridors
+        }
+        complete_effect = {
+            sr_project_clear_supply_effect = yes
+            set_country_flag = sr_project_supply_completed
+            if = {
+                limit = { has_country_flag = sr_project_civil_timetables }
+                add_timed_idea = { idea = sr_project_republic_timetables days = 365 }
+                add_to_variable = { sr_story_trust = 8 }
+            }
+            else = {
+                add_timed_idea = { idea = sr_project_military_dispatch days = 365 }
+                add_to_variable = { sr_story_trust = 3 }
+            }
+            clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+            add_power_balance_value = { id = sr_union_balance value = 0.03 }
+            country_event = { id = sr_projects.9 days = 1 }
+        }
+        timeout_effect = {
+            sr_project_clear_supply_effect = yes
+            set_country_flag = sr_project_supply_failed
+            subtract_from_variable = { sr_story_trust = 8 }
+            clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+            add_power_balance_value = { id = sr_union_balance value = -0.03 }
+            add_timed_idea = { idea = sr_project_unfinished_program days = 180 }
+            country_event = { id = sr_projects.9 days = 1 }
+        }
+        cancel_trigger = { NOT = { has_government = communism } }
+        cancel_effect = { sr_project_clear_supply_effect = yes set_country_flag = sr_project_supply_cancelled }
+        ai_will_do = { factor = 6 }
+    }
+}

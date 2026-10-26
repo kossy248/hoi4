@@ -1,0 +1,79 @@
+# Generated federal focus recovery; never affects foreign/inactive republics.
+sr_lito_reduce_republic_resistance_effect = {
+    if = {
+        limit = { sr_union_russia_represented = yes }
+        subtract_from_variable = { sr_resistance_russia = 5 }
+        clamp_variable = { var = sr_resistance_russia min = 0 max = 100 }
+    }
+    if = {
+        limit = { sr_union_ukraine_represented = yes }
+        subtract_from_variable = { sr_resistance_ukraine = 5 }
+        clamp_variable = { var = sr_resistance_ukraine min = 0 max = 100 }
+    }
+    if = {
+        limit = { sr_union_belarus_represented = yes }
+        subtract_from_variable = { sr_resistance_belarus = 5 }
+        clamp_variable = { var = sr_resistance_belarus min = 0 max = 100 }
+    }
+    if = {
+        limit = { sr_union_georgia_represented = yes }
+        subtract_from_variable = { sr_resistance_georgia = 5 }
+        clamp_variable = { var = sr_resistance_georgia min = 0 max = 100 }
+    }
+    if = {
+        limit = { sr_union_armenia_represented = yes }
+        subtract_from_variable = { sr_resistance_armenia = 5 }
+        clamp_variable = { var = sr_resistance_armenia min = 0 max = 100 }
+    }
+    if = {
+        limit = { sr_union_azerbaijan_represented = yes }
+        subtract_from_variable = { sr_resistance_azerbaijan = 5 }
+        clamp_variable = { var = sr_resistance_azerbaijan min = 0 max = 100 }
+    }
+    if = {
+        limit = { sr_union_kazakhstan_represented = yes }
+        subtract_from_variable = { sr_resistance_kazakhstan = 5 }
+        clamp_variable = { var = sr_resistance_kazakhstan min = 0 max = 100 }
+    }
+    if = {
+        limit = { sr_union_uzbekistan_represented = yes }
+        subtract_from_variable = { sr_resistance_uzbekistan = 5 }
+        clamp_variable = { var = sr_resistance_uzbekistan min = 0 max = 100 }
+    }
+    if = {
+        limit = { sr_union_turkmenistan_represented = yes }
+        subtract_from_variable = { sr_resistance_turkmenistan = 5 }
+        clamp_variable = { var = sr_resistance_turkmenistan min = 0 max = 100 }
+    }
+    if = {
+        limit = { sr_union_kyrgyzstan_represented = yes }
+        subtract_from_variable = { sr_resistance_kyrgyzstan = 5 }
+        clamp_variable = { var = sr_resistance_kyrgyzstan min = 0 max = 100 }
+    }
+    if = {
+        limit = { sr_union_tajikistan_represented = yes }
+        subtract_from_variable = { sr_resistance_tajikistan = 5 }
+        clamp_variable = { var = sr_resistance_tajikistan min = 0 max = 100 }
+    }
+    if = {
+        limit = { sr_union_estonia_represented = yes }
+        subtract_from_variable = { sr_resistance_estonia = 5 }
+        clamp_variable = { var = sr_resistance_estonia min = 0 max = 100 }
+    }
+    if = {
+        limit = { sr_union_latvia_represented = yes }
+        subtract_from_variable = { sr_resistance_latvia = 5 }
+        clamp_variable = { var = sr_resistance_latvia min = 0 max = 100 }
+    }
+    if = {
+        limit = { sr_union_lithuania_represented = yes }
+        subtract_from_variable = { sr_resistance_lithuania = 5 }
+        clamp_variable = { var = sr_resistance_lithuania min = 0 max = 100 }
+    }
+    if = {
+        limit = { sr_union_moldavia_represented = yes }
+        subtract_from_variable = { sr_resistance_moldavia = 5 }
+        clamp_variable = { var = sr_resistance_moldavia min = 0 max = 100 }
+    }
+    sr_update_union_resistance_ideas_effect = yes
+}

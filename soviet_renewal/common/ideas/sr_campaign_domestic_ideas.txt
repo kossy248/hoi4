@@ -1,0 +1,88 @@
+ideas = {
+    country = {
+        sr_cd_constitutional_debate = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { industrial_capacity_factory = -0.02 political_power_gain = -0.05 }
+        }
+        sr_cd_binding_councils = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { stability_factor = 0.02 political_power_gain = -0.05 }
+        }
+        sr_cd_party_veto = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { political_power_gain = 0.10 stability_factor = -0.02 }
+        }
+        sr_cd_comparative_commission = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { political_power_gain = -0.10 }
+        }
+        sr_cd_local_guarantees = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { stability_factor = 0.02 political_power_gain = -0.05 }
+        }
+        sr_cd_competitive_allocations = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { industrial_capacity_factory = 0.025 stability_factor = -0.02 }
+        }
+        sr_cd_war_councils = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { army_org_factor = 0.02 planning_speed = -0.02 }
+        }
+        sr_cd_emergency_cabinet = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { industrial_capacity_factory = 0.03 stability_factor = -0.03 }
+        }
+        sr_cd_labour_inspections = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { industrial_capacity_factory = -0.02 stability_factor = 0.02 }
+        }
+        sr_cd_wartime_quotas = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { industrial_capacity_factory = 0.04 stability_factor = -0.02 }
+        }
+        sr_cd_renewed_decree = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { political_power_gain = 0.10 stability_factor = -0.03 }
+        }
+        sr_cd_returned_rights = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { stability_factor = 0.025 industrial_capacity_factory = -0.01 }
+        }
+        sr_cd_constitutional_confidence = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { political_power_gain = 0.05 stability_factor = 0.02 }
+        }
+        sr_cd_emergency_fatigue = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { industrial_capacity_factory = -0.02 stability_factor = -0.025 }
+        }
+    }
+}

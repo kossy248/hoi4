@@ -1,0 +1,264 @@
+sr_balkan_federation = {
+    sr_balkan_propaganda_yugoslavia = {
+        icon = sr_balkan_propaganda_yugoslavia
+        cost = 50
+        days_re_enable = 180
+        visible = {
+            has_completed_focus = sr_lito_influence_yugoslavia
+            NOT = { has_country_flag = sr_balkan_federation_created }
+            YUG = { exists = yes }
+        }
+        available = {
+            is_subject = no
+            YUG = { sr_balkan_safe_influence_target = yes }
+        }
+        complete_effect = {
+            YUG = {
+                add_popularity = { ideology = communism popularity = 0.08 }
+                add_timed_idea = { idea = sr_lito_balkan_influence_network days = 365 }
+            }
+        }
+        ai_will_do = { factor = 3 }
+    }
+    sr_balkan_socialist_government_yugoslavia = {
+        icon = sr_balkan_socialist_government_yugoslavia
+        cost = 75
+        days_re_enable = 365
+        visible = {
+            has_completed_focus = sr_lito_influence_yugoslavia
+            NOT = { has_country_flag = sr_balkan_federation_created }
+            YUG = { exists = yes NOT = { has_government = communism } }
+        }
+        available = {
+            is_subject = no
+            YUG = {
+                sr_balkan_safe_influence_target = yes
+                NOT = { communism < 0.60 }
+            }
+        }
+        complete_effect = {
+            YUG = { set_politics = { ruling_party = communism elections_allowed = no } }
+        }
+        ai_will_do = { factor = 5 }
+    }
+    sr_balkan_propaganda_albania = {
+        icon = sr_balkan_propaganda_albania
+        cost = 50
+        days_re_enable = 180
+        visible = {
+            has_completed_focus = sr_lito_influence_albania
+            NOT = { has_country_flag = sr_balkan_federation_created }
+            ALB = { exists = yes }
+        }
+        available = {
+            is_subject = no
+            ALB = { sr_balkan_safe_influence_target = yes }
+        }
+        complete_effect = {
+            ALB = {
+                add_popularity = { ideology = communism popularity = 0.08 }
+                add_timed_idea = { idea = sr_lito_balkan_influence_network days = 365 }
+            }
+        }
+        ai_will_do = { factor = 3 }
+    }
+    sr_balkan_socialist_government_albania = {
+        icon = sr_balkan_socialist_government_albania
+        cost = 75
+        days_re_enable = 365
+        visible = {
+            has_completed_focus = sr_lito_influence_albania
+            NOT = { has_country_flag = sr_balkan_federation_created }
+            ALB = { exists = yes NOT = { has_government = communism } }
+        }
+        available = {
+            is_subject = no
+            ALB = {
+                sr_balkan_safe_influence_target = yes
+                NOT = { communism < 0.60 }
+            }
+        }
+        complete_effect = {
+            ALB = { set_politics = { ruling_party = communism elections_allowed = no } }
+        }
+        ai_will_do = { factor = 5 }
+    }
+    sr_balkan_propaganda_bulgaria = {
+        icon = sr_balkan_propaganda_bulgaria
+        cost = 50
+        days_re_enable = 180
+        visible = {
+            has_completed_focus = sr_lito_influence_bulgaria
+            NOT = { has_country_flag = sr_balkan_federation_created }
+            BUL = { exists = yes }
+        }
+        available = {
+            is_subject = no
+            BUL = { sr_balkan_safe_influence_target = yes }
+        }
+        complete_effect = {
+            BUL = {
+                add_popularity = { ideology = communism popularity = 0.08 }
+                add_timed_idea = { idea = sr_lito_balkan_influence_network days = 365 }
+            }
+        }
+        ai_will_do = { factor = 3 }
+    }
+    sr_balkan_socialist_government_bulgaria = {
+        icon = sr_balkan_socialist_government_bulgaria
+        cost = 75
+        days_re_enable = 365
+        visible = {
+            has_completed_focus = sr_lito_influence_bulgaria
+            NOT = { has_country_flag = sr_balkan_federation_created }
+            BUL = { exists = yes NOT = { has_government = communism } }
+        }
+        available = {
+            is_subject = no
+            BUL = {
+                sr_balkan_safe_influence_target = yes
+                NOT = { communism < 0.60 }
+            }
+        }
+        complete_effect = {
+            BUL = { set_politics = { ruling_party = communism elections_allowed = no } }
+        }
+        ai_will_do = { factor = 5 }
+    }
+    sr_balkan_propaganda_greece = {
+        icon = sr_balkan_propaganda_greece
+        cost = 50
+        days_re_enable = 180
+        visible = {
+            has_completed_focus = sr_lito_influence_greece
+            NOT = { has_country_flag = sr_balkan_federation_created }
+            GRE = { exists = yes }
+        }
+        available = {
+            is_subject = no
+            GRE = { sr_balkan_safe_influence_target = yes }
+        }
+        complete_effect = {
+            GRE = {
+                add_popularity = { ideology = communism popularity = 0.08 }
+                add_timed_idea = { idea = sr_lito_balkan_influence_network days = 365 }
+            }
+        }
+        ai_will_do = { factor = 3 }
+    }
+    sr_balkan_socialist_government_greece = {
+        icon = sr_balkan_socialist_government_greece
+        cost = 75
+        days_re_enable = 365
+        visible = {
+            has_completed_focus = sr_lito_influence_greece
+            NOT = { has_country_flag = sr_balkan_federation_created }
+            GRE = { exists = yes NOT = { has_government = communism } }
+        }
+        available = {
+            is_subject = no
+            GRE = {
+                sr_balkan_safe_influence_target = yes
+                NOT = { communism < 0.60 }
+            }
+        }
+        complete_effect = {
+            GRE = { set_politics = { ruling_party = communism elections_allowed = no } }
+        }
+        ai_will_do = { factor = 5 }
+    }
+    sr_balkan_propaganda_romania = {
+        icon = sr_balkan_propaganda_romania
+        cost = 50
+        days_re_enable = 180
+        visible = {
+            has_completed_focus = sr_lito_influence_romania
+            NOT = { has_country_flag = sr_balkan_federation_created }
+            ROM = { exists = yes }
+        }
+        available = {
+            is_subject = no
+            ROM = { sr_balkan_safe_influence_target = yes }
+        }
+        complete_effect = {
+            ROM = {
+                add_popularity = { ideology = communism popularity = 0.08 }
+                add_timed_idea = { idea = sr_lito_balkan_influence_network days = 365 }
+            }
+        }
+        ai_will_do = { factor = 3 }
+    }
+    sr_balkan_socialist_government_romania = {
+        icon = sr_balkan_socialist_government_romania
+        cost = 75
+        days_re_enable = 365
+        visible = {
+            has_completed_focus = sr_lito_influence_romania
+            NOT = { has_country_flag = sr_balkan_federation_created }
+            ROM = { exists = yes NOT = { has_government = communism } }
+        }
+        available = {
+            is_subject = no
+            ROM = {
+                sr_balkan_safe_influence_target = yes
+                NOT = { communism < 0.60 }
+            }
+        }
+        complete_effect = {
+            ROM = { set_politics = { ruling_party = communism elections_allowed = no } }
+        }
+        ai_will_do = { factor = 5 }
+    }
+    sr_balkan_form_federation = {
+        icon = sr_balkan_form_federation
+        cost = 100
+        fire_only_once = yes
+        visible = {
+            has_completed_focus = sr_lito_balkan_cooperation
+            NOT = { has_country_flag = sr_balkan_federation_created }
+        }
+        available = {
+            tag = SOV
+            is_subject = no
+            has_country_flag = sr_lito_initialized
+            has_war = no
+            sr_balkan_all_members_ready = yes
+        }
+        complete_effect = { sr_create_balkan_federation_effect = yes }
+        ai_will_do = { factor = 5 }
+    }
+    sr_balkan_integrate_federation = {
+        icon = sr_balkan_integrate_federation
+        cost = 150
+        fire_only_once = yes
+        visible = {
+            has_country_flag = sr_balkan_federation_created
+            NOT = { has_country_flag = sr_balkan_federation_integrated }
+            YUG = { exists = yes has_country_flag = sr_balkan_federal_state }
+        }
+        available = {
+            tag = SOV
+            is_subject = no
+            has_country_flag = sr_lito_initialized
+            has_war = no
+            custom_trigger_tooltip = {
+                tooltip = sr_balkan_designated_subject_ready_tt
+                YUG = { sr_balkan_designated_subject_ready = yes }
+            }
+            custom_trigger_tooltip = {
+                tooltip = sr_formable_poland_territory_tt
+                sr_formable_controls_poland = yes
+            }
+            custom_trigger_tooltip = {
+                tooltip = sr_formable_turkey_territory_tt
+                sr_formable_controls_turkey = yes
+            }
+        }
+        complete_effect = {
+            YUG = { sr_balkan_leave_foreign_faction_effect = yes }
+            annex_country = { target = YUG transfer_troops = yes }
+            set_country_flag = sr_balkan_federation_integrated
+        }
+        ai_will_do = { factor = 0 }
+    }
+}

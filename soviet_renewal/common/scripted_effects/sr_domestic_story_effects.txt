@@ -1,0 +1,49 @@
+# The story starts only after Lito and the native Union balance have been set up.
+sr_story_initialize_effect = {
+    if = {
+        limit = { tag = SOV NOT = { has_country_flag = sr_story_initialized } }
+        set_country_flag = sr_story_initialized
+        set_variable = { sr_story_trust = 50 }
+        country_event = { id = sr_domestic.1 days = 1 }
+        country_event = { id = sr_domestic.2 days = 30 }
+        country_event = { id = sr_domestic.3 days = 60 }
+        country_event = { id = sr_domestic.4 days = 100 }
+    }
+}
+
+# The petitions are a single congress agenda, not a monthly popup lottery.
+sr_story_republic_petitions_effect = {
+    if = {
+        limit = { tag = SOV has_country_flag = sr_story_initialized NOT = { has_country_flag = sr_story_petitions_scheduled } }
+        set_country_flag = sr_story_petitions_scheduled
+        if = { limit = { sr_union_ukraine_represented = yes } country_event = { id = sr_domestic.11 days = 2 } }
+        if = { limit = { sr_union_georgia_represented = yes } country_event = { id = sr_domestic.12 days = 14 } }
+        if = { limit = { sr_union_kazakhstan_represented = yes } country_event = { id = sr_domestic.13 days = 28 } }
+    }
+}
+
+sr_story_monthly_effect = {
+    if = {
+        limit = { tag = SOV has_country_flag = sr_story_initialized }
+        # These are consequences of actual policy, not unconditional recurring gifts.
+        if = {
+            limit = {
+                has_idea = sr_story_untouched_privileges
+                has_completed_focus = sr_lito_politics_anti_corruption
+                NOT = { has_country_flag = sr_story_privileges_reviewed }
+            }
+            set_country_flag = sr_story_privileges_reviewed
+            remove_ideas = sr_story_untouched_privileges
+            country_event = { id = sr_domestic.21 days = 1 }
+        }
+        if = {
+            limit = {
+                power_balance_value = { id = sr_union_balance value < -0.60 }
+                sr_union_has_strikes = yes
+                NOT = { has_country_flag = sr_story_crisis_seen }
+            }
+            set_country_flag = sr_story_crisis_seen
+            country_event = { id = sr_domestic.20 days = 1 }
+        }
+    }
+}

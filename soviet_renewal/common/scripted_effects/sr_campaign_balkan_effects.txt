@@ -1,0 +1,50 @@
+# SOV monthly hook. Each automatic opening reserves the shared campaign slot.
+# Follow-up events recheck the current partner instead of writing into stale tags.
+sr_campaign_balkan_monthly_effect = {
+    if = {
+        limit = {
+            tag = SOV
+            has_country_flag = sr_lito_initialized
+            has_country_flag = sr_story_first_hundred_days
+            NOT = { has_country_flag = sr_campaign_event_cooldown }
+        }
+        if = {
+            limit = {
+                has_country_flag = sr_slavic_union_proclaimed
+                NOT = { has_country_flag = sr_cb_charter_started }
+            }
+            set_country_flag = sr_cb_charter_started
+            set_country_flag = { flag = sr_campaign_event_cooldown days = 60 value = 1 }
+            country_event = { id = sr_campaign_balkan.7 days = 2 }
+        }
+        else_if = {
+            limit = {
+                NOT = { has_country_flag = sr_cb_federation_started }
+                exists = YUG
+                YUG = { sr_balkan_designated_subject_ready = yes }
+                OR = {
+                    has_country_flag = sr_bs_federal_compromise
+                    has_country_flag = sr_bs_federal_grievance
+                    AND = {
+                        has_country_flag = sr_bs_federal_voice
+                        YUG = { has_idea = sr_bs_federal_compact }
+                    }
+                }
+            }
+            set_country_flag = sr_cb_federation_started
+            set_country_flag = { flag = sr_campaign_event_cooldown days = 60 value = 1 }
+            country_event = { id = sr_campaign_balkan.4 days = 2 }
+        }
+        else_if = {
+            limit = {
+                NOT = { has_country_flag = sr_cb_kardelj_started }
+                has_completed_focus = sr_lito_balkan_partnership
+                exists = YUG
+                YUG = { sr_campaign_kardelj_partner_ready = yes }
+            }
+            set_country_flag = sr_cb_kardelj_started
+            set_country_flag = { flag = sr_campaign_event_cooldown days = 60 value = 1 }
+            country_event = { id = sr_campaign_balkan.1 days = 2 }
+        }
+    }
+}

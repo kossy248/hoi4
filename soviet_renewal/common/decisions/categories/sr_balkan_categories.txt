@@ -1,0 +1,7 @@
+sr_balkan_federation = {
+    icon = sr_balkan_federation
+    picture = GFX_sr_category_focus_LITO_the_molotov_line
+    priority = 85
+    allowed = { tag = SOV }
+    visible = { has_country_flag = sr_lito_initialized }
+}

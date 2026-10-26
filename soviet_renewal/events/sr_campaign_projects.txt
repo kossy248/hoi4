@@ -1,0 +1,181 @@
+add_namespace = sr_projects
+
+country_event = {
+    picture = GFX_sr_campaign_workshops
+    id = sr_projects.1
+    title = sr_projects_1_title
+    desc = { trigger = { has_country_flag = sr_fs_workers_decide } text = sr_projects_1_councils_desc }
+    desc = { trigger = { NOT = { has_country_flag = sr_fs_workers_decide } } text = sr_projects_1_directors_desc }
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_lito_initialized has_country_flag = sr_project_workshops_active }
+    option = {
+        name = sr_projects_1_a
+        ai_chance = { base = 100 }
+        custom_effect_tooltip = sr_project_workshops_plan_tt
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_workshops
+    id = sr_projects.2
+    title = sr_projects_2_title
+    desc = sr_projects_2_desc
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_lito_initialized has_country_flag = sr_project_workshops_active }
+    option = {
+        name = sr_projects_2_a
+        ai_chance = { base = 60 modifier = { factor = 2 has_country_flag = sr_fs_workers_decide } }
+        set_country_flag = sr_project_workshops_midpoint
+        set_country_flag = sr_project_workshop_councils
+        add_to_variable = { sr_story_trust = 3 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        custom_effect_tooltip = sr_project_workshops_councils_tt
+    }
+    option = {
+        name = sr_projects_2_b
+        ai_chance = { base = 40 modifier = { factor = 2 has_country_flag = sr_fs_director_decides } }
+        set_country_flag = sr_project_workshops_midpoint
+        set_country_flag = sr_project_workshop_standards
+        add_political_power = 15
+        subtract_from_variable = { sr_story_trust = 4 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        custom_effect_tooltip = sr_project_workshops_standards_tt
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_workshops
+    id = sr_projects.3
+    title = sr_projects_3_title
+    desc = { trigger = { has_country_flag = sr_project_workshops_failed } text = sr_projects_3_failed_desc }
+    desc = { trigger = { has_country_flag = sr_project_workshops_completed has_country_flag = sr_project_workshop_councils } text = sr_projects_3_councils_desc }
+    desc = { trigger = { has_country_flag = sr_project_workshops_completed NOT = { has_country_flag = sr_project_workshop_councils } } text = sr_projects_3_standards_desc }
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = {
+        tag = SOV
+        has_country_flag = sr_lito_initialized
+        OR = { has_country_flag = sr_project_workshops_completed has_country_flag = sr_project_workshops_failed }
+    }
+    option = { name = sr_projects_3_a ai_chance = { base = 100 } }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_workshops
+    id = sr_projects.4
+    title = sr_projects_4_title
+    desc = sr_projects_4_desc
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_lito_initialized has_country_flag = sr_project_education_active }
+    option = {
+        name = sr_projects_4_a
+        ai_chance = { base = 100 }
+        custom_effect_tooltip = sr_project_education_plan_tt
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_workshops
+    id = sr_projects.5
+    title = sr_projects_5_title
+    desc = sr_projects_5_desc
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_lito_initialized has_country_flag = sr_project_education_active }
+    option = {
+        name = sr_projects_5_a
+        ai_chance = { base = 60 }
+        set_country_flag = sr_project_education_midpoint
+        set_country_flag = sr_project_open_classes
+        add_to_variable = { sr_story_trust = 3 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        custom_effect_tooltip = sr_project_education_open_tt
+    }
+    option = {
+        name = sr_projects_5_b
+        ai_chance = { base = 40 }
+        set_country_flag = sr_project_education_midpoint
+        set_country_flag = sr_project_specialist_classes
+        army_experience = 5
+        custom_effect_tooltip = sr_project_education_specialists_tt
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_workshops
+    id = sr_projects.6
+    title = sr_projects_6_title
+    desc = { trigger = { has_country_flag = sr_project_education_failed } text = sr_projects_6_failed_desc }
+    desc = { trigger = { has_country_flag = sr_project_education_completed has_country_flag = sr_project_open_classes } text = sr_projects_6_open_desc }
+    desc = { trigger = { has_country_flag = sr_project_education_completed NOT = { has_country_flag = sr_project_open_classes } } text = sr_projects_6_specialists_desc }
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = {
+        tag = SOV
+        has_country_flag = sr_lito_initialized
+        OR = { has_country_flag = sr_project_education_completed has_country_flag = sr_project_education_failed }
+    }
+    option = { name = sr_projects_6_a ai_chance = { base = 100 } }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_workshops
+    id = sr_projects.7
+    title = sr_projects_7_title
+    desc = sr_projects_7_desc
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_lito_initialized has_country_flag = sr_project_supply_active }
+    option = {
+        name = sr_projects_7_a
+        ai_chance = { base = 100 }
+        custom_effect_tooltip = sr_project_supply_plan_tt
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_workshops
+    id = sr_projects.8
+    title = sr_projects_8_title
+    desc = sr_projects_8_desc
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_lito_initialized has_country_flag = sr_project_supply_active }
+    option = {
+        name = sr_projects_8_a
+        ai_chance = { base = 65 modifier = { factor = 0.5 has_war = yes } }
+        set_country_flag = sr_project_supply_midpoint
+        set_country_flag = sr_project_civil_timetables
+        add_to_variable = { sr_story_trust = 3 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        custom_effect_tooltip = sr_project_supply_civil_tt
+    }
+    option = {
+        name = sr_projects_8_b
+        ai_chance = { base = 35 modifier = { factor = 2 has_war = yes } }
+        set_country_flag = sr_project_supply_midpoint
+        set_country_flag = sr_project_military_timetables
+        army_experience = 5
+        custom_effect_tooltip = sr_project_supply_military_tt
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_workshops
+    id = sr_projects.9
+    title = sr_projects_9_title
+    desc = { trigger = { has_country_flag = sr_project_supply_failed } text = sr_projects_9_failed_desc }
+    desc = { trigger = { has_country_flag = sr_project_supply_completed has_country_flag = sr_project_civil_timetables } text = sr_projects_9_civil_desc }
+    desc = { trigger = { has_country_flag = sr_project_supply_completed NOT = { has_country_flag = sr_project_civil_timetables } } text = sr_projects_9_military_desc }
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = {
+        tag = SOV
+        has_country_flag = sr_lito_initialized
+        OR = { has_country_flag = sr_project_supply_completed has_country_flag = sr_project_supply_failed }
+    }
+    option = { name = sr_projects_9_a ai_chance = { base = 100 } }
+}

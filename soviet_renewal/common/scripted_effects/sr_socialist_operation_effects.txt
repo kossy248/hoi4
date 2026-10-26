@@ -1,0 +1,22 @@
+# Only called from outcome_execute in ROOT country scope. FROM is the country
+# the operation targeted, not an operative, state, neighbouring tag or faction.
+sr_socialist_operation_complete_effect = {
+    if = {
+        limit = {
+            tag = SOV
+            has_country_flag = sr_lito_initialized
+            has_government = communism
+            FROM = { sr_socialist_operation_target_ready = yes }
+        }
+        FROM = {
+            save_event_target_as = sr_socialist_revolution_target
+            add_popularity = { ideology = communism popularity = 0.60 }
+            set_politics = { ruling_party = communism elections_allowed = no }
+            set_country_flag = { flag = sr_socialist_operation_recent_revolution days = 365 value = 1 }
+            country_event = { id = sr_socialist_operation.2 days = 1 }
+        }
+        # The common leadership rule keeps Tito out of communist Yugoslavia.
+        sr_ensure_yugoslav_communist_leader_effect = yes
+        country_event = { id = sr_socialist_operation.1 days = 1 }
+    }
+}

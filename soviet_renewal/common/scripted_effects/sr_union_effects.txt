@@ -1,0 +1,575 @@
+# Called once from new-game startup, in SOV country scope.
+sr_initialize_union_effect = {
+    if = {
+        limit = { NOT = { has_country_flag = sr_union_initialized } }
+        set_power_balance = {
+            id = sr_union_balance
+            left_side = sr_union_collapse_side
+            right_side = sr_union_preservation_side
+            set_default = yes
+        }
+        set_variable = { sr_resistance_russia = 0 }
+        set_variable = { sr_resistance_ukraine = 0 }
+        set_variable = { sr_resistance_belarus = 0 }
+        set_variable = { sr_resistance_georgia = 0 }
+        set_variable = { sr_resistance_armenia = 0 }
+        set_variable = { sr_resistance_azerbaijan = 0 }
+        set_variable = { sr_resistance_kazakhstan = 0 }
+        set_variable = { sr_resistance_uzbekistan = 0 }
+        set_variable = { sr_resistance_turkmenistan = 0 }
+        set_variable = { sr_resistance_kyrgyzstan = 0 }
+        set_variable = { sr_resistance_tajikistan = 0 }
+        set_variable = { sr_resistance_estonia = 0 }
+        set_variable = { sr_resistance_latvia = 0 }
+        set_variable = { sr_resistance_lithuania = 0 }
+        set_variable = { sr_resistance_moldavia = 0 }
+        set_country_flag = sr_union_initialized
+    }
+}
+
+# on_monthly already has country scope; do not run once per other country.
+# Each represented republic without a recent council adds its own pressure.
+sr_union_monthly_effect = {
+    if = {
+        limit = {
+            tag = SOV
+            has_country_flag = sr_union_initialized
+            has_power_balance = { id = sr_union_balance }
+        }
+        add_power_balance_value = { id = sr_union_balance value = -0.005 }
+        if = {
+            limit = {
+                sr_union_russia_represented = yes
+                NOT = { has_country_flag = sr_union_russia_consulted }
+            }
+            add_power_balance_value = { id = sr_union_balance value = -0.002 }
+        }
+        if = {
+            limit = {
+                sr_union_ukraine_represented = yes
+                NOT = { has_country_flag = sr_union_ukraine_consulted }
+            }
+            add_power_balance_value = { id = sr_union_balance value = -0.002 }
+        }
+        if = {
+            limit = {
+                sr_union_belarus_represented = yes
+                NOT = { has_country_flag = sr_union_belarus_consulted }
+            }
+            add_power_balance_value = { id = sr_union_balance value = -0.002 }
+        }
+        if = {
+            limit = {
+                sr_union_georgia_represented = yes
+                NOT = { has_country_flag = sr_union_georgia_consulted }
+            }
+            add_power_balance_value = { id = sr_union_balance value = -0.002 }
+        }
+        if = {
+            limit = {
+                sr_union_armenia_represented = yes
+                NOT = { has_country_flag = sr_union_armenia_consulted }
+            }
+            add_power_balance_value = { id = sr_union_balance value = -0.002 }
+        }
+        if = {
+            limit = {
+                sr_union_azerbaijan_represented = yes
+                NOT = { has_country_flag = sr_union_azerbaijan_consulted }
+            }
+            add_power_balance_value = { id = sr_union_balance value = -0.002 }
+        }
+        if = {
+            limit = {
+                sr_union_kazakhstan_represented = yes
+                NOT = { has_country_flag = sr_union_kazakhstan_consulted }
+            }
+            add_power_balance_value = { id = sr_union_balance value = -0.002 }
+        }
+        if = {
+            limit = {
+                sr_union_uzbekistan_represented = yes
+                NOT = { has_country_flag = sr_union_uzbekistan_consulted }
+            }
+            add_power_balance_value = { id = sr_union_balance value = -0.002 }
+        }
+        if = {
+            limit = {
+                sr_union_turkmenistan_represented = yes
+                NOT = { has_country_flag = sr_union_turkmenistan_consulted }
+            }
+            add_power_balance_value = { id = sr_union_balance value = -0.002 }
+        }
+        if = {
+            limit = {
+                sr_union_kyrgyzstan_represented = yes
+                NOT = { has_country_flag = sr_union_kyrgyzstan_consulted }
+            }
+            add_power_balance_value = { id = sr_union_balance value = -0.002 }
+        }
+        if = {
+            limit = {
+                sr_union_tajikistan_represented = yes
+                NOT = { has_country_flag = sr_union_tajikistan_consulted }
+            }
+            add_power_balance_value = { id = sr_union_balance value = -0.002 }
+        }
+        if = {
+            limit = {
+                sr_union_estonia_represented = yes
+                NOT = { has_country_flag = sr_union_estonia_consulted }
+            }
+            add_power_balance_value = { id = sr_union_balance value = -0.002 }
+        }
+        if = {
+            limit = {
+                sr_union_latvia_represented = yes
+                NOT = { has_country_flag = sr_union_latvia_consulted }
+            }
+            add_power_balance_value = { id = sr_union_balance value = -0.002 }
+        }
+        if = {
+            limit = {
+                sr_union_lithuania_represented = yes
+                NOT = { has_country_flag = sr_union_lithuania_consulted }
+            }
+            add_power_balance_value = { id = sr_union_balance value = -0.002 }
+        }
+        if = {
+            limit = {
+                sr_union_moldavia_represented = yes
+                NOT = { has_country_flag = sr_union_moldavia_consulted }
+            }
+            add_power_balance_value = { id = sr_union_balance value = -0.002 }
+        }
+        if = {
+            limit = { has_war = yes }
+            add_power_balance_value = { id = sr_union_balance value = -0.01 }
+        }
+        if = {
+            limit = { stability < 0.40 }
+            add_power_balance_value = { id = sr_union_balance value = -0.01 }
+        }
+        if = {
+            limit = { stability > 0.60 }
+            add_power_balance_value = { id = sr_union_balance value = 0.01 }
+        }
+        sr_union_resistance_monthly_effect = yes
+    }
+}
+
+# Custom domestic unrest, separate from occupation resistance. Soviet cores stay intact.
+# Severe crisis builds ten points each month; recovery is gradual after cohesion improves.
+sr_union_resistance_monthly_effect = {
+    if = {
+        limit = { sr_union_russia_represented = yes }
+        if = {
+            limit = { power_balance_value = { id = sr_union_balance value < -0.60 } }
+            add_to_variable = { sr_resistance_russia = 10 }
+        }
+        else_if = {
+            limit = { power_balance_value = { id = sr_union_balance value > 0.20 } }
+            subtract_from_variable = { sr_resistance_russia = 5 }
+        }
+        else = { subtract_from_variable = { sr_resistance_russia = 2 } }
+        clamp_variable = { var = sr_resistance_russia min = 0 max = 100 }
+        if = {
+            limit = { check_variable = { sr_resistance_russia = 80 } }
+            random_owned_state = {
+                limit = {
+                    is_controlled_by = ROOT
+                    is_core_of = SOV
+                    NOT = {
+                        OR = {
+                            is_core_of = UKR
+                            is_core_of = BLR
+                            is_core_of = GEO
+                            is_core_of = ARM
+                            is_core_of = AZR
+                            is_core_of = KAZ
+                            is_core_of = UZB
+                            is_core_of = TMS
+                            is_core_of = KYR
+                            is_core_of = TAJ
+                            is_core_of = EST
+                            is_core_of = LAT
+                            is_core_of = LIT
+                            is_core_of = MOL
+                        }
+                    }
+                }
+                damage_building = { type = infrastructure damage = 1 }
+            }
+        }
+    }
+    else = { set_variable = { sr_resistance_russia = 0 } }
+    if = {
+        limit = { sr_union_ukraine_represented = yes }
+        if = {
+            limit = { power_balance_value = { id = sr_union_balance value < -0.60 } }
+            add_to_variable = { sr_resistance_ukraine = 10 }
+        }
+        else_if = {
+            limit = { power_balance_value = { id = sr_union_balance value > 0.20 } }
+            subtract_from_variable = { sr_resistance_ukraine = 5 }
+        }
+        else = { subtract_from_variable = { sr_resistance_ukraine = 2 } }
+        clamp_variable = { var = sr_resistance_ukraine min = 0 max = 100 }
+        if = {
+            limit = { check_variable = { sr_resistance_ukraine = 80 } }
+            random_owned_state = {
+                limit = {
+                    is_controlled_by = ROOT
+                    is_core_of = UKR
+                }
+                damage_building = { type = infrastructure damage = 1 }
+            }
+        }
+    }
+    else = { set_variable = { sr_resistance_ukraine = 0 } }
+    if = {
+        limit = { sr_union_belarus_represented = yes }
+        if = {
+            limit = { power_balance_value = { id = sr_union_balance value < -0.60 } }
+            add_to_variable = { sr_resistance_belarus = 10 }
+        }
+        else_if = {
+            limit = { power_balance_value = { id = sr_union_balance value > 0.20 } }
+            subtract_from_variable = { sr_resistance_belarus = 5 }
+        }
+        else = { subtract_from_variable = { sr_resistance_belarus = 2 } }
+        clamp_variable = { var = sr_resistance_belarus min = 0 max = 100 }
+        if = {
+            limit = { check_variable = { sr_resistance_belarus = 80 } }
+            random_owned_state = {
+                limit = {
+                    is_controlled_by = ROOT
+                    is_core_of = BLR
+                }
+                damage_building = { type = infrastructure damage = 1 }
+            }
+        }
+    }
+    else = { set_variable = { sr_resistance_belarus = 0 } }
+    if = {
+        limit = { sr_union_georgia_represented = yes }
+        if = {
+            limit = { power_balance_value = { id = sr_union_balance value < -0.60 } }
+            add_to_variable = { sr_resistance_georgia = 10 }
+        }
+        else_if = {
+            limit = { power_balance_value = { id = sr_union_balance value > 0.20 } }
+            subtract_from_variable = { sr_resistance_georgia = 5 }
+        }
+        else = { subtract_from_variable = { sr_resistance_georgia = 2 } }
+        clamp_variable = { var = sr_resistance_georgia min = 0 max = 100 }
+        if = {
+            limit = { check_variable = { sr_resistance_georgia = 80 } }
+            random_owned_state = {
+                limit = {
+                    is_controlled_by = ROOT
+                    is_core_of = GEO
+                }
+                damage_building = { type = infrastructure damage = 1 }
+            }
+        }
+    }
+    else = { set_variable = { sr_resistance_georgia = 0 } }
+    if = {
+        limit = { sr_union_armenia_represented = yes }
+        if = {
+            limit = { power_balance_value = { id = sr_union_balance value < -0.60 } }
+            add_to_variable = { sr_resistance_armenia = 10 }
+        }
+        else_if = {
+            limit = { power_balance_value = { id = sr_union_balance value > 0.20 } }
+            subtract_from_variable = { sr_resistance_armenia = 5 }
+        }
+        else = { subtract_from_variable = { sr_resistance_armenia = 2 } }
+        clamp_variable = { var = sr_resistance_armenia min = 0 max = 100 }
+        if = {
+            limit = { check_variable = { sr_resistance_armenia = 80 } }
+            random_owned_state = {
+                limit = {
+                    is_controlled_by = ROOT
+                    is_core_of = ARM
+                }
+                damage_building = { type = infrastructure damage = 1 }
+            }
+        }
+    }
+    else = { set_variable = { sr_resistance_armenia = 0 } }
+    if = {
+        limit = { sr_union_azerbaijan_represented = yes }
+        if = {
+            limit = { power_balance_value = { id = sr_union_balance value < -0.60 } }
+            add_to_variable = { sr_resistance_azerbaijan = 10 }
+        }
+        else_if = {
+            limit = { power_balance_value = { id = sr_union_balance value > 0.20 } }
+            subtract_from_variable = { sr_resistance_azerbaijan = 5 }
+        }
+        else = { subtract_from_variable = { sr_resistance_azerbaijan = 2 } }
+        clamp_variable = { var = sr_resistance_azerbaijan min = 0 max = 100 }
+        if = {
+            limit = { check_variable = { sr_resistance_azerbaijan = 80 } }
+            random_owned_state = {
+                limit = {
+                    is_controlled_by = ROOT
+                    is_core_of = AZR
+                }
+                damage_building = { type = infrastructure damage = 1 }
+            }
+        }
+    }
+    else = { set_variable = { sr_resistance_azerbaijan = 0 } }
+    if = {
+        limit = { sr_union_kazakhstan_represented = yes }
+        if = {
+            limit = { power_balance_value = { id = sr_union_balance value < -0.60 } }
+            add_to_variable = { sr_resistance_kazakhstan = 10 }
+        }
+        else_if = {
+            limit = { power_balance_value = { id = sr_union_balance value > 0.20 } }
+            subtract_from_variable = { sr_resistance_kazakhstan = 5 }
+        }
+        else = { subtract_from_variable = { sr_resistance_kazakhstan = 2 } }
+        clamp_variable = { var = sr_resistance_kazakhstan min = 0 max = 100 }
+        if = {
+            limit = { check_variable = { sr_resistance_kazakhstan = 80 } }
+            random_owned_state = {
+                limit = {
+                    is_controlled_by = ROOT
+                    is_core_of = KAZ
+                }
+                damage_building = { type = infrastructure damage = 1 }
+            }
+        }
+    }
+    else = { set_variable = { sr_resistance_kazakhstan = 0 } }
+    if = {
+        limit = { sr_union_uzbekistan_represented = yes }
+        if = {
+            limit = { power_balance_value = { id = sr_union_balance value < -0.60 } }
+            add_to_variable = { sr_resistance_uzbekistan = 10 }
+        }
+        else_if = {
+            limit = { power_balance_value = { id = sr_union_balance value > 0.20 } }
+            subtract_from_variable = { sr_resistance_uzbekistan = 5 }
+        }
+        else = { subtract_from_variable = { sr_resistance_uzbekistan = 2 } }
+        clamp_variable = { var = sr_resistance_uzbekistan min = 0 max = 100 }
+        if = {
+            limit = { check_variable = { sr_resistance_uzbekistan = 80 } }
+            random_owned_state = {
+                limit = {
+                    is_controlled_by = ROOT
+                    is_core_of = UZB
+                }
+                damage_building = { type = infrastructure damage = 1 }
+            }
+        }
+    }
+    else = { set_variable = { sr_resistance_uzbekistan = 0 } }
+    if = {
+        limit = { sr_union_turkmenistan_represented = yes }
+        if = {
+            limit = { power_balance_value = { id = sr_union_balance value < -0.60 } }
+            add_to_variable = { sr_resistance_turkmenistan = 10 }
+        }
+        else_if = {
+            limit = { power_balance_value = { id = sr_union_balance value > 0.20 } }
+            subtract_from_variable = { sr_resistance_turkmenistan = 5 }
+        }
+        else = { subtract_from_variable = { sr_resistance_turkmenistan = 2 } }
+        clamp_variable = { var = sr_resistance_turkmenistan min = 0 max = 100 }
+        if = {
+            limit = { check_variable = { sr_resistance_turkmenistan = 80 } }
+            random_owned_state = {
+                limit = {
+                    is_controlled_by = ROOT
+                    is_core_of = TMS
+                }
+                damage_building = { type = infrastructure damage = 1 }
+            }
+        }
+    }
+    else = { set_variable = { sr_resistance_turkmenistan = 0 } }
+    if = {
+        limit = { sr_union_kyrgyzstan_represented = yes }
+        if = {
+            limit = { power_balance_value = { id = sr_union_balance value < -0.60 } }
+            add_to_variable = { sr_resistance_kyrgyzstan = 10 }
+        }
+        else_if = {
+            limit = { power_balance_value = { id = sr_union_balance value > 0.20 } }
+            subtract_from_variable = { sr_resistance_kyrgyzstan = 5 }
+        }
+        else = { subtract_from_variable = { sr_resistance_kyrgyzstan = 2 } }
+        clamp_variable = { var = sr_resistance_kyrgyzstan min = 0 max = 100 }
+        if = {
+            limit = { check_variable = { sr_resistance_kyrgyzstan = 80 } }
+            random_owned_state = {
+                limit = {
+                    is_controlled_by = ROOT
+                    is_core_of = KYR
+                }
+                damage_building = { type = infrastructure damage = 1 }
+            }
+        }
+    }
+    else = { set_variable = { sr_resistance_kyrgyzstan = 0 } }
+    if = {
+        limit = { sr_union_tajikistan_represented = yes }
+        if = {
+            limit = { power_balance_value = { id = sr_union_balance value < -0.60 } }
+            add_to_variable = { sr_resistance_tajikistan = 10 }
+        }
+        else_if = {
+            limit = { power_balance_value = { id = sr_union_balance value > 0.20 } }
+            subtract_from_variable = { sr_resistance_tajikistan = 5 }
+        }
+        else = { subtract_from_variable = { sr_resistance_tajikistan = 2 } }
+        clamp_variable = { var = sr_resistance_tajikistan min = 0 max = 100 }
+        if = {
+            limit = { check_variable = { sr_resistance_tajikistan = 80 } }
+            random_owned_state = {
+                limit = {
+                    is_controlled_by = ROOT
+                    is_core_of = TAJ
+                }
+                damage_building = { type = infrastructure damage = 1 }
+            }
+        }
+    }
+    else = { set_variable = { sr_resistance_tajikistan = 0 } }
+    if = {
+        limit = { sr_union_estonia_represented = yes }
+        if = {
+            limit = { power_balance_value = { id = sr_union_balance value < -0.60 } }
+            add_to_variable = { sr_resistance_estonia = 10 }
+        }
+        else_if = {
+            limit = { power_balance_value = { id = sr_union_balance value > 0.20 } }
+            subtract_from_variable = { sr_resistance_estonia = 5 }
+        }
+        else = { subtract_from_variable = { sr_resistance_estonia = 2 } }
+        clamp_variable = { var = sr_resistance_estonia min = 0 max = 100 }
+        if = {
+            limit = { check_variable = { sr_resistance_estonia = 80 } }
+            random_owned_state = {
+                limit = {
+                    is_controlled_by = ROOT
+                    is_core_of = EST
+                }
+                damage_building = { type = infrastructure damage = 1 }
+            }
+        }
+    }
+    else = { set_variable = { sr_resistance_estonia = 0 } }
+    if = {
+        limit = { sr_union_latvia_represented = yes }
+        if = {
+            limit = { power_balance_value = { id = sr_union_balance value < -0.60 } }
+            add_to_variable = { sr_resistance_latvia = 10 }
+        }
+        else_if = {
+            limit = { power_balance_value = { id = sr_union_balance value > 0.20 } }
+            subtract_from_variable = { sr_resistance_latvia = 5 }
+        }
+        else = { subtract_from_variable = { sr_resistance_latvia = 2 } }
+        clamp_variable = { var = sr_resistance_latvia min = 0 max = 100 }
+        if = {
+            limit = { check_variable = { sr_resistance_latvia = 80 } }
+            random_owned_state = {
+                limit = {
+                    is_controlled_by = ROOT
+                    is_core_of = LAT
+                }
+                damage_building = { type = infrastructure damage = 1 }
+            }
+        }
+    }
+    else = { set_variable = { sr_resistance_latvia = 0 } }
+    if = {
+        limit = { sr_union_lithuania_represented = yes }
+        if = {
+            limit = { power_balance_value = { id = sr_union_balance value < -0.60 } }
+            add_to_variable = { sr_resistance_lithuania = 10 }
+        }
+        else_if = {
+            limit = { power_balance_value = { id = sr_union_balance value > 0.20 } }
+            subtract_from_variable = { sr_resistance_lithuania = 5 }
+        }
+        else = { subtract_from_variable = { sr_resistance_lithuania = 2 } }
+        clamp_variable = { var = sr_resistance_lithuania min = 0 max = 100 }
+        if = {
+            limit = { check_variable = { sr_resistance_lithuania = 80 } }
+            random_owned_state = {
+                limit = {
+                    is_controlled_by = ROOT
+                    is_core_of = LIT
+                }
+                damage_building = { type = infrastructure damage = 1 }
+            }
+        }
+    }
+    else = { set_variable = { sr_resistance_lithuania = 0 } }
+    if = {
+        limit = { sr_union_moldavia_represented = yes }
+        if = {
+            limit = { power_balance_value = { id = sr_union_balance value < -0.60 } }
+            add_to_variable = { sr_resistance_moldavia = 10 }
+        }
+        else_if = {
+            limit = { power_balance_value = { id = sr_union_balance value > 0.20 } }
+            subtract_from_variable = { sr_resistance_moldavia = 5 }
+        }
+        else = { subtract_from_variable = { sr_resistance_moldavia = 2 } }
+        clamp_variable = { var = sr_resistance_moldavia min = 0 max = 100 }
+        if = {
+            limit = { check_variable = { sr_resistance_moldavia = 80 } }
+            random_owned_state = {
+                limit = {
+                    is_controlled_by = ROOT
+                    is_core_of = MOL
+                }
+                damage_building = { type = infrastructure damage = 1 }
+            }
+        }
+    }
+    else = { set_variable = { sr_resistance_moldavia = 0 } }
+    sr_update_union_resistance_ideas_effect = yes
+}
+
+# Re-evaluate immediately after recovery decisions as well as monthly updates.
+sr_update_union_resistance_ideas_effect = {
+    if = {
+        limit = {
+            sr_union_has_strikes = yes
+            NOT = { has_idea = sr_union_mass_strikes }
+        }
+        add_ideas = sr_union_mass_strikes
+    }
+    else_if = {
+        limit = {
+            NOT = { sr_union_has_strikes = yes }
+            has_idea = sr_union_mass_strikes
+        }
+        remove_ideas = sr_union_mass_strikes
+    }
+    if = {
+        limit = {
+            sr_union_has_sabotage = yes
+            NOT = { has_idea = sr_union_sabotage_networks }
+        }
+        add_ideas = sr_union_sabotage_networks
+    }
+    else_if = {
+        limit = {
+            NOT = { sr_union_has_sabotage = yes }
+            has_idea = sr_union_sabotage_networks
+        }
+        remove_ideas = sr_union_sabotage_networks
+    }
+}

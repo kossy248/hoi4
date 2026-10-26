@@ -1,0 +1,158 @@
+sr_union_council = {
+    sr_union_delegate_congress = {
+        icon = sr_union_delegate_congress
+        cost = 75
+        days_re_enable = 240
+        visible = { has_country_flag = sr_lito_initialized }
+        available = {
+            has_government = communism
+            check_variable = { sr_story_trust = 40 }
+            power_balance_value = { id = sr_union_balance value < 0.60 }
+        }
+        complete_effect = {
+            add_power_balance_value = { id = sr_union_balance value = 0.08 }
+            add_to_variable = { sr_story_trust = 6 }
+            clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+            add_timed_idea = { idea = sr_union_delegate_sessions days = 120 }
+        }
+        ai_will_do = { factor = 2 }
+    }
+    sr_union_emergency_compromise = {
+        icon = sr_union_emergency_compromise
+        cost = 90
+        days_re_enable = 365
+        visible = { has_country_flag = sr_lito_initialized }
+        available = {
+            has_government = communism
+            check_variable = { sr_story_trust = 20 }
+            power_balance_value = { id = sr_union_balance value < -0.20 }
+        }
+        complete_effect = {
+            add_power_balance_value = { id = sr_union_balance value = 0.15 }
+            add_to_variable = { sr_story_trust = 8 }
+            clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+            add_stability = -0.02
+            add_timed_idea = { idea = sr_union_compromise_budget days = 90 }
+        }
+        ai_will_do = { factor = 5 }
+    }
+    sr_union_public_plan_audit = {
+        icon = sr_union_public_plan_audit
+        cost = 55
+        days_re_enable = 180
+        visible = { has_completed_focus = sr_lito_federal_plan }
+        available = {
+            has_government = communism
+            has_country_flag = sr_lito_initialized
+            has_war = no
+        }
+        complete_effect = {
+            add_power_balance_value = { id = sr_union_balance value = 0.04 }
+            add_to_variable = { sr_story_trust = 4 }
+            clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+            sr_lito_reduce_republic_resistance_effect = yes
+            add_timed_idea = { idea = sr_union_plan_audit days = 90 }
+        }
+        ai_will_do = { factor = 2 }
+    }
+    sr_union_central_emergency_powers = {
+        icon = sr_union_central_emergency_powers
+        cost = 0
+        fire_only_once = yes
+        visible = {
+            has_country_flag = sr_lito_initialized
+            NOT = { has_country_flag = sr_union_central_powers_used }
+        }
+        available = {
+            has_government = communism
+            has_war = yes
+            power_balance_value = { id = sr_union_balance value < -0.20 }
+        }
+        complete_effect = {
+            set_country_flag = sr_union_central_powers_used
+            add_political_power = 100
+            add_war_support = 0.05
+            add_power_balance_value = { id = sr_union_balance value = -0.12 }
+            subtract_from_variable = { sr_story_trust = 10 }
+            clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+            add_timed_idea = { idea = sr_union_wartime_secretariat days = 180 }
+        }
+        ai_will_do = { factor = 1 }
+    }
+    sr_union_republic_amnesty = {
+        icon = sr_union_republic_amnesty
+        cost = 100
+        days_re_enable = 365
+        visible = { has_country_flag = sr_lito_initialized }
+        available = {
+            has_government = communism
+            sr_union_has_strikes = yes
+        }
+        complete_effect = {
+            add_power_balance_value = { id = sr_union_balance value = 0.06 }
+            add_to_variable = { sr_story_trust = 8 }
+            clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+            sr_lito_reduce_republic_resistance_effect = yes
+            sr_lito_reduce_republic_resistance_effect = yes
+            sr_lito_reduce_republic_resistance_effect = yes
+            add_war_support = -0.03
+            add_timed_idea = { idea = sr_union_amnesty_guarantees days = 120 }
+        }
+        ai_will_do = { factor = 3 }
+    }
+    sr_union_prepare_budget_reserve = {
+        icon = sr_union_prepare_budget_reserve
+        cost = 60
+        days_re_enable = 365
+        visible = { has_country_flag = sr_lito_initialized }
+        available = {
+            has_government = communism
+            has_war = no
+            check_variable = { sr_story_trust = 55 }
+            NOT = { has_country_flag = sr_union_budget_reserve }
+        }
+        complete_effect = {
+            set_country_flag = { flag = sr_union_budget_reserve value = 1 days = 365 }
+            custom_effect_tooltip = sr_union_budget_reserve_tt
+        }
+        ai_will_do = { factor = 2 }
+    }
+    sr_union_release_budget_reserve = {
+        icon = sr_union_release_budget_reserve
+        cost = 0
+        visible = { has_country_flag = sr_union_budget_reserve }
+        available = {
+            has_government = communism
+            has_country_flag = sr_lito_initialized
+            has_country_flag = sr_union_budget_reserve
+            power_balance_value = { id = sr_union_balance value < -0.20 }
+        }
+        complete_effect = {
+            clr_country_flag = sr_union_budget_reserve
+            add_political_power = 85
+            add_power_balance_value = { id = sr_union_balance value = 0.06 }
+            add_to_variable = { sr_story_trust = 3 }
+            clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        }
+        ai_will_do = { factor = 5 }
+    }
+    sr_union_joint_war_council = {
+        icon = sr_union_joint_war_council
+        cost = 60
+        days_re_enable = 180
+        visible = { has_country_flag = sr_lito_initialized }
+        available = {
+            has_government = communism
+            has_war = yes
+            NOT = { has_idea = sr_union_joint_war_planning }
+        }
+        complete_effect = {
+            add_power_balance_value = { id = sr_union_balance value = 0.07 }
+            add_war_support = 0.03
+            add_to_variable = { sr_story_trust = 3 }
+            clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+            add_timed_idea = { idea = sr_union_joint_war_planning days = 180 }
+        }
+        ai_will_do = { factor = 3 }
+    }
+}

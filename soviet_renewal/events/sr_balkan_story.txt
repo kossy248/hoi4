@@ -1,0 +1,333 @@
+add_namespace = sr_balkan_story
+
+# The request is a choice about patronage, not an automatic alliance or annexation.
+country_event = {
+    picture = GFX_sr_campaign_balkan
+    id = sr_balkan_story.1
+    title = sr_bs_1_t
+    desc = sr_bs_1_d
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = {
+        tag = SOV
+        has_country_flag = sr_bs_contacts_started
+        exists = YUG
+        YUG = { sr_balkan_safe_influence_target = yes }
+    }
+    option = {
+        name = sr_bs_1_a
+        trigger = { has_political_power > 59 }
+        ai_chance = { base = 30 }
+        custom_effect_tooltip = sr_bs_home_priority_tt
+        add_political_power = -60
+        set_country_flag = sr_bs_home_priority
+        add_to_variable = { sr_story_trust = -4 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_power_balance_value = { id = sr_union_balance value = -0.02 }
+        add_timed_idea = { idea = sr_bs_homeland_grants days = 180 }
+        if = {
+            limit = { exists = YUG YUG = { sr_balkan_safe_influence_target = yes } }
+            YUG = { add_popularity = { ideology = communism popularity = 0.12 } }
+        }
+        country_event = { id = sr_balkan_story.2 days = 45 }
+    }
+    option = {
+        name = sr_bs_1_b
+        trigger = { has_political_power > 19 }
+        ai_chance = { base = 60 }
+        add_political_power = -20
+        set_country_flag = sr_bs_equal_partners
+        add_to_variable = { sr_story_trust = 4 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_power_balance_value = { id = sr_union_balance value = 0.02 }
+        add_timed_idea = { idea = sr_bs_equal_exchange days = 180 }
+        if = {
+            limit = { exists = YUG YUG = { sr_balkan_safe_influence_target = yes } }
+            YUG = { add_popularity = { ideology = communism popularity = 0.01 } }
+        }
+        country_event = { id = sr_balkan_story.2 days = 45 }
+    }
+    option = {
+        name = sr_bs_1_c
+        ai_chance = { base = 10 }
+        set_country_flag = sr_bs_home_distance
+        add_political_power = 25
+        add_to_variable = { sr_story_trust = -3 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        country_event = { id = sr_balkan_story.2 days = 45 }
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_balkan
+    id = sr_balkan_story.2
+    title = sr_bs_2_t
+    desc = { trigger = { has_country_flag = sr_bs_home_priority } text = sr_bs_2_priority_d }
+    desc = { trigger = { has_country_flag = sr_bs_equal_partners } text = sr_bs_2_equal_d }
+    desc = { trigger = { has_country_flag = sr_bs_home_distance } text = sr_bs_2_distance_d }
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_bs_contacts_started }
+    option = {
+        name = sr_bs_2_a
+        trigger = { has_country_flag = sr_bs_home_priority has_political_power > 49 }
+        ai_chance = { base = 70 }
+        add_political_power = -50
+        set_country_flag = sr_bs_equalization_paid
+        remove_ideas = sr_bs_homeland_grants
+        add_to_variable = { sr_story_trust = 8 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_power_balance_value = { id = sr_union_balance value = 0.03 }
+        if = {
+            limit = { sr_union_ukraine_represented = yes }
+            subtract_from_variable = { sr_resistance_ukraine = 5 }
+            clamp_variable = { var = sr_resistance_ukraine min = 0 max = 100 }
+            sr_update_union_resistance_ideas_effect = yes
+        }
+    }
+    option = {
+        name = sr_bs_2_b
+        trigger = { has_country_flag = sr_bs_home_priority }
+        ai_chance = { base = 30 }
+        add_political_power = 30
+        set_country_flag = sr_bs_favoritism_defended
+        add_to_variable = { sr_story_trust = -6 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_power_balance_value = { id = sr_union_balance value = -0.03 }
+        if = {
+            limit = { sr_union_ukraine_represented = yes }
+            add_to_variable = { sr_resistance_ukraine = 8 }
+            clamp_variable = { var = sr_resistance_ukraine min = 0 max = 100 }
+            sr_update_union_resistance_ideas_effect = yes
+        }
+    }
+    option = {
+        name = sr_bs_2_c
+        trigger = { has_country_flag = sr_bs_equal_partners }
+        ai_chance = { base = 100 }
+        add_political_power = 20
+        add_to_variable = { sr_story_trust = 3 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+    }
+    option = {
+        name = sr_bs_2_e
+        trigger = { has_country_flag = sr_bs_home_distance }
+        ai_chance = { base = 100 }
+        add_political_power = 15
+        add_to_variable = { sr_story_trust = -2 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+    }
+}
+
+# The diplomatic backlash is scheduled independently: it cannot be lost if YUG disappears.
+country_event = {
+    picture = GFX_sr_campaign_balkan
+    id = sr_balkan_story.3
+    title = sr_bs_3_t
+    desc = sr_bs_3_d
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = {
+        tag = SOV
+        has_country_flag = sr_bs_contacts_started
+        OR = {
+            YUG = { sr_balkan_safe_influence_target = yes NOT = { has_government = communism } }
+            ALB = { sr_balkan_safe_influence_target = yes NOT = { has_government = communism } }
+            BUL = { sr_balkan_safe_influence_target = yes NOT = { has_government = communism } }
+            GRE = { sr_balkan_safe_influence_target = yes NOT = { has_government = communism } }
+            ROM = { sr_balkan_safe_influence_target = yes NOT = { has_government = communism } }
+        }
+    }
+    option = {
+        name = sr_bs_3_a
+        trigger = { has_political_power > 49 }
+        ai_chance = { base = 60 }
+        add_political_power = -50
+        custom_effect_tooltip = sr_bs_cultural_choice_tt
+        set_country_flag = sr_bs_cultural_response
+        country_event = { id = sr_balkan_story.4 days = 60 }
+    }
+    option = {
+        name = sr_bs_3_b
+        trigger = { has_political_power > 99 }
+        ai_chance = { base = 25 }
+        add_political_power = -100
+        custom_effect_tooltip = sr_bs_underground_choice_tt
+        set_country_flag = sr_bs_underground_response
+        add_to_variable = { sr_story_trust = -3 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        country_event = { id = sr_balkan_story.5 days = 60 }
+    }
+    option = {
+        name = sr_bs_3_c
+        ai_chance = { base = 15 }
+        add_political_power = 25
+        custom_effect_tooltip = sr_bs_retreat_choice_tt
+        set_country_flag = sr_bs_retreat_response
+        country_event = { id = sr_balkan_story.6 days = 60 }
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_balkan
+    id = sr_balkan_story.4
+    title = sr_bs_4_t
+    desc = sr_bs_4_d
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_bs_cultural_response }
+    option = {
+        name = sr_bs_4_a
+        ai_chance = { base = 100 }
+        sr_story_balkan_cultural_result_effect = yes
+        add_timed_idea = { idea = sr_bs_cultural_front days = 180 }
+        add_to_variable = { sr_story_trust = 3 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_balkan
+    id = sr_balkan_story.5
+    title = sr_bs_5_t
+    desc = sr_bs_5_d
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_bs_underground_response }
+    option = {
+        name = sr_bs_5_a
+        ai_chance = { base = 100 }
+        sr_story_balkan_underground_result_effect = yes
+        add_timed_idea = { idea = sr_bs_exposed_operations days = 180 }
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_balkan
+    id = sr_balkan_story.6
+    title = sr_bs_6_t
+    desc = sr_bs_6_d
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_bs_retreat_response }
+    option = {
+        name = sr_bs_6_a
+        ai_chance = { base = 100 }
+        sr_story_balkan_retreat_result_effect = yes
+        add_to_variable = { sr_story_trust = -4 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_balkan
+    id = sr_balkan_story.7
+    title = sr_bs_7_t
+    desc = sr_bs_7_d
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = {
+        tag = SOV
+        has_country_flag = sr_bs_federation_story_started
+        exists = YUG
+        YUG = { sr_balkan_designated_subject_ready = yes }
+    }
+    option = {
+        name = sr_bs_7_a
+        trigger = { has_political_power > 59 }
+        ai_chance = { base = 75 }
+        add_political_power = -60
+        set_country_flag = sr_bs_federal_voice
+        add_to_variable = { sr_story_trust = 6 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_power_balance_value = { id = sr_union_balance value = 0.03 }
+        if = {
+            limit = { exists = YUG YUG = { sr_balkan_designated_subject_ready = yes } }
+            YUG = { add_timed_idea = { idea = sr_bs_republic_assembly days = 365 } }
+        }
+        country_event = { id = sr_balkan_story.8 days = 120 }
+    }
+    option = {
+        name = sr_bs_7_b
+        ai_chance = { base = 25 }
+        add_political_power = 50
+        set_country_flag = sr_bs_federal_control
+        add_to_variable = { sr_story_trust = -6 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_power_balance_value = { id = sr_union_balance value = -0.03 }
+        if = {
+            limit = { exists = YUG YUG = { sr_balkan_designated_subject_ready = yes } }
+            YUG = { add_timed_idea = { idea = sr_bs_soviet_advisers days = 365 } }
+        }
+        country_event = { id = sr_balkan_story.9 days = 120 }
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_balkan
+    id = sr_balkan_story.8
+    title = sr_bs_8_t
+    desc = sr_bs_8_d
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = {
+        tag = SOV
+        has_country_flag = sr_bs_federal_voice
+        exists = YUG
+        YUG = { sr_balkan_designated_subject_ready = yes }
+    }
+    option = {
+        name = sr_bs_8_a
+        ai_chance = { base = 100 }
+        add_political_power = 40
+        add_to_variable = { sr_story_trust = 5 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        if = {
+            limit = { exists = YUG YUG = { sr_balkan_designated_subject_ready = yes } }
+            YUG = { add_timed_idea = { idea = sr_bs_federal_compact days = 365 } }
+        }
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_balkan
+    id = sr_balkan_story.9
+    title = sr_bs_9_t
+    desc = sr_bs_9_d
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = {
+        tag = SOV
+        has_country_flag = sr_bs_federal_control
+        exists = YUG
+        YUG = { sr_balkan_designated_subject_ready = yes }
+    }
+    option = {
+        name = sr_bs_9_a
+        trigger = { has_political_power > 79 }
+        ai_chance = { base = 70 }
+        add_political_power = -80
+        set_country_flag = sr_bs_federal_compromise
+        add_to_variable = { sr_story_trust = 4 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        if = {
+            limit = { exists = YUG YUG = { sr_balkan_designated_subject_ready = yes } }
+            YUG = {
+                remove_ideas = sr_bs_soviet_advisers
+                add_timed_idea = { idea = sr_bs_republic_assembly days = 365 }
+            }
+        }
+    }
+    option = {
+        name = sr_bs_9_b
+        ai_chance = { base = 30 }
+        add_political_power = 30
+        set_country_flag = sr_bs_federal_grievance
+        add_to_variable = { sr_story_trust = -6 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        if = {
+            limit = { exists = YUG YUG = { sr_balkan_designated_subject_ready = yes } }
+            YUG = { add_timed_idea = { idea = sr_bs_federal_discontent days = 365 } }
+        }
+    }
+}

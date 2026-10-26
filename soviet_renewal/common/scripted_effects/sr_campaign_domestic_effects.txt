@@ -1,0 +1,105 @@
+# Called once per Soviet monthly pulse. All automatic campaign starters share
+# the 60-day cooldown with the other campaign modules, not one timer per arc.
+sr_campaign_domestic_monthly_effect = {
+    if = {
+        limit = {
+            tag = SOV
+            has_country_flag = sr_lito_initialized
+            has_country_flag = sr_story_first_hundred_days
+            NOT = { has_country_flag = sr_campaign_event_cooldown }
+        }
+        if = {
+            limit = {
+                has_war = yes
+                has_completed_focus = sr_lito_army_review
+                NOT = { has_country_flag = sr_cd_war_scheduled }
+            }
+            set_country_flag = sr_cd_war_scheduled
+            set_country_flag = { flag = sr_campaign_event_cooldown value = 1 days = 60 }
+            country_event = { id = sr_campaign_dom.21 days = 2 }
+        }
+        else_if = {
+            limit = {
+                has_completed_focus = sr_lito_politics_constitution
+                OR = { has_country_flag = sr_fs_workers_decide has_country_flag = sr_fs_director_decides }
+                NOT = { has_country_flag = sr_cd_councils_scheduled }
+            }
+            set_country_flag = sr_cd_councils_scheduled
+            set_country_flag = { flag = sr_campaign_event_cooldown value = 1 days = 60 }
+            country_event = { id = sr_campaign_dom.1 days = 2 }
+        }
+        else_if = {
+            limit = {
+                has_completed_focus = sr_lito_ratify_compromise
+                NOT = { has_country_flag = sr_cd_petitions_scheduled }
+                OR = {
+                    AND = { sr_union_ukraine_represented = yes OR = { has_country_flag = sr_story_ukraine_fulfilled has_country_flag = sr_story_ukraine_broken } }
+                    AND = { sr_union_georgia_represented = yes OR = { has_country_flag = sr_story_georgia_fulfilled has_country_flag = sr_story_georgia_broken } }
+                    AND = { sr_union_kazakhstan_represented = yes OR = { has_country_flag = sr_story_kazakhstan_fulfilled has_country_flag = sr_story_kazakhstan_broken } }
+                }
+            }
+            set_country_flag = sr_cd_petitions_scheduled
+            set_country_flag = { flag = sr_campaign_event_cooldown value = 1 days = 60 }
+            country_event = { id = sr_campaign_dom.11 days = 2 }
+        }
+    }
+}
+
+# A written settlement helps only republics that still belong to this Union.
+# Kept and broken earlier promises deliberately have different consequences.
+sr_campaign_domestic_republic_settlement_effect = {
+    if = {
+        limit = { sr_union_ukraine_represented = yes has_country_flag = sr_story_ukraine_fulfilled }
+        subtract_from_variable = { sr_resistance_ukraine = 5 }
+        clamp_variable = { var = sr_resistance_ukraine min = 0 max = 100 }
+        add_to_variable = { sr_story_trust = 2 }
+    }
+    if = {
+        limit = { sr_union_ukraine_represented = yes has_country_flag = sr_story_ukraine_broken }
+        subtract_from_variable = { sr_resistance_ukraine = 10 }
+        clamp_variable = { var = sr_resistance_ukraine min = 0 max = 100 }
+    }
+    if = {
+        limit = { sr_union_georgia_represented = yes has_country_flag = sr_story_georgia_fulfilled }
+        subtract_from_variable = { sr_resistance_georgia = 5 }
+        clamp_variable = { var = sr_resistance_georgia min = 0 max = 100 }
+        add_to_variable = { sr_story_trust = 2 }
+    }
+    if = {
+        limit = { sr_union_georgia_represented = yes has_country_flag = sr_story_georgia_broken }
+        subtract_from_variable = { sr_resistance_georgia = 10 }
+        clamp_variable = { var = sr_resistance_georgia min = 0 max = 100 }
+    }
+    if = {
+        limit = { sr_union_kazakhstan_represented = yes has_country_flag = sr_story_kazakhstan_fulfilled }
+        subtract_from_variable = { sr_resistance_kazakhstan = 5 }
+        clamp_variable = { var = sr_resistance_kazakhstan min = 0 max = 100 }
+        add_to_variable = { sr_story_trust = 2 }
+    }
+    if = {
+        limit = { sr_union_kazakhstan_represented = yes has_country_flag = sr_story_kazakhstan_broken }
+        subtract_from_variable = { sr_resistance_kazakhstan = 10 }
+        clamp_variable = { var = sr_resistance_kazakhstan min = 0 max = 100 }
+    }
+    clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+    sr_update_union_resistance_ideas_effect = yes
+}
+
+sr_campaign_domestic_republic_grievances_effect = {
+    if = {
+        limit = { sr_union_ukraine_represented = yes has_country_flag = sr_story_ukraine_broken }
+        add_to_variable = { sr_resistance_ukraine = 10 }
+        clamp_variable = { var = sr_resistance_ukraine min = 0 max = 100 }
+    }
+    if = {
+        limit = { sr_union_georgia_represented = yes has_country_flag = sr_story_georgia_broken }
+        add_to_variable = { sr_resistance_georgia = 10 }
+        clamp_variable = { var = sr_resistance_georgia min = 0 max = 100 }
+    }
+    if = {
+        limit = { sr_union_kazakhstan_represented = yes has_country_flag = sr_story_kazakhstan_broken }
+        add_to_variable = { sr_resistance_kazakhstan = 10 }
+        clamp_variable = { var = sr_resistance_kazakhstan min = 0 max = 100 }
+    }
+    sr_update_union_resistance_ideas_effect = yes
+}

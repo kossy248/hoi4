@@ -1,0 +1,194 @@
+add_namespace = sr_expansion
+
+country_event = {
+    id = sr_expansion.1
+    picture = GFX_sr_campaign_council
+    title = sr_exp_1_t
+    desc = sr_exp_1_d
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_lito_initialized }
+    option = {
+        name = sr_exp_1_a
+        trigger = { has_political_power > 24 }
+        ai_chance = { base = 65 }
+        add_political_power = -25
+        set_country_flag = sr_exp_notebook_unabridged
+        add_to_variable = { sr_story_trust = 8 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_timed_idea = { idea = sr_exp_honest_biography days = 180 }
+    }
+    option = {
+        name = sr_exp_1_b
+        ai_chance = { base = 35 }
+        add_political_power = 35
+        set_country_flag = sr_exp_notebook_curated
+        subtract_from_variable = { sr_story_trust = 5 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+    }
+}
+
+country_event = {
+    id = sr_expansion.2
+    picture = GFX_sr_campaign_council
+    title = sr_exp_2_t
+    desc = sr_exp_2_d
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_lito_initialized }
+    option = {
+        name = sr_exp_2_a
+        trigger = { has_political_power > 49 }
+        ai_chance = { base = 70 }
+        add_political_power = -50
+        set_country_flag = sr_exp_binding_succession
+        add_to_variable = { sr_story_trust = 8 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_power_balance_value = { id = sr_union_balance value = 0.04 }
+        add_timed_idea = { idea = sr_exp_constitutional_succession days = 730 }
+    }
+    option = {
+        name = sr_exp_2_b
+        ai_chance = { base = 30 }
+        add_political_power = 50
+        set_country_flag = sr_exp_party_succession
+        subtract_from_variable = { sr_story_trust = 8 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_power_balance_value = { id = sr_union_balance value = -0.04 }
+        add_timed_idea = { idea = sr_exp_party_continuity days = 730 }
+    }
+}
+
+country_event = {
+    id = sr_expansion.3
+    picture = GFX_sr_campaign_workshops
+    title = sr_exp_3_t
+    desc = sr_exp_3_d
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_lito_initialized }
+    option = {
+        name = sr_exp_3_a
+        trigger = { has_political_power > 59 }
+        ai_chance = { base = 60 }
+        add_political_power = -60
+        set_country_flag = sr_exp_reserve_funded
+        add_to_variable = { sr_story_trust = 5 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_timed_idea = { idea = sr_exp_common_reserve days = 365 }
+    }
+    option = {
+        name = sr_exp_3_b
+        ai_chance = { base = 40 }
+        set_country_flag = sr_exp_output_before_reserve
+        add_timed_idea = { idea = sr_exp_output_drive days = 365 }
+        subtract_from_variable = { sr_story_trust = 4 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+    }
+}
+
+country_event = {
+    id = sr_expansion.4
+    picture = GFX_sr_campaign_workshops
+    title = sr_exp_4_t
+    desc = sr_exp_4_d
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_lito_initialized }
+    immediate = {
+        if = {
+            limit = {
+                any_owned_state = {
+                    is_controlled_by = ROOT
+                    is_core_of = ROOT
+                    free_building_slots = { building = industrial_complex size > 0 }
+                }
+            }
+            random_owned_state = {
+                limit = {
+                    is_controlled_by = ROOT
+                    is_core_of = ROOT
+                    free_building_slots = { building = industrial_complex size > 0 }
+                }
+                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+            }
+        }
+        else = { add_political_power = 50 }
+    }
+    option = {
+        name = sr_exp_4_a
+        trigger = { has_political_power > 74 }
+        ai_chance = { base = 65 }
+        add_political_power = -75
+        set_country_flag = sr_exp_town_for_citizens
+        add_to_variable = { sr_story_trust = 7 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_timed_idea = { idea = sr_exp_workers_town days = 365 }
+    }
+    option = {
+        name = sr_exp_4_b
+        ai_chance = { base = 35 }
+        set_country_flag = sr_exp_factory_settlement
+        subtract_from_variable = { sr_story_trust = 5 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_timed_idea = { idea = sr_exp_factory_settlement days = 180 }
+    }
+}
+
+country_event = {
+    id = sr_expansion.5
+    picture = GFX_sr_campaign_council
+    title = sr_exp_5_t
+    desc = sr_exp_5_d
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_lito_initialized }
+    option = {
+        name = sr_exp_5_a
+        trigger = { has_political_power > 39 }
+        ai_chance = { base = 60 }
+        add_political_power = -40
+        set_country_flag = sr_exp_soldiers_civil_rights
+        add_to_variable = { sr_story_trust = 6 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_timed_idea = { idea = sr_exp_military_ombudsmen days = 730 }
+    }
+    option = {
+        name = sr_exp_5_b
+        ai_chance = { base = 40 }
+        set_country_flag = sr_exp_military_jurisdiction
+        army_experience = 20
+        subtract_from_variable = { sr_story_trust = 5 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_timed_idea = { idea = sr_exp_military_jurisdiction days = 365 }
+    }
+}
+
+country_event = {
+    id = sr_expansion.6
+    picture = GFX_sr_campaign_workshops
+    title = sr_exp_6_t
+    desc = sr_exp_6_d
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_lito_initialized }
+    option = {
+        name = sr_exp_6_a
+        trigger = { has_political_power > 44 }
+        ai_chance = { base = 55 }
+        add_political_power = -45
+        set_country_flag = sr_exp_front_family_compact
+        add_to_variable = { sr_story_trust = 6 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_timed_idea = { idea = sr_exp_front_family_support days = 365 }
+    }
+    option = {
+        name = sr_exp_6_b
+        ai_chance = { base = 45 }
+        set_country_flag = sr_exp_readiness_priority
+        add_war_support = 0.03
+        subtract_from_variable = { sr_story_trust = 5 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_timed_idea = { idea = sr_exp_readiness_priority days = 365 }
+    }
+}

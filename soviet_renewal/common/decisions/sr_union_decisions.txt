@@ -1,0 +1,394 @@
+sr_union_council = {
+    sr_union_consult_russia = {
+        icon = sr_union_consult_russia
+        cost = 35
+        visible = { sr_union_russia_represented = yes }
+        available = {
+            custom_trigger_tooltip = {
+                tooltip = sr_union_council_ready_tt
+                NOT = { has_country_flag = sr_union_russia_consulted }
+            }
+        }
+        days_re_enable = 180
+        complete_effect = {
+            set_country_flag = { flag = sr_union_russia_consulted value = 1 days = 180 }
+            subtract_from_variable = { sr_resistance_russia = 15 }
+            clamp_variable = { var = sr_resistance_russia min = 0 max = 100 }
+            sr_update_union_resistance_ideas_effect = yes
+            add_power_balance_value = {
+                id = sr_union_balance
+                value = 0.03
+                tooltip_side = sr_union_preservation_side
+            }
+            custom_effect_tooltip = sr_union_council_protection_tt
+        }
+        ai_will_do = { factor = 3 }
+    }
+    sr_union_consult_ukraine = {
+        icon = sr_union_consult_ukraine
+        cost = 35
+        visible = { sr_union_ukraine_represented = yes }
+        available = {
+            custom_trigger_tooltip = {
+                tooltip = sr_union_council_ready_tt
+                NOT = { has_country_flag = sr_union_ukraine_consulted }
+            }
+        }
+        days_re_enable = 180
+        complete_effect = {
+            set_country_flag = { flag = sr_union_ukraine_consulted value = 1 days = 180 }
+            subtract_from_variable = { sr_resistance_ukraine = 15 }
+            clamp_variable = { var = sr_resistance_ukraine min = 0 max = 100 }
+            sr_update_union_resistance_ideas_effect = yes
+            add_power_balance_value = {
+                id = sr_union_balance
+                value = 0.03
+                tooltip_side = sr_union_preservation_side
+            }
+            custom_effect_tooltip = sr_union_council_protection_tt
+        }
+        ai_will_do = { factor = 3 }
+    }
+    sr_union_consult_belarus = {
+        icon = sr_union_consult_belarus
+        cost = 35
+        visible = { sr_union_belarus_represented = yes }
+        available = {
+            custom_trigger_tooltip = {
+                tooltip = sr_union_council_ready_tt
+                NOT = { has_country_flag = sr_union_belarus_consulted }
+            }
+        }
+        days_re_enable = 180
+        complete_effect = {
+            set_country_flag = { flag = sr_union_belarus_consulted value = 1 days = 180 }
+            subtract_from_variable = { sr_resistance_belarus = 15 }
+            clamp_variable = { var = sr_resistance_belarus min = 0 max = 100 }
+            sr_update_union_resistance_ideas_effect = yes
+            add_power_balance_value = {
+                id = sr_union_balance
+                value = 0.03
+                tooltip_side = sr_union_preservation_side
+            }
+            custom_effect_tooltip = sr_union_council_protection_tt
+        }
+        ai_will_do = { factor = 3 }
+    }
+    sr_union_consult_georgia = {
+        icon = sr_union_consult_georgia
+        cost = 35
+        visible = { sr_union_georgia_represented = yes }
+        available = {
+            custom_trigger_tooltip = {
+                tooltip = sr_union_council_ready_tt
+                NOT = { has_country_flag = sr_union_georgia_consulted }
+            }
+        }
+        days_re_enable = 180
+        complete_effect = {
+            set_country_flag = { flag = sr_union_georgia_consulted value = 1 days = 180 }
+            subtract_from_variable = { sr_resistance_georgia = 15 }
+            clamp_variable = { var = sr_resistance_georgia min = 0 max = 100 }
+            sr_update_union_resistance_ideas_effect = yes
+            add_power_balance_value = {
+                id = sr_union_balance
+                value = 0.03
+                tooltip_side = sr_union_preservation_side
+            }
+            custom_effect_tooltip = sr_union_council_protection_tt
+        }
+        ai_will_do = { factor = 3 }
+    }
+    sr_union_consult_armenia = {
+        icon = sr_union_consult_armenia
+        cost = 35
+        visible = { sr_union_armenia_represented = yes }
+        available = {
+            custom_trigger_tooltip = {
+                tooltip = sr_union_council_ready_tt
+                NOT = { has_country_flag = sr_union_armenia_consulted }
+            }
+        }
+        days_re_enable = 180
+        complete_effect = {
+            set_country_flag = { flag = sr_union_armenia_consulted value = 1 days = 180 }
+            subtract_from_variable = { sr_resistance_armenia = 15 }
+            clamp_variable = { var = sr_resistance_armenia min = 0 max = 100 }
+            sr_update_union_resistance_ideas_effect = yes
+            add_power_balance_value = {
+                id = sr_union_balance
+                value = 0.03
+                tooltip_side = sr_union_preservation_side
+            }
+            custom_effect_tooltip = sr_union_council_protection_tt
+        }
+        ai_will_do = { factor = 3 }
+    }
+    sr_union_consult_azerbaijan = {
+        icon = sr_union_consult_azerbaijan
+        cost = 35
+        visible = { sr_union_azerbaijan_represented = yes }
+        available = {
+            custom_trigger_tooltip = {
+                tooltip = sr_union_council_ready_tt
+                NOT = { has_country_flag = sr_union_azerbaijan_consulted }
+            }
+        }
+        days_re_enable = 180
+        complete_effect = {
+            set_country_flag = { flag = sr_union_azerbaijan_consulted value = 1 days = 180 }
+            subtract_from_variable = { sr_resistance_azerbaijan = 15 }
+            clamp_variable = { var = sr_resistance_azerbaijan min = 0 max = 100 }
+            sr_update_union_resistance_ideas_effect = yes
+            add_power_balance_value = {
+                id = sr_union_balance
+                value = 0.03
+                tooltip_side = sr_union_preservation_side
+            }
+            custom_effect_tooltip = sr_union_council_protection_tt
+        }
+        ai_will_do = { factor = 3 }
+    }
+    sr_union_consult_kazakhstan = {
+        icon = sr_union_consult_kazakhstan
+        cost = 35
+        visible = { sr_union_kazakhstan_represented = yes }
+        available = {
+            custom_trigger_tooltip = {
+                tooltip = sr_union_council_ready_tt
+                NOT = { has_country_flag = sr_union_kazakhstan_consulted }
+            }
+        }
+        days_re_enable = 180
+        complete_effect = {
+            set_country_flag = { flag = sr_union_kazakhstan_consulted value = 1 days = 180 }
+            subtract_from_variable = { sr_resistance_kazakhstan = 15 }
+            clamp_variable = { var = sr_resistance_kazakhstan min = 0 max = 100 }
+            sr_update_union_resistance_ideas_effect = yes
+            add_power_balance_value = {
+                id = sr_union_balance
+                value = 0.03
+                tooltip_side = sr_union_preservation_side
+            }
+            custom_effect_tooltip = sr_union_council_protection_tt
+        }
+        ai_will_do = { factor = 3 }
+    }
+    sr_union_consult_uzbekistan = {
+        icon = sr_union_consult_uzbekistan
+        cost = 35
+        visible = { sr_union_uzbekistan_represented = yes }
+        available = {
+            custom_trigger_tooltip = {
+                tooltip = sr_union_council_ready_tt
+                NOT = { has_country_flag = sr_union_uzbekistan_consulted }
+            }
+        }
+        days_re_enable = 180
+        complete_effect = {
+            set_country_flag = { flag = sr_union_uzbekistan_consulted value = 1 days = 180 }
+            subtract_from_variable = { sr_resistance_uzbekistan = 15 }
+            clamp_variable = { var = sr_resistance_uzbekistan min = 0 max = 100 }
+            sr_update_union_resistance_ideas_effect = yes
+            add_power_balance_value = {
+                id = sr_union_balance
+                value = 0.03
+                tooltip_side = sr_union_preservation_side
+            }
+            custom_effect_tooltip = sr_union_council_protection_tt
+        }
+        ai_will_do = { factor = 3 }
+    }
+    sr_union_consult_turkmenistan = {
+        icon = sr_union_consult_turkmenistan
+        cost = 35
+        visible = { sr_union_turkmenistan_represented = yes }
+        available = {
+            custom_trigger_tooltip = {
+                tooltip = sr_union_council_ready_tt
+                NOT = { has_country_flag = sr_union_turkmenistan_consulted }
+            }
+        }
+        days_re_enable = 180
+        complete_effect = {
+            set_country_flag = { flag = sr_union_turkmenistan_consulted value = 1 days = 180 }
+            subtract_from_variable = { sr_resistance_turkmenistan = 15 }
+            clamp_variable = { var = sr_resistance_turkmenistan min = 0 max = 100 }
+            sr_update_union_resistance_ideas_effect = yes
+            add_power_balance_value = {
+                id = sr_union_balance
+                value = 0.03
+                tooltip_side = sr_union_preservation_side
+            }
+            custom_effect_tooltip = sr_union_council_protection_tt
+        }
+        ai_will_do = { factor = 3 }
+    }
+    sr_union_consult_kyrgyzstan = {
+        icon = sr_union_consult_kyrgyzstan
+        cost = 35
+        visible = { sr_union_kyrgyzstan_represented = yes }
+        available = {
+            custom_trigger_tooltip = {
+                tooltip = sr_union_council_ready_tt
+                NOT = { has_country_flag = sr_union_kyrgyzstan_consulted }
+            }
+        }
+        days_re_enable = 180
+        complete_effect = {
+            set_country_flag = { flag = sr_union_kyrgyzstan_consulted value = 1 days = 180 }
+            subtract_from_variable = { sr_resistance_kyrgyzstan = 15 }
+            clamp_variable = { var = sr_resistance_kyrgyzstan min = 0 max = 100 }
+            sr_update_union_resistance_ideas_effect = yes
+            add_power_balance_value = {
+                id = sr_union_balance
+                value = 0.03
+                tooltip_side = sr_union_preservation_side
+            }
+            custom_effect_tooltip = sr_union_council_protection_tt
+        }
+        ai_will_do = { factor = 3 }
+    }
+    sr_union_consult_tajikistan = {
+        icon = sr_union_consult_tajikistan
+        cost = 35
+        visible = { sr_union_tajikistan_represented = yes }
+        available = {
+            custom_trigger_tooltip = {
+                tooltip = sr_union_council_ready_tt
+                NOT = { has_country_flag = sr_union_tajikistan_consulted }
+            }
+        }
+        days_re_enable = 180
+        complete_effect = {
+            set_country_flag = { flag = sr_union_tajikistan_consulted value = 1 days = 180 }
+            subtract_from_variable = { sr_resistance_tajikistan = 15 }
+            clamp_variable = { var = sr_resistance_tajikistan min = 0 max = 100 }
+            sr_update_union_resistance_ideas_effect = yes
+            add_power_balance_value = {
+                id = sr_union_balance
+                value = 0.03
+                tooltip_side = sr_union_preservation_side
+            }
+            custom_effect_tooltip = sr_union_council_protection_tt
+        }
+        ai_will_do = { factor = 3 }
+    }
+    sr_union_consult_estonia = {
+        icon = sr_union_consult_estonia
+        cost = 35
+        visible = { sr_union_estonia_represented = yes }
+        available = {
+            custom_trigger_tooltip = {
+                tooltip = sr_union_council_ready_tt
+                NOT = { has_country_flag = sr_union_estonia_consulted }
+            }
+        }
+        days_re_enable = 180
+        complete_effect = {
+            set_country_flag = { flag = sr_union_estonia_consulted value = 1 days = 180 }
+            subtract_from_variable = { sr_resistance_estonia = 15 }
+            clamp_variable = { var = sr_resistance_estonia min = 0 max = 100 }
+            sr_update_union_resistance_ideas_effect = yes
+            add_power_balance_value = {
+                id = sr_union_balance
+                value = 0.03
+                tooltip_side = sr_union_preservation_side
+            }
+            custom_effect_tooltip = sr_union_council_protection_tt
+        }
+        ai_will_do = { factor = 3 }
+    }
+    sr_union_consult_latvia = {
+        icon = sr_union_consult_latvia
+        cost = 35
+        visible = { sr_union_latvia_represented = yes }
+        available = {
+            custom_trigger_tooltip = {
+                tooltip = sr_union_council_ready_tt
+                NOT = { has_country_flag = sr_union_latvia_consulted }
+            }
+        }
+        days_re_enable = 180
+        complete_effect = {
+            set_country_flag = { flag = sr_union_latvia_consulted value = 1 days = 180 }
+            subtract_from_variable = { sr_resistance_latvia = 15 }
+            clamp_variable = { var = sr_resistance_latvia min = 0 max = 100 }
+            sr_update_union_resistance_ideas_effect = yes
+            add_power_balance_value = {
+                id = sr_union_balance
+                value = 0.03
+                tooltip_side = sr_union_preservation_side
+            }
+            custom_effect_tooltip = sr_union_council_protection_tt
+        }
+        ai_will_do = { factor = 3 }
+    }
+    sr_union_consult_lithuania = {
+        icon = sr_union_consult_lithuania
+        cost = 35
+        visible = { sr_union_lithuania_represented = yes }
+        available = {
+            custom_trigger_tooltip = {
+                tooltip = sr_union_council_ready_tt
+                NOT = { has_country_flag = sr_union_lithuania_consulted }
+            }
+        }
+        days_re_enable = 180
+        complete_effect = {
+            set_country_flag = { flag = sr_union_lithuania_consulted value = 1 days = 180 }
+            subtract_from_variable = { sr_resistance_lithuania = 15 }
+            clamp_variable = { var = sr_resistance_lithuania min = 0 max = 100 }
+            sr_update_union_resistance_ideas_effect = yes
+            add_power_balance_value = {
+                id = sr_union_balance
+                value = 0.03
+                tooltip_side = sr_union_preservation_side
+            }
+            custom_effect_tooltip = sr_union_council_protection_tt
+        }
+        ai_will_do = { factor = 3 }
+    }
+    sr_union_consult_moldavia = {
+        icon = sr_union_consult_moldavia
+        cost = 35
+        visible = { sr_union_moldavia_represented = yes }
+        available = {
+            custom_trigger_tooltip = {
+                tooltip = sr_union_council_ready_tt
+                NOT = { has_country_flag = sr_union_moldavia_consulted }
+            }
+        }
+        days_re_enable = 180
+        complete_effect = {
+            set_country_flag = { flag = sr_union_moldavia_consulted value = 1 days = 180 }
+            subtract_from_variable = { sr_resistance_moldavia = 15 }
+            clamp_variable = { var = sr_resistance_moldavia min = 0 max = 100 }
+            sr_update_union_resistance_ideas_effect = yes
+            add_power_balance_value = {
+                id = sr_union_balance
+                value = 0.03
+                tooltip_side = sr_union_preservation_side
+            }
+            custom_effect_tooltip = sr_union_council_protection_tt
+        }
+        ai_will_do = { factor = 3 }
+    }
+    sr_union_emergency_congress = {
+        icon = sr_union_emergency_congress
+        cost = 125
+        visible = {
+            power_balance_value = { id = sr_union_balance value < -0.20 }
+        }
+        days_re_enable = 365
+        complete_effect = {
+            add_power_balance_value = {
+                id = sr_union_balance
+                value = 0.15
+                tooltip_side = sr_union_preservation_side
+            }
+            add_stability = -0.02
+        }
+        ai_will_do = { factor = 10 }
+    }
+}

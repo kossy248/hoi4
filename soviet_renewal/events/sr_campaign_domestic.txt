@@ -1,0 +1,364 @@
+add_namespace = sr_campaign_dom
+
+country_event = {
+    picture = GFX_sr_campaign_council
+    id = sr_campaign_dom.1
+    title = sr_cd_1_t
+    desc = { trigger = { has_country_flag = sr_fs_workers_decide } text = sr_cd_1_workers_d }
+    desc = { trigger = { has_country_flag = sr_fs_director_decides } text = sr_cd_1_director_d }
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_lito_initialized has_country_flag = sr_cd_councils_scheduled }
+    option = {
+        name = sr_cd_1_a
+        trigger = { has_political_power > 59 }
+        ai_chance = { base = 60 }
+        add_political_power = -60
+        set_country_flag = sr_cd_binding_votes
+        add_to_variable = { sr_story_trust = 6 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_power_balance_value = { id = sr_union_balance value = 0.03 }
+        add_timed_idea = { idea = sr_cd_constitutional_debate days = 120 }
+        custom_effect_tooltip = sr_cd_council_review_tt
+        country_event = { id = sr_campaign_dom.2 days = 120 }
+    }
+    option = {
+        name = sr_cd_1_b
+        ai_chance = { base = 40 }
+        add_political_power = 35
+        set_country_flag = sr_cd_party_final_word
+        subtract_from_variable = { sr_story_trust = 6 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_power_balance_value = { id = sr_union_balance value = -0.03 }
+        add_timed_idea = { idea = sr_cd_party_veto days = 365 }
+        custom_effect_tooltip = sr_cd_council_review_tt
+        country_event = { id = sr_campaign_dom.2 days = 120 }
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_council
+    id = sr_campaign_dom.2
+    title = sr_cd_2_t
+    desc = { trigger = { has_country_flag = sr_cd_binding_votes } text = sr_cd_2_binding_d }
+    desc = { trigger = { has_country_flag = sr_cd_party_final_word } text = sr_cd_2_veto_d }
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_lito_initialized has_country_flag = sr_cd_councils_scheduled }
+    option = {
+        name = sr_cd_2_a
+        trigger = { has_country_flag = sr_cd_binding_votes }
+        ai_chance = { base = 100 }
+        set_country_flag = sr_cd_councils_established
+        add_to_variable = { sr_story_trust = 5 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_timed_idea = { idea = sr_cd_binding_councils days = 365 }
+        country_event = { id = sr_campaign_dom.3 days = 120 }
+    }
+    option = {
+        name = sr_cd_2_b
+        trigger = { has_country_flag = sr_cd_party_final_word has_political_power > 39 }
+        ai_chance = { base = 65 }
+        add_political_power = -40
+        set_country_flag = sr_cd_veto_revised
+        remove_ideas = sr_cd_party_veto
+        add_to_variable = { sr_story_trust = 6 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_power_balance_value = { id = sr_union_balance value = 0.02 }
+        add_timed_idea = { idea = sr_cd_binding_councils days = 365 }
+        country_event = { id = sr_campaign_dom.3 days = 120 }
+    }
+    option = {
+        name = sr_cd_2_c
+        trigger = { has_country_flag = sr_cd_party_final_word }
+        ai_chance = { base = 35 }
+        add_political_power = 25
+        set_country_flag = sr_cd_veto_defended
+        subtract_from_variable = { sr_story_trust = 5 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        country_event = { id = sr_campaign_dom.3 days = 120 }
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_council
+    id = sr_campaign_dom.3
+    title = sr_cd_3_t
+    desc = { trigger = { OR = { has_country_flag = sr_cd_councils_established has_country_flag = sr_cd_veto_revised } } text = sr_cd_3_rules_d }
+    desc = { trigger = { has_country_flag = sr_cd_veto_defended } text = sr_cd_3_personal_d }
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_lito_initialized has_country_flag = sr_cd_councils_scheduled }
+    option = {
+        name = sr_cd_3_a
+        trigger = { has_political_power > 49 }
+        ai_chance = { base = 65 }
+        add_political_power = -50
+        set_country_flag = sr_cd_public_appeals_charter
+        remove_ideas = sr_cd_party_veto
+        add_to_variable = { sr_story_trust = 5 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_timed_idea = { idea = sr_cd_constitutional_confidence days = 365 }
+    }
+    option = {
+        name = sr_cd_3_b
+        ai_chance = { base = 35 }
+        add_political_power = 25
+        set_country_flag = sr_cd_personal_arbitration
+        subtract_from_variable = { sr_story_trust = 3 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_council
+    id = sr_campaign_dom.11
+    title = sr_cd_11_t
+    desc = sr_cd_11_d
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_lito_initialized has_country_flag = sr_cd_petitions_scheduled }
+    option = {
+        name = sr_cd_11_a
+        trigger = { has_political_power > 49 }
+        ai_chance = { base = 65 }
+        add_political_power = -50
+        set_country_flag = sr_cd_comparative_hearing
+        add_to_variable = { sr_story_trust = 4 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_timed_idea = { idea = sr_cd_comparative_commission days = 90 }
+        custom_effect_tooltip = sr_cd_republic_hearing_tt
+        country_event = { id = sr_campaign_dom.12 days = 90 }
+    }
+    option = {
+        name = sr_cd_11_b
+        ai_chance = { base = 35 }
+        add_political_power = 25
+        set_country_flag = sr_cd_allocations_unexamined
+        subtract_from_variable = { sr_story_trust = 5 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        sr_campaign_domestic_republic_grievances_effect = yes
+        custom_effect_tooltip = sr_cd_republic_hearing_tt
+        country_event = { id = sr_campaign_dom.12 days = 90 }
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_council
+    id = sr_campaign_dom.12
+    title = sr_cd_12_t
+    desc = { trigger = { has_country_flag = sr_cd_comparative_hearing } text = sr_cd_12_hearing_d }
+    desc = { trigger = { has_country_flag = sr_cd_allocations_unexamined } text = sr_cd_12_unexamined_d }
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_lito_initialized has_country_flag = sr_cd_petitions_scheduled }
+    option = {
+        name = sr_cd_12_a
+        trigger = { has_political_power > 39 }
+        ai_chance = { base = 65 }
+        add_political_power = -40
+        set_country_flag = sr_cd_written_settlement
+        sr_campaign_domestic_republic_settlement_effect = yes
+        add_power_balance_value = { id = sr_union_balance value = 0.03 }
+        add_timed_idea = { idea = sr_cd_local_guarantees days = 365 }
+        custom_effect_tooltip = sr_cd_republic_settlement_tt
+        country_event = { id = sr_campaign_dom.13 days = 150 }
+    }
+    option = {
+        name = sr_cd_12_b
+        ai_chance = { base = 35 }
+        set_country_flag = sr_cd_production_priority
+        add_political_power = 20
+        subtract_from_variable = { sr_story_trust = 4 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_timed_idea = { idea = sr_cd_competitive_allocations days = 180 }
+        country_event = { id = sr_campaign_dom.13 days = 150 }
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_council
+    id = sr_campaign_dom.13
+    title = sr_cd_13_t
+    desc = { trigger = { has_country_flag = sr_cd_written_settlement } text = sr_cd_13_settlement_d }
+    desc = { trigger = { has_country_flag = sr_cd_production_priority } text = sr_cd_13_production_d }
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_lito_initialized has_country_flag = sr_cd_petitions_scheduled }
+    option = {
+        name = sr_cd_13_a
+        trigger = { has_country_flag = sr_cd_written_settlement }
+        ai_chance = { base = 100 }
+        set_country_flag = sr_cd_republic_record_published
+        add_political_power = 20
+        sr_campaign_domestic_republic_settlement_effect = yes
+    }
+    option = {
+        name = sr_cd_13_b
+        trigger = { has_country_flag = sr_cd_production_priority }
+        ai_chance = { base = 100 }
+        set_country_flag = sr_cd_republic_record_contested
+        sr_campaign_domestic_republic_grievances_effect = yes
+        subtract_from_variable = { sr_story_trust = 3 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_council
+    id = sr_campaign_dom.21
+    title = sr_cd_21_t
+    desc = { trigger = { has_country_flag = sr_fs_workers_decide } text = sr_cd_21_councils_d }
+    desc = { trigger = { NOT = { has_country_flag = sr_fs_workers_decide } } text = sr_cd_21_centre_d }
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_lito_initialized has_country_flag = sr_cd_war_scheduled }
+    option = {
+        name = sr_cd_21_a
+        trigger = { has_political_power > 59 }
+        ai_chance = { base = 55 }
+        add_political_power = -60
+        set_country_flag = sr_cd_war_participation
+        add_to_variable = { sr_story_trust = 7 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_timed_idea = { idea = sr_cd_war_councils days = 365 }
+        custom_effect_tooltip = sr_cd_war_review_tt
+        country_event = { id = sr_campaign_dom.22 days = 90 }
+    }
+    option = {
+        name = sr_cd_21_b
+        ai_chance = { base = 45 }
+        add_political_power = 60
+        set_country_flag = sr_cd_war_emergency_powers
+        subtract_from_variable = { sr_story_trust = 8 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_power_balance_value = { id = sr_union_balance value = -0.03 }
+        add_timed_idea = { idea = sr_cd_emergency_cabinet days = 365 }
+        custom_effect_tooltip = sr_cd_war_review_tt
+        country_event = { id = sr_campaign_dom.22 days = 90 }
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_council
+    id = sr_campaign_dom.22
+    title = sr_cd_22_t
+    desc = { trigger = { has_war = yes } text = sr_cd_22_war_d }
+    desc = { trigger = { has_war = no } text = sr_cd_22_peace_d }
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_lito_initialized has_country_flag = sr_cd_war_scheduled }
+    option = {
+        name = sr_cd_22_a
+        trigger = { has_political_power > 39 }
+        ai_chance = { base = 60 }
+        add_political_power = -40
+        set_country_flag = sr_cd_labour_protected
+        add_to_variable = { sr_story_trust = 5 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_timed_idea = { idea = sr_cd_labour_inspections days = 180 }
+        country_event = { id = sr_campaign_dom.23 days = 120 }
+    }
+    option = {
+        name = sr_cd_22_b
+        trigger = { has_war = yes }
+        ai_chance = { base = 30 }
+        set_country_flag = sr_cd_labour_quota_imposed
+        subtract_from_variable = { sr_story_trust = 7 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_timed_idea = { idea = sr_cd_wartime_quotas days = 180 }
+        country_event = { id = sr_campaign_dom.23 days = 120 }
+    }
+    option = {
+        name = sr_cd_22_c
+        ai_chance = { base = 10 }
+        set_country_flag = sr_cd_labour_local_discretion
+        add_political_power = 15
+        subtract_from_variable = { sr_story_trust = 2 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        country_event = { id = sr_campaign_dom.23 days = 120 }
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_council
+    id = sr_campaign_dom.23
+    title = sr_cd_23_t
+    desc = { trigger = { has_war = yes } text = sr_cd_23_war_d }
+    desc = { trigger = { has_war = no } text = sr_cd_23_peace_d }
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_lito_initialized has_country_flag = sr_cd_war_scheduled }
+    option = {
+        name = sr_cd_23_a
+        trigger = { has_political_power > 29 }
+        ai_chance = { base = 55 }
+        add_political_power = -30
+        set_country_flag = sr_cd_emergency_rights_returned
+        remove_ideas = sr_cd_emergency_cabinet
+        remove_ideas = sr_cd_wartime_quotas
+        add_to_variable = { sr_story_trust = 7 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_timed_idea = { idea = sr_cd_returned_rights days = 180 }
+        custom_effect_tooltip = sr_cd_last_review_tt
+        country_event = { id = sr_campaign_dom.24 days = 120 }
+    }
+    option = {
+        name = sr_cd_23_b
+        trigger = { has_war = yes }
+        ai_chance = { base = 35 }
+        add_political_power = 20
+        set_country_flag = sr_cd_decree_extended
+        subtract_from_variable = { sr_story_trust = 6 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_timed_idea = { idea = sr_cd_renewed_decree days = 240 }
+        custom_effect_tooltip = sr_cd_last_review_tt
+        country_event = { id = sr_campaign_dom.24 days = 120 }
+    }
+    option = {
+        name = sr_cd_23_c
+        ai_chance = { base = 10 }
+        set_country_flag = sr_cd_emergency_powers_lapsed
+        remove_ideas = sr_cd_emergency_cabinet
+        remove_ideas = sr_cd_wartime_quotas
+        add_to_variable = { sr_story_trust = 2 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        country_event = { id = sr_campaign_dom.24 days = 120 }
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_council
+    id = sr_campaign_dom.24
+    title = sr_cd_24_t
+    desc = { trigger = { has_country_flag = sr_cd_decree_extended } text = sr_cd_24_decree_d }
+    desc = { trigger = { NOT = { has_country_flag = sr_cd_decree_extended } } text = sr_cd_24_rights_d }
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_lito_initialized has_country_flag = sr_cd_war_scheduled }
+    option = {
+        name = sr_cd_24_a
+        trigger = { NOT = { has_country_flag = sr_cd_decree_extended } }
+        ai_chance = { base = 100 }
+        set_country_flag = sr_cd_war_constitution_upheld
+        add_timed_idea = { idea = sr_cd_constitutional_confidence days = 180 }
+        add_stability = 0.02
+    }
+    option = {
+        name = sr_cd_24_b
+        trigger = { has_country_flag = sr_cd_decree_extended check_variable = { sr_story_trust = 55 } }
+        ai_chance = { base = 100 }
+        set_country_flag = sr_cd_war_decree_tolerated
+        add_political_power = 25
+        add_to_variable = { sr_story_trust = -3 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+    }
+    option = {
+        name = sr_cd_24_c
+        trigger = { has_country_flag = sr_cd_decree_extended NOT = { check_variable = { sr_story_trust = 55 } } }
+        ai_chance = { base = 100 }
+        set_country_flag = sr_cd_war_decree_discredited
+        add_timed_idea = { idea = sr_cd_emergency_fatigue days = 180 }
+        add_power_balance_value = { id = sr_union_balance value = -0.04 }
+    }
+}

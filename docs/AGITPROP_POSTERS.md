@@ -1,39 +1,37 @@
-# Agitprop: Entwürfe für die originalen Posterplätze
+# Agitprop-Poster in der originalen Oberfläche
 
-Die bisherige eigenständige Entscheidungskategorie mit einem wechselnden Bild
-ist seit **0.5.3 entfernt**. Sie war keine Anbindung an die originalen drei
-Agitprop-Posterplätze. Es gibt derzeit noch keinen eingebauten nativen Ersatz.
-
-Die acht Titel und Bonusentwürfe bleiben als Designvorlage erhalten. Aus dem
-gelieferten Archiv **Agitprop.rar** sind inzwischen **drei eigene Poster**
-übernommen. Ihre Originale liegen unverändert in
+Seit 0.6.0 sind die drei gelieferten Poster aus **Agitprop.rar** an die
+originale sowjetische GUI angebunden. Die Originale liegen unverändert in
 `artwork/agitprop/originals/`; Zuordnung, Abmessungen und SHA-256-Prüfsummen stehen
 in `artwork/agitprop/manifest.json`.
 
-| Geliefertes Motiv | Vorläufige Kampagnenzuordnung | Textur |
-| --- | --- | --- |
-| Lito, Volk, Partei und Einheit | Solange ein Stern über uns brennt | `sr_agitprop_star.dds` |
-| Vier Genossen und Minecraft-Motiv | Elf Völker – ein gemeinsamer Morgen | `sr_agitprop_peoples.dds` |
-| Soldat, Stärke, Ehre und Sieg | Für die Union bis zum letzten Licht | `sr_agitprop_light.dds` |
+| Geliefertes Motiv | Originale Kampagne | Native ID | Textur |
+| --- | --- | ---: | --- |
+| Lito, Volk, Partei und Einheit | `SOV_propaganda_hit_of_hammer` | 7 | `sr_agitprop_star.dds` |
+| Vier Genossen und Minecraft-Motiv | `SOV_propaganda_high_yield` | 11 | `sr_agitprop_peoples.dds` |
+| Soldat, Stärke, Ehre und Sieg | `SOV_propaganda_motherland_calls` | 3 | `sr_agitprop_light.dds` |
 
-Diese drei 150 × 200 DDS/DXT5-Dateien verwenden jetzt die gelieferten Poster.
-Das vollständige Bild ist proportional eingepasst und seitlich transparent
-aufgefüllt, damit Schrift und Rahmen nicht abgeschnitten werden. Die übrigen
-fünf Bildplätze zeigen weiterhin vorläufige Abzeichen. Alle acht Texturen sind
-noch ungebunden; diese Bildübernahme aktiviert keine Agitprop-Oberfläche.
-Die neuen Bilder sind ab 0.5.6 als vorbereitete, ungebundene Texturen im Paket
-enthalten. Die Anbindung an die originalen Posterplätze ist weiterhin offen.
+Die Bilder verwenden 150×200 Pixel, DDS/DXT5. Sie sind proportional mit
+transparenten Seitenrändern eingepasst; Texte und Rahmen werden nicht
+abgeschnitten. Der Installer übernimmt die originale Position und den
+Vanilla-Tooltip. Während eines eigenen Bilds wird die darunterliegende
+Originalgrafik ausgeblendet. Native Hintergrundbilder und Countdowntexte
+bleiben bestehen. Die eigenen Bilder werden unverändert angezeigt; es werden
+keine neuen gealterten Bildfassungen erzeugt.
 
 `python3 tools/build_agitprop_posters.py` erzeugt die drei Texturen mit
-ImageMagick erneut aus den Originalen. Als weitere Quellen eignen sich
-**3:4**-Bilder, beispielsweise 600 × 800 Pixel. Die endgültigen Abmessungen der
-nativen Anzeige werden erst mit ihren Originaldateien abgestimmt.
+ImageMagick erneut aus den gesicherten Originalen. Die fünf übrigen alten
+Bildplätze sind unbenutzte Platzhalter und werden nicht als eigene Kampagnen
+aktiviert. Weitere gelieferte Poster können später ebenso zugeordnet werden.
 
-Die endgültigen Frame-IDs, Texturdateien, Freischaltungen und die mögliche
-gleichzeitige Belegung werden anhand der vollständigen Original-GUI und ihrer
-Effekte verbunden. Die bisherige Beschränkung auf eine Kampagne wird nicht als
-vorgebliches Originalsystem weitergeführt. Auch die folgenden Kosten und
-Laufzeiten sind Entwürfe, keine derzeit auswählbaren Entscheidungen.
+Die Freischaltung erfolgt über **„Agitprop der Völker“** und die anschließenden
+Räte-/Akademie-Meilensteine. Kosten, Dauer, Kampagnenboni und Ablauf bleiben
+Vanilla. Siehe [native Anbindung](NATIVE_AGITPROP.md).
+
+## Frühere Titel- und Bonusentwürfe (nicht aktiv)
+
+Die folgende Tabelle hält die früheren acht eigenen Entwürfe fest. Sie
+beschreibt keine aktuellen Decisions und ersetzt die Vanilla-Boni nicht.
 
 | Titel | Politische Macht | Dauer | Boni und Freischaltung | Bilddatei |
 | --- | ---: | ---: | --- | --- |
@@ -45,18 +43,3 @@ Laufzeiten sind Entwürfe, keine derzeit auswählbaren Entscheidungen.
 | Unser Morgen kennt keine Grenzen | 80 | 180 Tage | Forschungsgeschwindigkeit +4 %. Fokus: `sr_lito_technical_education`. | `sr_agitprop_horizon.dds` |
 | Die Erde gehört den Arbeitenden | 85 | 180 Tage | Unterhaltskosten verbesserter Beziehungen −20 %; tägliche politische Macht +0,10. Nur im Frieden verfügbar. Fokus: `sr_lito_balkan_partnership`. | `sr_agitprop_earth.dds` |
 | Für die Union bis zum letzten Licht | 90 | 90 Tage | Erholungsrate des Heeres +6 %; Kriegsunterstützung +5 Prozentpunkte; Nachschubverbrauch −3 %. Nur im Krieg verfügbar. Fokus: `sr_lito_army_homeland_defence`. | `sr_agitprop_light.dds` |
-
-Die acht vorbereiteten, noch ungebundenen Dateien liegen unter
-`soviet_renewal/gfx/interface/agitprop/`. Die alte Registrierung
-`interface/sr_agitprop_icons.gfx` und ihre Decision-Icons wurden entfernt.
-
-Für den Originalabgleich erstellt `collect_lito_agitprop.ps1` lokal einen
-Textbericht mit den passenden Spielquellen. Der Bericht wird nicht automatisch
-übertragen. Siehe [NATIVE_AGITPROP.md](NATIVE_AGITPROP.md).
-
-Die Unionsrats-Erweiterung ergänzt acht Aktionen im bestehenden Balance-Menü:
-Delegiertenkongress, Krisenkompromiss, öffentliche Planprüfung, einmalige
-zentrale Kriegsvollmacht, Amnestie, Haushaltsreserve anlegen, Reserve auslösen
-und gemeinsamer Kriegsrat. Ihre Kosten und zeitlich begrenzten Nachteile sind
-in den Entscheidungstexten angegeben. Die Reserve gibt beim Anlegen keinen
-Sofortbonus und kann nur einmal während einer Krise freigegeben werden.

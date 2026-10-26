@@ -1,0 +1,5 @@
+opinion_modifiers = {
+    sr_lito_balkan_solidarity = { value = 25 }
+    sr_lito_political_contacts = { value = 25 }
+    sr_yugoslav_friendship = { value = 40 }
+}

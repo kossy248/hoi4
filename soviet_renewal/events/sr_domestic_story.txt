@@ -1,0 +1,366 @@
+add_namespace = sr_domestic
+
+country_event = {
+    picture = GFX_sr_campaign_council
+    id = sr_domestic.1
+    title = sr_domestic.1.t
+    desc = sr_domestic.1.d
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_story_initialized }
+    # A modest transition budget keeps every founding route available on day one.
+    immediate = { add_political_power = 40 }
+    option = {
+        name = sr_domestic.1.a
+        trigger = { has_political_power > 24 }
+        ai_chance = { base = 50 }
+        add_political_power = -25
+        set_country_flag = sr_story_opening_councils
+        add_to_variable = { sr_story_trust = 12 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_power_balance_value = { id = sr_union_balance value = 0.03 }
+        add_timed_idea = { idea = sr_story_open_deliberation days = 180 }
+    }
+    option = {
+        name = sr_domestic.1.b
+        ai_chance = { base = 30 }
+        add_political_power = 60
+        set_country_flag = sr_story_opening_centre
+        subtract_from_variable = { sr_story_trust = 10 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_power_balance_value = { id = sr_union_balance value = -0.04 }
+        add_timed_idea = { idea = sr_story_central_administration days = 180 }
+    }
+    option = {
+        name = sr_domestic.1.c
+        trigger = { has_political_power > 9 }
+        ai_chance = { base = 20 }
+        set_country_flag = sr_story_opening_compromise
+        add_political_power = -10
+        add_to_variable = { sr_story_trust = 5 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_council
+    id = sr_domestic.2
+    title = sr_domestic.2.t
+    desc = sr_domestic.2.d
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_story_initialized }
+    option = {
+        name = sr_domestic.2.a
+        trigger = { has_political_power > 34 }
+        ai_chance = { base = 55 }
+        add_political_power = -35
+        add_to_variable = { sr_story_trust = 8 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        set_country_flag = sr_story_privileges_challenged
+        add_power_balance_value = { id = sr_union_balance value = 0.02 }
+    }
+    option = {
+        name = sr_domestic.2.b
+        ai_chance = { base = 25 }
+        add_political_power = 35
+        subtract_from_variable = { sr_story_trust = 8 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_ideas = sr_story_untouched_privileges
+    }
+    option = {
+        name = sr_domestic.2.c
+        trigger = { has_country_flag = sr_story_opening_compromise has_political_power > 14 }
+        ai_chance = { base = 20 }
+        add_political_power = -15
+        add_to_variable = { sr_story_trust = 3 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_timed_idea = { idea = sr_story_compromise_committees days = 180 }
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_council
+    id = sr_domestic.3
+    title = sr_domestic.3.t
+    desc = sr_domestic.3.d
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_story_initialized }
+    option = {
+        name = sr_domestic.3.a
+        trigger = { has_political_power > 49 }
+        ai_chance = { base = 55 }
+        add_political_power = -50
+        set_country_flag = sr_story_binding_council_rules
+        add_to_variable = { sr_story_trust = 10 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_power_balance_value = { id = sr_union_balance value = 0.05 }
+    }
+    option = {
+        name = sr_domestic.3.b
+        ai_chance = { base = 25 }
+        add_political_power = 50
+        set_country_flag = sr_story_executive_veto
+        subtract_from_variable = { sr_story_trust = 12 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_power_balance_value = { id = sr_union_balance value = -0.05 }
+        add_timed_idea = { idea = sr_story_emergency_secretariat days = 365 }
+    }
+    option = {
+        name = sr_domestic.3.c
+        trigger = { has_political_power > 19 }
+        ai_chance = { base = 20 }
+        add_political_power = -20
+        set_country_flag = sr_story_joint_committee
+        add_to_variable = { sr_story_trust = 4 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_timed_idea = { idea = sr_story_compromise_committees days = 180 }
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_council
+    id = sr_domestic.4
+    title = sr_domestic.4.t
+    desc = { trigger = { check_variable = { sr_story_trust = 65 } } text = sr_domestic.4.d_high }
+    desc = { trigger = { check_variable = { sr_story_trust = 40 } NOT = { check_variable = { sr_story_trust = 65 } } } text = sr_domestic.4.d_middle }
+    desc = { trigger = { NOT = { check_variable = { sr_story_trust = 40 } } } text = sr_domestic.4.d_low }
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_story_initialized }
+    immediate = { set_country_flag = sr_story_first_hundred_days }
+    option = {
+        name = sr_domestic.4.a
+        trigger = { check_variable = { sr_story_trust = 65 } }
+        ai_chance = { base = 100 }
+        set_country_flag = sr_story_hundred_days_mandate
+        add_political_power = 50
+        add_stability = 0.03
+        add_power_balance_value = { id = sr_union_balance value = 0.04 }
+    }
+    option = {
+        name = sr_domestic.4.b
+        trigger = { check_variable = { sr_story_trust = 40 } NOT = { check_variable = { sr_story_trust = 65 } } }
+        ai_chance = { base = 100 }
+        set_country_flag = sr_story_hundred_days_uncertain
+        add_timed_idea = { idea = sr_story_compromise_committees days = 180 }
+    }
+    option = {
+        name = sr_domestic.4.c
+        trigger = { NOT = { check_variable = { sr_story_trust = 40 } } }
+        ai_chance = { base = 100 }
+        set_country_flag = sr_story_hundred_days_crisis
+        add_ideas = sr_story_government_in_crisis
+        add_stability = -0.04
+        add_power_balance_value = { id = sr_union_balance value = -0.08 }
+        custom_effect_tooltip = sr_story_confidence_recovery_tt
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_council
+    id = sr_domestic.11
+    title = sr_domestic.11.t
+    desc = sr_domestic.11.d
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV sr_union_ukraine_represented = yes }
+    option = {
+        name = sr_domestic.11.a
+        ai_chance = { base = 70 }
+        set_country_flag = sr_story_ukraine_promised
+        activate_mission = sr_story_ukraine_promise
+        custom_effect_tooltip = sr_story_ukraine_promise_tt
+    }
+    option = {
+        name = sr_domestic.11.b
+        ai_chance = { base = 30 }
+        set_country_flag = sr_story_ukraine_declined
+        subtract_from_variable = { sr_story_trust = 5 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_to_variable = { sr_resistance_ukraine = 8 }
+        clamp_variable = { var = sr_resistance_ukraine min = 0 max = 100 }
+        sr_update_union_resistance_ideas_effect = yes
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_council
+    id = sr_domestic.12
+    title = sr_domestic.12.t
+    desc = sr_domestic.12.d
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV sr_union_georgia_represented = yes }
+    option = {
+        name = sr_domestic.12.a
+        ai_chance = { base = 70 }
+        set_country_flag = sr_story_georgia_promised
+        activate_mission = sr_story_georgia_promise
+        custom_effect_tooltip = sr_story_georgia_promise_tt
+    }
+    option = {
+        name = sr_domestic.12.b
+        ai_chance = { base = 30 }
+        set_country_flag = sr_story_georgia_declined
+        subtract_from_variable = { sr_story_trust = 5 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_to_variable = { sr_resistance_georgia = 8 }
+        clamp_variable = { var = sr_resistance_georgia min = 0 max = 100 }
+        sr_update_union_resistance_ideas_effect = yes
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_council
+    id = sr_domestic.13
+    title = sr_domestic.13.t
+    desc = sr_domestic.13.d
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV sr_union_kazakhstan_represented = yes }
+    option = {
+        name = sr_domestic.13.a
+        ai_chance = { base = 70 }
+        set_country_flag = sr_story_kazakhstan_promised
+        activate_mission = sr_story_kazakhstan_promise
+        custom_effect_tooltip = sr_story_kazakhstan_promise_tt
+    }
+    option = {
+        name = sr_domestic.13.b
+        ai_chance = { base = 30 }
+        set_country_flag = sr_story_kazakhstan_declined
+        subtract_from_variable = { sr_story_trust = 5 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_to_variable = { sr_resistance_kazakhstan = 8 }
+        clamp_variable = { var = sr_resistance_kazakhstan min = 0 max = 100 }
+        sr_update_union_resistance_ideas_effect = yes
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_council
+    id = sr_domestic.14
+    title = sr_domestic.14.t
+    desc = sr_domestic.14.d
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_story_ukraine_fulfilled }
+    option = { name = sr_domestic.14.a ai_chance = { base = 100 } }
+}
+country_event = {
+    picture = GFX_sr_campaign_council
+    id = sr_domestic.15
+    title = sr_domestic.15.t
+    desc = sr_domestic.15.d
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_story_georgia_fulfilled }
+    option = { name = sr_domestic.15.a ai_chance = { base = 100 } }
+}
+country_event = {
+    picture = GFX_sr_campaign_council
+    id = sr_domestic.16
+    title = sr_domestic.16.t
+    desc = sr_domestic.16.d
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_story_kazakhstan_fulfilled }
+    option = { name = sr_domestic.16.a ai_chance = { base = 100 } }
+}
+country_event = {
+    picture = GFX_sr_campaign_council
+    id = sr_domestic.17
+    title = sr_domestic.17.t
+    desc = sr_domestic.17.d
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_story_ukraine_broken }
+    option = { name = sr_domestic.17.a ai_chance = { base = 100 } }
+}
+country_event = {
+    picture = GFX_sr_campaign_council
+    id = sr_domestic.18
+    title = sr_domestic.18.t
+    desc = sr_domestic.18.d
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_story_georgia_broken }
+    option = { name = sr_domestic.18.a ai_chance = { base = 100 } }
+}
+country_event = {
+    picture = GFX_sr_campaign_council
+    id = sr_domestic.19
+    title = sr_domestic.19.t
+    desc = sr_domestic.19.d
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_story_kazakhstan_broken }
+    option = { name = sr_domestic.19.a ai_chance = { base = 100 } }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_council
+    id = sr_domestic.20
+    title = sr_domestic.20.t
+    desc = sr_domestic.20.d
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_story_crisis_seen }
+    option = {
+        name = sr_domestic.20.a
+        trigger = { has_political_power > 74 }
+        ai_chance = { base = 60 }
+        add_political_power = -75
+        add_timed_idea = { idea = sr_story_mediation days = 120 }
+        add_to_variable = { sr_story_trust = 10 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        sr_lito_reduce_republic_resistance_effect = yes
+        add_power_balance_value = { id = sr_union_balance value = 0.12 }
+    }
+    option = {
+        name = sr_domestic.20.b
+        trigger = { has_political_power > 24 }
+        ai_chance = { base = 25 }
+        add_political_power = -25
+        add_timed_idea = { idea = sr_story_security_campaign days = 180 }
+        subtract_from_variable = { sr_story_trust = 12 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        sr_lito_reduce_republic_resistance_effect = yes
+        add_power_balance_value = { id = sr_union_balance value = 0.04 }
+    }
+    option = {
+        name = sr_domestic.20.c
+        ai_chance = { base = 15 }
+        add_stability = -0.03
+        add_power_balance_value = { id = sr_union_balance value = -0.06 }
+        subtract_from_variable = { sr_story_trust = 8 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+    }
+}
+country_event = {
+    picture = GFX_sr_campaign_council
+    id = sr_domestic.21
+    title = sr_domestic.21.t
+    desc = sr_domestic.21.d
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_story_privileges_reviewed }
+    option = {
+        name = sr_domestic.21.a
+        ai_chance = { base = 100 }
+        add_to_variable = { sr_story_trust = 5 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+    }
+}
+country_event = {
+    picture = GFX_sr_campaign_council
+    id = sr_domestic.22
+    title = sr_domestic.22.t
+    desc = sr_domestic.22.d
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = { tag = SOV has_country_flag = sr_story_confidence_restored }
+    option = { name = sr_domestic.22.a ai_chance = { base = 100 } }
+}

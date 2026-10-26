@@ -1,0 +1,6 @@
+spriteTypes = {
+    spriteType = {
+        name = "GFX_sr_lito_portrait"
+        texturefile = "gfx/leaders/SOV/Portrait_SOV_cosif_kozs_lito.dds"
+    }
+}

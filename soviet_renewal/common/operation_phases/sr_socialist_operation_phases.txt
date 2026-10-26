@@ -1,0 +1,23 @@
+sr_socialist_phase_contacts = {
+    name = sr_socialist_phase_contacts_name
+    desc = sr_socialist_phase_contacts_desc
+    icon = GFX_goal_sr_lito_independent_socialism
+    picture = GFX_sr_campaign_balkan
+    outcome = sr_socialist_phase_contacts_outcome
+}
+
+sr_socialist_phase_government = {
+    name = sr_socialist_phase_government_name
+    desc = sr_socialist_phase_government_desc
+    icon = GFX_goal_sr_lito_independent_socialism
+    picture = GFX_sr_campaign_council
+    outcome = sr_socialist_phase_government_outcome
+}
+
+sr_socialist_phase_proclamation = {
+    name = sr_socialist_phase_proclamation_name
+    desc = sr_socialist_phase_proclamation_desc
+    icon = GFX_goal_sr_lito_independent_socialism
+    picture = GFX_sr_campaign_balkan
+    outcome = sr_socialist_phase_proclamation_outcome
+}

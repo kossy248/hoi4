@@ -1,0 +1,82 @@
+ideas = {
+    country = {
+        sr_fs_factory_debate = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { industrial_capacity_factory = -0.03 }
+        }
+        sr_fs_factory_quota = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { industrial_capacity_factory = 0.04 }
+        }
+        sr_fs_procurement_drive = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { industrial_capacity_factory = 0.03 stability_factor = -0.02 }
+        }
+        sr_fs_open_research = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { research_speed_factor = 0.015 }
+        }
+        sr_fs_military_laboratories = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { industrial_capacity_factory = 0.025 }
+        }
+        sr_fs_field_command = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { army_org_factor = 0.03 planning_speed = -0.03 }
+        }
+        sr_fs_central_planning = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { planning_speed = 0.06 army_org_factor = -0.01 }
+        }
+        sr_fs_air_workshops = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { air_accidents_factor = -0.05 air_mission_efficiency = 0.01 }
+        }
+        sr_fs_extended_flying = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { air_fuel_consumption_factor = 0.05 }
+        }
+        sr_fs_merchant_escorts = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { convoy_escort_efficiency = 0.05 navy_fuel_consumption_factor = 0.02 }
+        }
+        sr_fs_fleet_presence = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { navy_org_factor = 0.03 navy_fuel_consumption_factor = 0.05 }
+        }
+        sr_fs_privileges_review = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { political_power_gain = -0.05 }
+        }
+        sr_fs_learned_self_management = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { industrial_capacity_factory = 0.03 }
+        }
+    }
+}

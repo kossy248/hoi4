@@ -1,0 +1,383 @@
+add_namespace = sr_campaign_balkan
+
+country_event = {
+    picture = GFX_sr_campaign_balkan
+    id = sr_campaign_balkan.1
+    title = sr_cb_1_t
+    desc = { trigger = { has_country_flag = sr_bs_home_priority } text = sr_cb_1_home_d }
+    desc = { trigger = { has_country_flag = sr_bs_equal_partners NOT = { has_country_flag = sr_bs_home_priority } } text = sr_cb_1_equal_d }
+    desc = { trigger = { NOT = { has_country_flag = sr_bs_home_priority } NOT = { has_country_flag = sr_bs_equal_partners } } text = sr_cb_1_other_d }
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = {
+        tag = SOV
+        has_country_flag = sr_lito_initialized
+        has_country_flag = sr_cb_kardelj_started
+        exists = YUG
+        YUG = { sr_campaign_kardelj_partner_ready = yes }
+    }
+    option = {
+        name = sr_cb_1_a
+        trigger = { has_political_power > 59 }
+        ai_chance = { base = 65 }
+        add_political_power = -60
+        set_country_flag = sr_cb_reciprocity
+        add_to_variable = { sr_story_trust = 4 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_timed_idea = { idea = sr_cb_reciprocal_trade days = 180 }
+        custom_effect_tooltip = sr_cb_contract_followup_tt
+        country_event = { id = sr_campaign_balkan.2 days = 90 }
+    }
+    option = {
+        name = sr_cb_1_b
+        ai_chance = { base = 35 }
+        add_political_power = 35
+        set_country_flag = sr_cb_instructions
+        subtract_from_variable = { sr_story_trust = 5 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_timed_idea = { idea = sr_cb_directed_deliveries days = 180 }
+        custom_effect_tooltip = sr_cb_contract_followup_tt
+        country_event = { id = sr_campaign_balkan.2 days = 90 }
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_balkan
+    id = sr_campaign_balkan.2
+    title = sr_cb_2_t
+    desc = { trigger = { has_country_flag = sr_cb_reciprocity } text = sr_cb_2_joint_d }
+    desc = { trigger = { has_country_flag = sr_cb_instructions } text = sr_cb_2_orders_d }
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = {
+        tag = SOV
+        has_country_flag = sr_lito_initialized
+        exists = YUG
+        YUG = { sr_campaign_kardelj_partner_ready = yes }
+        OR = { has_country_flag = sr_cb_reciprocity has_country_flag = sr_cb_instructions }
+    }
+    option = {
+        name = sr_cb_2_a
+        trigger = { has_political_power > 34 }
+        ai_chance = { base = 65 }
+        add_political_power = -35
+        set_country_flag = sr_cb_customs_joint
+        add_to_variable = { sr_story_trust = 3 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        remove_ideas = sr_cb_directed_deliveries
+        custom_effect_tooltip = sr_cb_standards_followup_tt
+        country_event = { id = sr_campaign_balkan.3 days = 90 }
+    }
+    option = {
+        name = sr_cb_2_b
+        ai_chance = { base = 35 }
+        add_political_power = 20
+        set_country_flag = sr_cb_customs_directed
+        subtract_from_variable = { sr_story_trust = 4 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        custom_effect_tooltip = sr_cb_standards_followup_tt
+        country_event = { id = sr_campaign_balkan.3 days = 90 }
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_balkan
+    id = sr_campaign_balkan.3
+    title = sr_cb_3_t
+    desc = { trigger = { has_country_flag = sr_cb_customs_joint } text = sr_cb_3_joint_d }
+    desc = { trigger = { has_country_flag = sr_cb_customs_directed } text = sr_cb_3_orders_d }
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = {
+        tag = SOV
+        has_country_flag = sr_lito_initialized
+        exists = YUG
+        YUG = { sr_campaign_kardelj_partner_ready = yes }
+        OR = { has_country_flag = sr_cb_customs_joint has_country_flag = sr_cb_customs_directed }
+    }
+    option = {
+        name = sr_cb_3_a
+        trigger = { has_country_flag = sr_cb_customs_joint }
+        ai_chance = { base = 100 }
+        set_country_flag = sr_cb_kardelj_treaty_completed
+        add_to_variable = { sr_story_trust = 5 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_power_balance_value = { id = sr_union_balance value = 0.02 }
+        add_timed_idea = { idea = sr_cb_joint_standards days = 365 }
+        if = {
+            limit = { exists = YUG YUG = { sr_campaign_kardelj_partner_ready = yes } }
+            YUG = { add_timed_idea = { idea = sr_cb_joint_standards days = 365 } }
+        }
+    }
+    option = {
+        name = sr_cb_3_b
+        trigger = { has_country_flag = sr_cb_customs_directed }
+        ai_chance = { base = 100 }
+        set_country_flag = sr_cb_kardelj_treaty_contested
+        subtract_from_variable = { sr_story_trust = 5 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_timed_idea = { idea = sr_cb_partner_resentment days = 270 }
+        if = {
+            limit = { exists = YUG YUG = { sr_campaign_kardelj_partner_ready = yes } }
+            YUG = { add_timed_idea = { idea = sr_cb_partner_resentment days = 270 } }
+        }
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_balkan
+    id = sr_campaign_balkan.4
+    title = sr_cb_4_t
+    desc = { trigger = { has_country_flag = sr_bs_federal_grievance } text = sr_cb_4_grievance_d }
+    desc = { trigger = { NOT = { has_country_flag = sr_bs_federal_grievance } } text = sr_cb_4_cooperation_d }
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = {
+        tag = SOV
+        has_country_flag = sr_lito_initialized
+        has_country_flag = sr_cb_federation_started
+        exists = YUG
+        YUG = { sr_balkan_designated_subject_ready = yes }
+    }
+    option = {
+        name = sr_cb_4_a
+        trigger = { has_political_power > 49 }
+        ai_chance = { base = 65 }
+        add_political_power = -50
+        set_country_flag = sr_cb_federal_audit
+        add_timed_idea = { idea = sr_cb_federal_audit days = 180 }
+        custom_effect_tooltip = sr_cb_federal_followup_tt
+        country_event = { id = sr_campaign_balkan.5 days = 90 }
+    }
+    option = {
+        name = sr_cb_4_b
+        ai_chance = { base = 35 }
+        add_political_power = 30
+        set_country_flag = sr_cb_federal_targets
+        subtract_from_variable = { sr_story_trust = 4 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        custom_effect_tooltip = sr_cb_federal_followup_tt
+        country_event = { id = sr_campaign_balkan.5 days = 90 }
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_balkan
+    id = sr_campaign_balkan.5
+    title = sr_cb_5_t
+    desc = { trigger = { has_country_flag = sr_cb_federal_audit } text = sr_cb_5_audit_d }
+    desc = { trigger = { has_country_flag = sr_cb_federal_targets } text = sr_cb_5_targets_d }
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = {
+        tag = SOV
+        has_country_flag = sr_lito_initialized
+        exists = YUG
+        YUG = { sr_balkan_designated_subject_ready = yes }
+        OR = { has_country_flag = sr_cb_federal_audit has_country_flag = sr_cb_federal_targets }
+    }
+    option = {
+        name = sr_cb_5_a
+        trigger = { has_political_power > 59 }
+        ai_chance = { base = 65 }
+        add_political_power = -60
+        set_country_flag = sr_cb_federal_guarantees
+        add_to_variable = { sr_story_trust = 5 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        if = {
+            limit = { exists = YUG YUG = { sr_balkan_designated_subject_ready = yes } }
+            YUG = {
+                remove_ideas = sr_cb_federal_compliance
+                add_timed_idea = { idea = sr_cb_federal_guarantees days = 365 }
+            }
+        }
+        custom_effect_tooltip = sr_cb_federal_budget_tt
+        country_event = { id = sr_campaign_balkan.6 days = 120 }
+    }
+    option = {
+        name = sr_cb_5_b
+        ai_chance = { base = 35 }
+        set_country_flag = sr_cb_federal_confirmed
+        add_political_power = 20
+        subtract_from_variable = { sr_story_trust = 5 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        if = {
+            limit = { exists = YUG YUG = { sr_balkan_designated_subject_ready = yes } }
+            YUG = { add_timed_idea = { idea = sr_cb_federal_compliance days = 365 } }
+        }
+        custom_effect_tooltip = sr_cb_federal_budget_tt
+        country_event = { id = sr_campaign_balkan.6 days = 120 }
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_balkan
+    id = sr_campaign_balkan.6
+    title = sr_cb_6_t
+    desc = { trigger = { has_country_flag = sr_cb_federal_guarantees } text = sr_cb_6_guarantees_d }
+    desc = { trigger = { has_country_flag = sr_cb_federal_confirmed } text = sr_cb_6_orders_d }
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = {
+        tag = SOV
+        has_country_flag = sr_lito_initialized
+        exists = YUG
+        YUG = { sr_balkan_designated_subject_ready = yes }
+        OR = { has_country_flag = sr_cb_federal_guarantees has_country_flag = sr_cb_federal_confirmed }
+    }
+    option = {
+        name = sr_cb_6_a
+        trigger = { has_country_flag = sr_cb_federal_guarantees }
+        ai_chance = { base = 100 }
+        set_country_flag = sr_cb_federal_compact_completed
+        add_to_variable = { sr_story_trust = 5 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_power_balance_value = { id = sr_union_balance value = 0.03 }
+        if = {
+            limit = { exists = YUG YUG = { sr_balkan_designated_subject_ready = yes } }
+            YUG = { add_timed_idea = { idea = sr_cb_joint_standards days = 365 } }
+        }
+    }
+    option = {
+        name = sr_cb_6_b
+        trigger = { has_country_flag = sr_cb_federal_confirmed }
+        ai_chance = { base = 100 }
+        set_country_flag = sr_cb_federal_compact_disputed
+        subtract_from_variable = { sr_story_trust = 6 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        if = {
+            limit = { exists = YUG YUG = { sr_balkan_designated_subject_ready = yes } }
+            YUG = { add_timed_idea = { idea = sr_cb_federal_deadlock days = 270 } }
+        }
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_balkan
+    id = sr_campaign_balkan.7
+    title = sr_cb_7_t
+    desc = sr_cb_7_d
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = {
+        tag = SOV
+        has_country_flag = sr_lito_initialized
+        has_country_flag = sr_slavic_union_proclaimed
+        has_country_flag = sr_cb_charter_started
+    }
+    option = {
+        name = sr_cb_7_a
+        trigger = { has_political_power > 59 }
+        ai_chance = { base = 65 }
+        add_political_power = -60
+        set_country_flag = sr_cb_charter_plural
+        add_timed_idea = { idea = sr_cb_charter_translation days = 240 }
+        add_to_variable = { sr_story_trust = 4 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        custom_effect_tooltip = sr_cb_charter_followup_tt
+        country_event = { id = sr_campaign_balkan.8 days = 120 }
+    }
+    option = {
+        name = sr_cb_7_b
+        ai_chance = { base = 35 }
+        set_country_flag = sr_cb_charter_central
+        add_political_power = 40
+        subtract_from_variable = { sr_story_trust = 4 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        custom_effect_tooltip = sr_cb_charter_followup_tt
+        country_event = { id = sr_campaign_balkan.8 days = 120 }
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_balkan
+    id = sr_campaign_balkan.8
+    title = sr_cb_8_t
+    desc = { trigger = { has_country_flag = sr_story_georgia_broken } text = sr_cb_8_broken_d }
+    desc = { trigger = { NOT = { has_country_flag = sr_story_georgia_broken } } text = sr_cb_8_other_d }
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = {
+        tag = SOV
+        has_country_flag = sr_lito_initialized
+        has_country_flag = sr_slavic_union_proclaimed
+        OR = { has_country_flag = sr_cb_charter_plural has_country_flag = sr_cb_charter_central }
+    }
+    option = {
+        name = sr_cb_8_a
+        trigger = { has_political_power > 39 }
+        ai_chance = { base = 65 }
+        add_political_power = -40
+        set_country_flag = sr_cb_charter_revised
+        add_to_variable = { sr_story_trust = 5 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        if = {
+            limit = { sr_union_georgia_represented = yes }
+            subtract_from_variable = { sr_resistance_georgia = 10 }
+            clamp_variable = { var = sr_resistance_georgia min = 0 max = 100 }
+            sr_update_union_resistance_ideas_effect = yes
+        }
+        custom_effect_tooltip = sr_cb_charter_report_tt
+        country_event = { id = sr_campaign_balkan.9 days = 120 }
+    }
+    option = {
+        name = sr_cb_8_b
+        ai_chance = { base = 35 }
+        set_country_flag = sr_cb_charter_kept
+        add_political_power = 20
+        if = {
+            limit = { has_country_flag = sr_cb_charter_central }
+            subtract_from_variable = { sr_story_trust = 5 }
+            clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        }
+        custom_effect_tooltip = sr_cb_charter_report_tt
+        country_event = { id = sr_campaign_balkan.9 days = 120 }
+    }
+}
+
+country_event = {
+    picture = GFX_sr_campaign_balkan
+    id = sr_campaign_balkan.9
+    title = sr_cb_9_t
+    desc = {
+        trigger = {
+            OR = { has_country_flag = sr_cb_charter_revised has_country_flag = sr_cb_charter_plural }
+        }
+        text = sr_cb_9_plural_d
+    }
+    desc = {
+        trigger = {
+            has_country_flag = sr_cb_charter_central
+            NOT = { has_country_flag = sr_cb_charter_revised }
+        }
+        text = sr_cb_9_central_d
+    }
+    is_triggered_only = yes
+    fire_only_once = yes
+    trigger = {
+        tag = SOV
+        has_country_flag = sr_lito_initialized
+        has_country_flag = sr_slavic_union_proclaimed
+        OR = { has_country_flag = sr_cb_charter_revised has_country_flag = sr_cb_charter_kept }
+    }
+    option = {
+        name = sr_cb_9_a
+        trigger = { OR = { has_country_flag = sr_cb_charter_revised has_country_flag = sr_cb_charter_plural } }
+        ai_chance = { base = 100 }
+        set_country_flag = sr_cb_charter_ratified
+        add_to_variable = { sr_story_trust = 5 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_power_balance_value = { id = sr_union_balance value = 0.04 }
+        add_timed_idea = { idea = sr_cb_plural_institutions days = 540 }
+    }
+    option = {
+        name = sr_cb_9_b
+        trigger = { has_country_flag = sr_cb_charter_central NOT = { has_country_flag = sr_cb_charter_revised } }
+        ai_chance = { base = 100 }
+        set_country_flag = sr_cb_charter_imposed
+        subtract_from_variable = { sr_story_trust = 5 }
+        clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+        add_power_balance_value = { id = sr_union_balance value = -0.04 }
+        add_timed_idea = { idea = sr_cb_central_institutions days = 540 }
+    }
+}

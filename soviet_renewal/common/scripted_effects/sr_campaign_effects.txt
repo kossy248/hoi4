@@ -1,0 +1,31 @@
+# Safe for new games and already initialized 0.4 countries. No trust reset.
+sr_campaign_initialize_effect = {
+    if = {
+        limit = {
+            tag = SOV
+            has_country_flag = sr_lito_initialized
+            has_country_flag = sr_story_initialized
+            NOT = { has_country_flag = sr_campaign_initialized }
+        }
+        set_country_flag = sr_campaign_initialized
+        sr_campaign_projects_initialize_effect = yes
+    }
+}
+
+# These hooks share sr_campaign_event_cooldown. A scheduled domestic chapter
+# reserves its slot before the foreign hook runs; project choices are manual.
+sr_campaign_monthly_effect = {
+    sr_campaign_initialize_effect = yes
+    if = {
+        limit = {
+            tag = SOV
+            has_country_flag = sr_campaign_initialized
+        }
+        sr_campaign_projects_monthly_effect = yes
+        if = {
+            limit = { has_government = communism }
+            sr_campaign_domestic_monthly_effect = yes
+            sr_campaign_balkan_monthly_effect = yes
+        }
+    }
+}

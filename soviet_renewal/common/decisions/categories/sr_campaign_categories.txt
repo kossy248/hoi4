@@ -1,0 +1,10 @@
+sr_government_program = {
+    icon = sr_government_program
+    priority = 115
+    visible_when_empty = yes
+    allowed = { tag = SOV }
+    visible = {
+        has_country_flag = sr_lito_initialized
+        has_country_flag = sr_story_first_hundred_days
+    }
+}

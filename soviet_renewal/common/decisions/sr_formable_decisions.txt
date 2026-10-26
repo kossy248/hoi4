@@ -1,0 +1,30 @@
+sr_formable_union = {
+    sr_proclaim_slavic_union = {
+        icon = sr_proclaim_slavic_union
+        cost = 100
+        fire_only_once = yes
+        visible = {
+            tag = SOV
+            has_country_flag = sr_lito_initialized
+            NOT = { has_country_flag = sr_slavic_union_proclaimed }
+        }
+        available = {
+            tag = SOV
+            is_subject = no
+            has_country_flag = sr_lito_initialized
+            NOT = { has_country_flag = sr_slavic_union_proclaimed }
+            sr_formable_slavic_territory_ready = yes
+        }
+        complete_effect = {
+            set_country_flag = sr_slavic_union_proclaimed
+            set_cosmetic_tag = SOV_LITO_SFSU
+            add_stability = 0.05
+            add_power_balance_value = {
+                id = sr_union_balance
+                value = 0.10
+                tooltip_side = sr_union_preservation_side
+            }
+        }
+        ai_will_do = { factor = 5 }
+    }
+}

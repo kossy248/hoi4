@@ -62,6 +62,9 @@ focus_tree = {
         prerequisite = { focus = sr_lito_congress }
         completion_reward = {
             country_event = { id = sr_focus_story.1 days = 1 }
+            set_country_flag = sr_lito_native_agitprop_councils_milestone
+            sr_lito_native_agitprop_sync_effect = yes
+            custom_effect_tooltip = sr_lito_native_agitprop_councils_slot_tt
         }
     }
     focus = {
@@ -73,6 +76,9 @@ focus_tree = {
         prerequisite = { focus = sr_lito_congress }
         completion_reward = {
             add_tech_bonus = { name = sr_lito_academy_network_research_bonus bonus = 0.5 uses = 1 category = industry }
+            set_country_flag = sr_lito_native_agitprop_academy_milestone
+            sr_lito_native_agitprop_sync_effect = yes
+            custom_effect_tooltip = sr_lito_native_agitprop_academy_slot_tt
         }
     }
     focus = {
@@ -131,8 +137,14 @@ focus_tree = {
         y = 3
         cost = 5
         prerequisite = { focus = sr_lito_politics_party_congress }
+        available = {
+            custom_trigger_tooltip = { tooltip = sr_lito_native_agitprop_ready_tt has_country_flag = sr_lito_native_agitprop_ready }
+        }
         completion_reward = {
             add_ideas = sr_lito_cadre_schools
+            set_country_flag = sr_lito_native_agitprop_unlocked
+            sr_lito_native_agitprop_sync_effect = yes
+            unlock_decision_category_tooltip = SOV_propaganda_campaigns
         }
     }
     focus = {

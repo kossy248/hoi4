@@ -1,0 +1,118 @@
+# Territory is all currently defined core states of the specified original tags.
+# No country scope is entered, so an annexed/nonexistent tag still works.
+# Require some core territory to prevent empty map definitions from passing.
+sr_formable_controls_poland = {
+    any_state = { is_core_of = POL }
+    NOT = {
+        any_state = {
+            is_core_of = POL
+            OR = {
+                NOT = { is_owned_by = ROOT }
+                NOT = { is_controlled_by = ROOT }
+            }
+        }
+    }
+}
+sr_formable_controls_yugoslavia = {
+    any_state = { is_core_of = YUG }
+    NOT = {
+        any_state = {
+            is_core_of = YUG
+            OR = {
+                NOT = { is_owned_by = ROOT }
+                NOT = { is_controlled_by = ROOT }
+            }
+        }
+    }
+}
+sr_formable_controls_albania = {
+    any_state = { is_core_of = ALB }
+    NOT = {
+        any_state = {
+            is_core_of = ALB
+            OR = {
+                NOT = { is_owned_by = ROOT }
+                NOT = { is_controlled_by = ROOT }
+            }
+        }
+    }
+}
+sr_formable_controls_bulgaria = {
+    any_state = { is_core_of = BUL }
+    NOT = {
+        any_state = {
+            is_core_of = BUL
+            OR = {
+                NOT = { is_owned_by = ROOT }
+                NOT = { is_controlled_by = ROOT }
+            }
+        }
+    }
+}
+sr_formable_controls_greece = {
+    any_state = { is_core_of = GRE }
+    NOT = {
+        any_state = {
+            is_core_of = GRE
+            OR = {
+                NOT = { is_owned_by = ROOT }
+                NOT = { is_controlled_by = ROOT }
+            }
+        }
+    }
+}
+sr_formable_controls_romania = {
+    any_state = { is_core_of = ROM }
+    NOT = {
+        any_state = {
+            is_core_of = ROM
+            OR = {
+                NOT = { is_owned_by = ROOT }
+                NOT = { is_controlled_by = ROOT }
+            }
+        }
+    }
+}
+sr_formable_controls_turkey = {
+    any_state = { is_core_of = TUR }
+    NOT = {
+        any_state = {
+            is_core_of = TUR
+            OR = {
+                NOT = { is_owned_by = ROOT }
+                NOT = { is_controlled_by = ROOT }
+            }
+        }
+    }
+}
+
+sr_formable_slavic_territory_ready = {
+    custom_trigger_tooltip = {
+        tooltip = sr_formable_poland_territory_tt
+        sr_formable_controls_poland = yes
+    }
+    custom_trigger_tooltip = {
+        tooltip = sr_formable_yugoslavia_territory_tt
+        sr_formable_controls_yugoslavia = yes
+    }
+    custom_trigger_tooltip = {
+        tooltip = sr_formable_albania_territory_tt
+        sr_formable_controls_albania = yes
+    }
+    custom_trigger_tooltip = {
+        tooltip = sr_formable_bulgaria_territory_tt
+        sr_formable_controls_bulgaria = yes
+    }
+    custom_trigger_tooltip = {
+        tooltip = sr_formable_greece_territory_tt
+        sr_formable_controls_greece = yes
+    }
+    custom_trigger_tooltip = {
+        tooltip = sr_formable_romania_territory_tt
+        sr_formable_controls_romania = yes
+    }
+    custom_trigger_tooltip = {
+        tooltip = sr_formable_turkey_territory_tt
+        sr_formable_controls_turkey = yes
+    }
+}

@@ -1,0 +1,9 @@
+# Safe package fallback. The installer replaces this with the validated native
+# integration derived from the local game files. Without it the focus stays
+# unavailable because sr_lito_native_agitprop_ready is never set.
+sr_lito_native_agitprop_sync_effect = {
+    if = {
+        limit = { tag = SOV has_country_flag = sr_lito_initialized }
+        clr_country_flag = sr_lito_native_agitprop_ready
+    }
+}

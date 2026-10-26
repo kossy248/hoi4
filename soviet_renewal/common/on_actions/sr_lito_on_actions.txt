@@ -17,9 +17,22 @@ on_actions = {
                     set_country_flag = sr_lito_initialized
                 }
                 sr_retire_legacy_agitprop_effect = yes
+                sr_lito_native_agitprop_sync_effect = yes
                 sr_story_initialize_effect = yes
                 sr_ensure_yugoslav_communist_leader_effect = yes
                 sr_campaign_initialize_effect = yes
+            }
+        }
+    }
+    # Existing saves acquire the validated readiness flag on their next day.
+    on_daily = {
+        effect = {
+            if = {
+                limit = {
+                    tag = SOV
+                    has_country_flag = sr_lito_initialized
+                }
+                sr_lito_native_agitprop_sync_effect = yes
             }
         }
     }
@@ -32,6 +45,7 @@ on_actions = {
                     has_country_flag = sr_lito_initialized
                 }
                 sr_retire_legacy_agitprop_effect = yes
+                sr_lito_native_agitprop_sync_effect = yes
                 sr_union_monthly_effect = yes
                 sr_story_monthly_effect = yes
                 sr_ensure_yugoslav_communist_leader_effect = yes

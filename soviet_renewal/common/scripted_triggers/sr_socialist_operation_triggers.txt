@@ -1,0 +1,8 @@
+# Evaluated in the prospective target's country scope. Subjects and human
+# countries remain valid targets; the requested operation has worldwide reach.
+sr_socialist_operation_target_ready = {
+    exists = yes
+    NOT = { tag = SOV }
+    NOT = { has_government = communism }
+    NOT = { has_country_flag = sr_socialist_operation_recent_revolution }
+}

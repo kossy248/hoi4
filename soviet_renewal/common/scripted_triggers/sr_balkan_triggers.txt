@@ -1,0 +1,46 @@
+# Evaluated in a foreign target scope; SOV remains the only acting sponsor.
+sr_balkan_safe_influence_target = {
+    exists = yes
+    is_ai = yes
+    NOT = { has_war_with = SOV }
+    OR = { is_subject = no is_subject_of = SOV }
+}
+
+sr_balkan_federation_member_ready = {
+    sr_balkan_safe_influence_target = yes
+    has_government = communism
+    has_war = no
+    is_faction_leader = no
+}
+
+sr_balkan_all_members_ready = {
+    custom_trigger_tooltip = {
+        tooltip = sr_balkan_yugoslavia_member_ready_tt
+        YUG = { sr_balkan_federation_member_ready = yes }
+    }
+    custom_trigger_tooltip = {
+        tooltip = sr_balkan_albania_member_ready_tt
+        ALB = { sr_balkan_federation_member_ready = yes }
+    }
+    custom_trigger_tooltip = {
+        tooltip = sr_balkan_bulgaria_member_ready_tt
+        BUL = { sr_balkan_federation_member_ready = yes }
+    }
+    custom_trigger_tooltip = {
+        tooltip = sr_balkan_greece_member_ready_tt
+        GRE = { sr_balkan_federation_member_ready = yes }
+    }
+    custom_trigger_tooltip = {
+        tooltip = sr_balkan_romania_member_ready_tt
+        ROM = { sr_balkan_federation_member_ready = yes }
+    }
+}
+
+sr_balkan_designated_subject_ready = {
+    exists = yes
+    is_ai = yes
+    has_country_flag = sr_balkan_federal_state
+    is_subject_of = SOV
+    has_war = no
+    is_faction_leader = no
+}

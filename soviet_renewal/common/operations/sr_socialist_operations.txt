@@ -1,0 +1,42 @@
+# La Resistance operation. ROOT is the operating country; FROM is its target.
+# Omit operation_target deliberately: this operation has no country whitelist.
+sr_operation_red_dawn = {
+    icon = GFX_goal_sr_lito_independent_socialism
+    map_icon = GFX_goal_sr_lito_independent_socialism
+    name = sr_operation_red_dawn_name
+    desc = sr_operation_red_dawn_desc
+    priority = 100
+    days = 90
+    operatives = 2
+    network_strength = 50
+    danger_level = 2
+    risk_chance = 0.15
+    experience = 1
+    scale_cost_independent_of_target = yes
+    allowed = {
+        tag = SOV
+        is_ai = no
+        has_country_flag = sr_lito_initialized
+        has_government = communism
+        has_dlc = "La Resistance"
+        has_intelligence_agency = yes
+    }
+    visible = { FROM = { sr_socialist_operation_target_ready = yes } }
+    available = {
+        has_political_power > 74
+        FROM = { sr_socialist_operation_target_ready = yes }
+    }
+    requirements = { has_political_power > 74 }
+    equipment = {
+        infantry_equipment = 1000
+        civilian_factories = { amount = 5 days = 30 }
+    }
+    phases = { sr_socialist_phase_contacts = { base = 1 } }
+    phases = { sr_socialist_phase_government = { base = 1 } }
+    phases = { sr_socialist_phase_proclamation = { base = 1 } }
+    ai_will_do = { factor = 0 }
+    on_start = { ROOT = { add_political_power = -75 } }
+    outcome_potential = { custom_effect_tooltip = sr_socialist_operation_result_tt }
+    outcome_execute = { ROOT = { sr_socialist_operation_complete_effect = yes } }
+    will_lead_to_war_with = no
+}

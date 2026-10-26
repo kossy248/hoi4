@@ -1,0 +1,64 @@
+ideas = {
+    country = {
+        sr_project_workshop_budget = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { industrial_capacity_factory = -0.02 }
+        }
+        sr_project_teacher_release = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { research_speed_factor = -0.01 }
+        }
+        sr_project_transport_budget = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { production_speed_buildings_factor = -0.02 }
+        }
+        sr_project_practical_councils = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { industrial_capacity_factory = 0.03 }
+        }
+        sr_project_standardized_workshops = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { industrial_capacity_factory = 0.04 stability_factor = -0.01 }
+        }
+        sr_project_public_learning = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { research_speed_factor = 0.02 }
+        }
+        sr_project_technical_cadres = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { research_speed_factor = 0.01 training_time_army_factor = -0.03 }
+        }
+        sr_project_republic_timetables = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { production_speed_buildings_factor = 0.03 supply_consumption_factor = -0.02 }
+        }
+        sr_project_military_dispatch = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { supply_consumption_factor = -0.04 production_speed_buildings_factor = -0.01 }
+        }
+        sr_project_unfinished_program = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { stability_factor = -0.02 }
+        }
+    }
+}

@@ -1,0 +1,61 @@
+# Story hooks are called in SOV scope. Foreign effects recheck targets at resolution.
+sr_story_balkan_contacts_effect = {
+    if = {
+        limit = { tag = SOV NOT = { has_country_flag = sr_bs_contacts_started } }
+        set_country_flag = sr_bs_contacts_started
+        if = {
+            limit = { exists = YUG YUG = { sr_balkan_safe_influence_target = yes } }
+            country_event = { id = sr_balkan_story.1 days = 2 }
+        }
+        country_event = { id = sr_balkan_story.3 days = 60 }
+    }
+}
+
+sr_story_balkan_federation_effect = {
+    if = {
+        limit = {
+            tag = SOV
+            NOT = { has_country_flag = sr_bs_federation_story_started }
+            exists = YUG
+            YUG = { sr_balkan_designated_subject_ready = yes }
+        }
+        set_country_flag = sr_bs_federation_story_started
+        country_event = { id = sr_balkan_story.7 days = 2 }
+    }
+}
+
+# These country loops exclude human countries, hostile countries and foreign subjects.
+# Political support is only changed in the five surviving non-communist Balkan targets.
+sr_story_balkan_cultural_result_effect = {
+    every_other_country = {
+        limit = {
+            OR = { tag = YUG tag = ALB tag = BUL tag = GRE tag = ROM }
+            sr_balkan_safe_influence_target = yes
+            NOT = { has_government = communism }
+        }
+        add_popularity = { ideology = communism popularity = 0.03 }
+    }
+}
+
+sr_story_balkan_underground_result_effect = {
+    every_other_country = {
+        limit = {
+            OR = { tag = YUG tag = ALB tag = BUL tag = GRE tag = ROM }
+            sr_balkan_safe_influence_target = yes
+            NOT = { has_government = communism }
+        }
+        add_popularity = { ideology = communism popularity = 0.06 }
+        add_timed_idea = { idea = sr_lito_balkan_influence_network days = 180 }
+    }
+}
+
+sr_story_balkan_retreat_result_effect = {
+    every_other_country = {
+        limit = {
+            OR = { tag = YUG tag = ALB tag = BUL tag = GRE tag = ROM }
+            sr_balkan_safe_influence_target = yes
+            NOT = { has_government = communism }
+        }
+        add_popularity = { ideology = communism popularity = -0.02 }
+    }
+}

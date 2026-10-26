@@ -1,0 +1,54 @@
+ideas = {
+    country = {
+        sr_union_delegate_sessions = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = {
+                political_power_gain = -0.10
+            }
+        }
+        sr_union_compromise_budget = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = {
+                industrial_capacity_factory = -0.03
+            }
+        }
+        sr_union_plan_audit = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = {
+                industrial_capacity_factory = -0.03
+            }
+        }
+        sr_union_wartime_secretariat = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = {
+                political_power_gain = 0.10
+                stability_factor = -0.04
+            }
+        }
+        sr_union_amnesty_guarantees = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = {
+                army_org_factor = -0.02
+            }
+        }
+        sr_union_joint_war_planning = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = {
+                planning_speed = 0.05
+                industrial_capacity_factory = -0.025
+            }
+        }
+    }
+}

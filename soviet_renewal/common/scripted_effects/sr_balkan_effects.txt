@@ -1,0 +1,43 @@
+# Called only after the decision validates all five peaceful AI governments.
+# YUG is the federation host; SOV does not directly annex its members.
+sr_create_balkan_federation_effect = {
+    YUG = { sr_balkan_leave_foreign_faction_effect = yes }
+    ALB = { sr_balkan_leave_foreign_faction_effect = yes }
+    BUL = { sr_balkan_leave_foreign_faction_effect = yes }
+    GRE = { sr_balkan_leave_foreign_faction_effect = yes }
+    ROM = { sr_balkan_leave_foreign_faction_effect = yes }
+    YUG = {
+        annex_country = { target = ALB transfer_troops = yes }
+        annex_country = { target = BUL transfer_troops = yes }
+        annex_country = { target = GRE transfer_troops = yes }
+        annex_country = { target = ROM transfer_troops = yes }
+        every_owned_state = {
+            limit = {
+                OR = {
+                    is_core_of = YUG
+                    is_core_of = ALB
+                    is_core_of = BUL
+                    is_core_of = GRE
+                    is_core_of = ROM
+                }
+            }
+            add_core_of = YUG
+        }
+        set_cosmetic_tag = YUG_LITO_BALKAN
+        recruit_character = YUG_sr_balkan_federal_council
+        set_politics = { ruling_party = communism elections_allowed = no }
+        promote_character = { character = YUG_sr_balkan_federal_council ideology = titoism }
+        set_country_flag = sr_balkan_federal_state
+    }
+    puppet = { target = YUG end_wars = no end_civil_wars = no }
+    set_country_flag = sr_balkan_federation_created
+    sr_story_balkan_federation_effect = yes
+}
+
+# Peace and faction-leader safeguards are enforced by the decision before this effect.
+sr_balkan_leave_foreign_faction_effect = {
+    if = {
+        limit = { is_in_faction = yes NOT = { is_in_faction_with = SOV } }
+        leave_faction = yes
+    }
+}

@@ -1,0 +1,11 @@
+# Evaluated in YUG scope; the dialogue is with Kardelj, never the federal council.
+sr_campaign_kardelj_partner_ready = {
+    exists = yes
+    is_ai = yes
+    has_government = communism
+    has_war = no
+    NOT = { has_war_with = SOV }
+    OR = { is_subject = no is_subject_of = SOV }
+    NOT = { has_country_flag = sr_balkan_federal_state }
+    has_country_leader = { character = YUG_sr_edvard_kardelj ruling_only = yes }
+}

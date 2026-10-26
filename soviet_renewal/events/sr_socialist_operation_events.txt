@@ -1,0 +1,33 @@
+add_namespace = sr_socialist_operation
+
+# Repeatable reports: each completed operation is a separate revolution.
+country_event = {
+    id = sr_socialist_operation.1
+    title = sr_socialist_operation_1_t
+    desc = sr_socialist_operation_1_d
+    picture = GFX_sr_campaign_balkan
+    is_triggered_only = yes
+    fire_only_once = no
+    trigger = { tag = SOV has_country_flag = sr_lito_initialized }
+    option = {
+        name = sr_socialist_operation_1_a
+        ai_chance = { base = 100 }
+    }
+}
+
+country_event = {
+    id = sr_socialist_operation.2
+    title = sr_socialist_operation_2_t
+    desc = sr_socialist_operation_2_d
+    picture = GFX_sr_campaign_council
+    is_triggered_only = yes
+    fire_only_once = no
+    trigger = {
+        has_government = communism
+        has_country_flag = sr_socialist_operation_recent_revolution
+    }
+    option = {
+        name = sr_socialist_operation_2_a
+        ai_chance = { base = 100 }
+    }
+}

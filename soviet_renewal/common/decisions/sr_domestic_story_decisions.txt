@@ -1,0 +1,154 @@
+sr_story_government = {
+    # These are native selectable missions: the countdown is visible in the UI.
+    # Their activation is explicit in the corresponding petition event option.
+    sr_story_ukraine_promise = {
+        icon = sr_story_ukraine_promise
+        cost = 65
+        fire_only_once = yes
+        activation = { always = no }
+        visible = { has_country_flag = sr_story_ukraine_promised }
+        days_mission_timeout = 180
+        selectable_mission = yes
+        available = {
+            sr_union_ukraine_represented = yes
+            any_owned_state = { is_core_of = UKR is_controlled_by = ROOT free_building_slots = { building = industrial_complex size > 0 } }
+        }
+        complete_effect = {
+            clr_country_flag = sr_story_ukraine_promised
+            set_country_flag = sr_story_ukraine_fulfilled
+            random_owned_state = {
+                limit = { is_core_of = UKR is_controlled_by = ROOT free_building_slots = { building = industrial_complex size > 0 } }
+                add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+            }
+            add_timed_idea = { idea = sr_story_relief_budget days = 180 }
+            add_to_variable = { sr_story_trust = 12 }
+            clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+            subtract_from_variable = { sr_resistance_ukraine = 20 }
+            clamp_variable = { var = sr_resistance_ukraine min = 0 max = 100 }
+            sr_update_union_resistance_ideas_effect = yes
+            add_power_balance_value = { id = sr_union_balance value = 0.04 }
+            country_event = { id = sr_domestic.14 days = 2 }
+        }
+        timeout_effect = {
+            clr_country_flag = sr_story_ukraine_promised
+            set_country_flag = sr_story_ukraine_broken
+            subtract_from_variable = { sr_story_trust = 15 }
+            clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+            add_to_variable = { sr_resistance_ukraine = 25 }
+            clamp_variable = { var = sr_resistance_ukraine min = 0 max = 100 }
+            sr_update_union_resistance_ideas_effect = yes
+            add_power_balance_value = { id = sr_union_balance value = -0.06 }
+            country_event = { id = sr_domestic.17 days = 1 }
+        }
+        cancel_trigger = { NOT = { sr_union_ukraine_represented = yes } }
+        cancel_effect = { clr_country_flag = sr_story_ukraine_promised set_country_flag = sr_story_ukraine_cancelled }
+        ai_will_do = { factor = 5 }
+    }
+    sr_story_georgia_promise = {
+        icon = sr_story_georgia_promise
+        cost = 65
+        fire_only_once = yes
+        activation = { always = no }
+        visible = { has_country_flag = sr_story_georgia_promised }
+        days_mission_timeout = 150
+        selectable_mission = yes
+        available = { sr_union_georgia_represented = yes }
+        complete_effect = {
+            clr_country_flag = sr_story_georgia_promised
+            set_country_flag = sr_story_georgia_fulfilled
+            add_ideas = sr_story_cultural_autonomy
+            add_to_variable = { sr_story_trust = 12 }
+            clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+            subtract_from_variable = { sr_resistance_georgia = 20 }
+            clamp_variable = { var = sr_resistance_georgia min = 0 max = 100 }
+            sr_update_union_resistance_ideas_effect = yes
+            add_power_balance_value = { id = sr_union_balance value = 0.04 }
+            country_event = { id = sr_domestic.15 days = 2 }
+        }
+        timeout_effect = {
+            clr_country_flag = sr_story_georgia_promised
+            set_country_flag = sr_story_georgia_broken
+            subtract_from_variable = { sr_story_trust = 15 }
+            clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+            add_to_variable = { sr_resistance_georgia = 25 }
+            clamp_variable = { var = sr_resistance_georgia min = 0 max = 100 }
+            sr_update_union_resistance_ideas_effect = yes
+            add_power_balance_value = { id = sr_union_balance value = -0.06 }
+            country_event = { id = sr_domestic.18 days = 1 }
+        }
+        cancel_trigger = { NOT = { sr_union_georgia_represented = yes } }
+        cancel_effect = { clr_country_flag = sr_story_georgia_promised set_country_flag = sr_story_georgia_cancelled }
+        ai_will_do = { factor = 5 }
+    }
+    sr_story_kazakhstan_promise = {
+        icon = sr_story_kazakhstan_promise
+        cost = 90
+        fire_only_once = yes
+        activation = { always = no }
+        visible = { has_country_flag = sr_story_kazakhstan_promised }
+        days_mission_timeout = 210
+        selectable_mission = yes
+        available = {
+            sr_union_kazakhstan_represented = yes
+            any_owned_state = { is_core_of = KAZ is_controlled_by = ROOT free_building_slots = { building = infrastructure size > 0 } }
+        }
+        complete_effect = {
+            clr_country_flag = sr_story_kazakhstan_promised
+            set_country_flag = sr_story_kazakhstan_fulfilled
+            random_owned_state = {
+                limit = { is_core_of = KAZ is_controlled_by = ROOT free_building_slots = { building = infrastructure size > 0 } }
+                add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+            }
+            add_timed_idea = { idea = sr_story_eastern_investment days = 210 }
+            add_to_variable = { sr_story_trust = 15 }
+            clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+            subtract_from_variable = { sr_resistance_kazakhstan = 20 }
+            clamp_variable = { var = sr_resistance_kazakhstan min = 0 max = 100 }
+            sr_update_union_resistance_ideas_effect = yes
+            add_power_balance_value = { id = sr_union_balance value = 0.04 }
+            country_event = { id = sr_domestic.16 days = 2 }
+        }
+        timeout_effect = {
+            clr_country_flag = sr_story_kazakhstan_promised
+            set_country_flag = sr_story_kazakhstan_broken
+            subtract_from_variable = { sr_story_trust = 15 }
+            clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+            add_to_variable = { sr_resistance_kazakhstan = 25 }
+            clamp_variable = { var = sr_resistance_kazakhstan min = 0 max = 100 }
+            sr_update_union_resistance_ideas_effect = yes
+            add_power_balance_value = { id = sr_union_balance value = -0.06 }
+            country_event = { id = sr_domestic.19 days = 1 }
+        }
+        cancel_trigger = { NOT = { sr_union_kazakhstan_represented = yes } }
+        cancel_effect = { clr_country_flag = sr_story_kazakhstan_promised set_country_flag = sr_story_kazakhstan_cancelled }
+        ai_will_do = { factor = 5 }
+    }
+    sr_story_rebuild_confidence = {
+        icon = sr_story_rebuild_confidence
+        cost = 70
+        fire_only_once = yes
+        visible = { has_idea = sr_story_government_in_crisis }
+        available = { check_variable = { sr_story_trust = 55 } }
+        complete_effect = {
+            remove_ideas = sr_story_government_in_crisis
+            add_power_balance_value = { id = sr_union_balance value = 0.05 }
+            set_country_flag = sr_story_confidence_restored
+            country_event = { id = sr_domestic.22 days = 1 }
+        }
+        ai_will_do = { factor = 5 }
+    }
+    sr_story_public_accountability = {
+        icon = sr_story_public_accountability
+        cost = 45
+        days_re_enable = 120
+        visible = { has_country_flag = sr_story_first_hundred_days }
+        available = { NOT = { has_country_flag = sr_story_hearing_cooldown } }
+        complete_effect = {
+            set_country_flag = { flag = sr_story_hearing_cooldown value = 1 days = 120 }
+            add_to_variable = { sr_story_trust = 6 }
+            clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+            add_timed_idea = { idea = sr_story_compromise_committees days = 90 }
+        }
+        ai_will_do = { factor = 2 modifier = { factor = 3 NOT = { check_variable = { sr_story_trust = 55 } } } }
+    }
+}

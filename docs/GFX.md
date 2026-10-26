@@ -1,4 +1,4 @@
-# Grafiken und Bildplätze — 0.5.6
+# Grafiken und Bildplätze — 0.6.0
 
 Die Mod verwendet rotes Emaille, gealtertes Gold und dunkles Metall für ihre
 Abzeichen. Führerporträt, Flagge und die drei Entscheidungsbilder wurden auf
@@ -113,25 +113,22 @@ den thematisch passenden Ereignisdateien zu.
 
 ## Agitprop-Poster
 
-Die acht geplanten Kampagnen besitzen ungebundene Texturdateien; die bisherige
-Einzelbild-Kategorie wurde entfernt. Drei gelieferte Poster aus `Agitprop.rar`
-ersetzen inzwischen die Bildplätze `star`, `peoples` und `light`. Die anderen
-fünf Motive sind noch Platzhalter. Titel, Quellnamen und Bonusentwürfe stehen in
-[AGITPROP_POSTERS.md](AGITPROP_POSTERS.md).
+Drei gelieferte Poster aus `Agitprop.rar` verwenden die vorbereiteten Dateien
+`sr_agitprop_star.dds`, `sr_agitprop_peoples.dds` und `sr_agitprop_light.dds`
+unter `gfx/interface/agitprop`. Sie sind 150×200 Pixel groß, DDS/DXT5 und
+proportional eingepasst. Originale und Prüfsummen stehen in
+`artwork/agitprop/originals` und `artwork/agitprop/manifest.json`.
 
-Für eigene Poster sind PNG-Quellen im Verhältnis **3:4** vorgesehen,
-beispielsweise 600 × 800 Pixel. Die Spieltexturen verwenden **150 × 200 Pixel**
-und DDS/DXT5. Das sind vorläufige Dateiformate der bisherigen Quellen. Die
-endgültige Sprite-/Atlas-Zuordnung für die originale Anzeige ist noch offen und
-wird erst anhand der Originaldateien festgelegt. Zunächst nur im installierten
-Modordner ersetzte Bilder vor dem nächsten Update in das Quellpaket übernehmen.
+Der Installer ergänzt diese Bilder in der tatsächlichen Vanilla-GUI, ohne
+ihre drei dynamischen Posterfelder, Countdowns oder den Hintergrund zu ersetzen.
+Die zusätzlichen Felder verwenden Positionen und Tooltips des Originals.
+Nur beim passenden nativen Frame wird das Originalbild ausgeblendet. Die
+Kampagnen-IDs werden aus den echten Decisions gelesen. Die Vanilla-Bildstreifen
+und die drei gealterten Varianten bleiben lokal im Spiel.
 
-Die drei neuen Original-PNGs liegen in `artwork/agitprop/originals`.
-`artwork/agitprop/manifest.json` hält ihre vorläufige Zuordnung und
-Prüfsummen fest. `tools/build_agitprop_posters.py` passt das vollständige Bild
-proportional auf die vorbereitete Texturfläche ein. Texte, Rahmen und Motive
-werden weder abgeschnitten noch neu gezeichnet. Die native Anbindung ist
-weiterhin offen; die gelieferten Bilder sind für den nächsten Einbau vorbereitet.
+Die eigene Einzelbild-Kategorie bleibt entfernt. Die fünf weiteren alten
+Texturen sind unbenutzte Platzhalter. Die Bildtexte werden nicht geändert.
+Zuordnung: [AGITPROP_POSTERS.md](AGITPROP_POSTERS.md).
 
 ## Porträts
 

@@ -1,0 +1,7 @@
+sr_story_government = {
+    icon = sr_story_government
+    priority = 110
+    visible_when_empty = yes
+    allowed = { tag = SOV }
+    visible = { has_country_flag = sr_story_initialized }
+}

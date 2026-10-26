@@ -1,0 +1,6 @@
+spriteTypes = {
+    spriteType = {
+        name = "GFX_idea_sr_story_politics"
+        texturefile = "gfx/interface/ideas/sr_story_politics.dds"
+    }
+}

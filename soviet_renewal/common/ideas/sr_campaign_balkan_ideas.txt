@@ -1,0 +1,70 @@
+ideas = {
+    country = {
+        sr_cb_reciprocal_trade = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { production_speed_buildings_factor = 0.02 political_power_gain = -0.05 }
+        }
+        sr_cb_directed_deliveries = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { industrial_capacity_factory = 0.04 stability_factor = -0.03 }
+        }
+        sr_cb_joint_standards = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { production_factory_efficiency_gain_factor = 0.03 }
+        }
+        sr_cb_partner_resentment = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { political_power_gain = -0.10 stability_factor = -0.02 }
+        }
+        sr_cb_federal_audit = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { political_power_gain = -0.05 stability_factor = 0.02 }
+        }
+        sr_cb_federal_guarantees = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { stability_factor = 0.03 industrial_capacity_factory = -0.02 }
+        }
+        sr_cb_federal_compliance = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { industrial_capacity_factory = 0.04 political_power_gain = -0.10 }
+        }
+        sr_cb_federal_deadlock = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { stability_factor = -0.04 production_speed_buildings_factor = -0.03 }
+        }
+        sr_cb_charter_translation = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { political_power_gain = -0.10 }
+        }
+        sr_cb_plural_institutions = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { stability_factor = 0.03 production_speed_buildings_factor = -0.01 }
+        }
+        sr_cb_central_institutions = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { political_power_gain = 0.10 stability_factor = -0.03 }
+        }
+    }
+}

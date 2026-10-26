@@ -1,0 +1,87 @@
+# Membership means Soviet ownership of at least one core state of a republic.
+# Ownership, rather than occupation alone, prevents foreign occupation from creating members.
+sr_union_russia_represented = {
+    tag = SOV
+}
+sr_union_ukraine_represented = {
+    any_owned_state = { is_core_of = UKR }
+}
+sr_union_belarus_represented = {
+    any_owned_state = { is_core_of = BLR }
+}
+sr_union_georgia_represented = {
+    any_owned_state = { is_core_of = GEO }
+}
+sr_union_armenia_represented = {
+    any_owned_state = { is_core_of = ARM }
+}
+sr_union_azerbaijan_represented = {
+    any_owned_state = { is_core_of = AZR }
+}
+sr_union_kazakhstan_represented = {
+    any_owned_state = { is_core_of = KAZ }
+}
+sr_union_uzbekistan_represented = {
+    any_owned_state = { is_core_of = UZB }
+}
+sr_union_turkmenistan_represented = {
+    any_owned_state = { is_core_of = TMS }
+}
+sr_union_kyrgyzstan_represented = {
+    any_owned_state = { is_core_of = KYR }
+}
+sr_union_tajikistan_represented = {
+    any_owned_state = { is_core_of = TAJ }
+}
+sr_union_estonia_represented = {
+    any_owned_state = { is_core_of = EST }
+}
+sr_union_latvia_represented = {
+    any_owned_state = { is_core_of = LAT }
+}
+sr_union_lithuania_represented = {
+    any_owned_state = { is_core_of = LIT }
+}
+sr_union_moldavia_represented = {
+    any_owned_state = { is_core_of = MOL }
+}
+
+sr_union_has_strikes = {
+    OR = {
+        AND = { sr_union_russia_represented = yes check_variable = { sr_resistance_russia = 50 } }
+        AND = { sr_union_ukraine_represented = yes check_variable = { sr_resistance_ukraine = 50 } }
+        AND = { sr_union_belarus_represented = yes check_variable = { sr_resistance_belarus = 50 } }
+        AND = { sr_union_georgia_represented = yes check_variable = { sr_resistance_georgia = 50 } }
+        AND = { sr_union_armenia_represented = yes check_variable = { sr_resistance_armenia = 50 } }
+        AND = { sr_union_azerbaijan_represented = yes check_variable = { sr_resistance_azerbaijan = 50 } }
+        AND = { sr_union_kazakhstan_represented = yes check_variable = { sr_resistance_kazakhstan = 50 } }
+        AND = { sr_union_uzbekistan_represented = yes check_variable = { sr_resistance_uzbekistan = 50 } }
+        AND = { sr_union_turkmenistan_represented = yes check_variable = { sr_resistance_turkmenistan = 50 } }
+        AND = { sr_union_kyrgyzstan_represented = yes check_variable = { sr_resistance_kyrgyzstan = 50 } }
+        AND = { sr_union_tajikistan_represented = yes check_variable = { sr_resistance_tajikistan = 50 } }
+        AND = { sr_union_estonia_represented = yes check_variable = { sr_resistance_estonia = 50 } }
+        AND = { sr_union_latvia_represented = yes check_variable = { sr_resistance_latvia = 50 } }
+        AND = { sr_union_lithuania_represented = yes check_variable = { sr_resistance_lithuania = 50 } }
+        AND = { sr_union_moldavia_represented = yes check_variable = { sr_resistance_moldavia = 50 } }
+    }
+}
+
+sr_union_has_sabotage = {
+    OR = {
+        AND = { sr_union_russia_represented = yes check_variable = { sr_resistance_russia = 80 } }
+        AND = { sr_union_ukraine_represented = yes check_variable = { sr_resistance_ukraine = 80 } }
+        AND = { sr_union_belarus_represented = yes check_variable = { sr_resistance_belarus = 80 } }
+        AND = { sr_union_georgia_represented = yes check_variable = { sr_resistance_georgia = 80 } }
+        AND = { sr_union_armenia_represented = yes check_variable = { sr_resistance_armenia = 80 } }
+        AND = { sr_union_azerbaijan_represented = yes check_variable = { sr_resistance_azerbaijan = 80 } }
+        AND = { sr_union_kazakhstan_represented = yes check_variable = { sr_resistance_kazakhstan = 80 } }
+        AND = { sr_union_uzbekistan_represented = yes check_variable = { sr_resistance_uzbekistan = 80 } }
+        AND = { sr_union_turkmenistan_represented = yes check_variable = { sr_resistance_turkmenistan = 80 } }
+        AND = { sr_union_kyrgyzstan_represented = yes check_variable = { sr_resistance_kyrgyzstan = 80 } }
+        AND = { sr_union_tajikistan_represented = yes check_variable = { sr_resistance_tajikistan = 80 } }
+        AND = { sr_union_estonia_represented = yes check_variable = { sr_resistance_estonia = 80 } }
+        AND = { sr_union_latvia_represented = yes check_variable = { sr_resistance_latvia = 80 } }
+        AND = { sr_union_lithuania_represented = yes check_variable = { sr_resistance_lithuania = 80 } }
+        AND = { sr_union_moldavia_represented = yes check_variable = { sr_resistance_moldavia = 80 } }
+    }
+}

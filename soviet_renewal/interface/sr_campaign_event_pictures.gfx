@@ -1,0 +1,15 @@
+# Generated chapter illustrations, shared by related events.
+spriteTypes = {
+    spriteType = {
+        name = "GFX_sr_campaign_council"
+        texturefile = "gfx/event_pictures/sr_campaign_council.dds"
+    }
+    spriteType = {
+        name = "GFX_sr_campaign_workshops"
+        texturefile = "gfx/event_pictures/sr_campaign_workshops.dds"
+    }
+    spriteType = {
+        name = "GFX_sr_campaign_balkan"
+        texturefile = "gfx/event_pictures/sr_campaign_balkan.dds"
+    }
+}

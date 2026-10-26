@@ -1,0 +1,14 @@
+characters = {
+    YUG_sr_balkan_federal_council = {
+        name = YUG_sr_balkan_federal_council
+        portraits = {
+            civilian = { large = GFX_sr_balkan_council_portrait }
+        }
+        country_leader = {
+            ideology = titoism
+            desc = YUG_sr_balkan_federal_council_desc
+            expire = "1965.1.1.1"
+            traits = { }
+        }
+    }
+}

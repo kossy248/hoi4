@@ -1,0 +1,70 @@
+ideas = {
+    country = {
+        sr_exp_honest_biography = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { political_power_gain = -0.05 stability_factor = 0.02 }
+        }
+        sr_exp_constitutional_succession = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { political_power_gain = -0.05 stability_factor = 0.03 }
+        }
+        sr_exp_party_continuity = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { political_power_gain = 0.10 stability_factor = -0.02 }
+        }
+        sr_exp_common_reserve = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { stability_factor = 0.03 supply_consumption_factor = -0.02 industrial_capacity_factory = -0.02 }
+        }
+        sr_exp_output_drive = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { industrial_capacity_factory = 0.04 stability_factor = -0.02 }
+        }
+        sr_exp_workers_town = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { stability_factor = 0.03 consumer_goods_factor = 0.02 }
+        }
+        sr_exp_factory_settlement = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { industrial_capacity_factory = 0.05 stability_factor = -0.02 }
+        }
+        sr_exp_military_ombudsmen = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { army_org_factor = 0.02 planning_speed = -0.02 }
+        }
+        sr_exp_military_jurisdiction = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { planning_speed = 0.04 stability_factor = -0.02 }
+        }
+        sr_exp_front_family_support = {
+            picture = sr_story_politics
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { army_morale_factor = 0.04 industrial_capacity_factory = -0.02 }
+        }
+        sr_exp_readiness_priority = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = { industrial_capacity_factory = 0.03 army_morale_factor = -0.02 }
+        }
+    }
+}

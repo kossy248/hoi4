@@ -1,0 +1,38 @@
+# Initialization does not reset trust or the outcomes of an older government.
+sr_campaign_projects_initialize_effect = {
+    if = {
+        limit = { tag = SOV has_country_flag = sr_lito_initialized NOT = { has_country_flag = sr_campaign_projects_initialized } }
+        set_country_flag = sr_campaign_projects_initialized
+    }
+}
+
+# Missions carry their own native deadlines. This hook only recovers a project
+# lock after a government change, including cancellation before a month passes.
+sr_campaign_projects_monthly_effect = {
+    if = {
+        limit = {
+            tag = SOV
+            has_country_flag = sr_project_active
+            NOT = { has_government = communism }
+        }
+        clr_country_flag = sr_project_active
+    }
+}
+
+sr_project_clear_workshops_effect = {
+    clr_country_flag = sr_project_workshops_active
+    clr_country_flag = sr_project_active
+    remove_ideas = sr_project_workshop_budget
+}
+
+sr_project_clear_education_effect = {
+    clr_country_flag = sr_project_education_active
+    clr_country_flag = sr_project_active
+    remove_ideas = sr_project_teacher_release
+}
+
+sr_project_clear_supply_effect = {
+    clr_country_flag = sr_project_supply_active
+    clr_country_flag = sr_project_active
+    remove_ideas = sr_project_transport_budget
+}

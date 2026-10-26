@@ -1,0 +1,36 @@
+# May be called from any country scope. In this timeline Lito remained in the
+# Soviet Union, so Kardelj leads a communist Yugoslavia in his place. Promotion
+# replaces the communist party head without guessing a version-specific Tito ID.
+sr_ensure_yugoslav_communist_leader_effect = {
+    if = {
+        limit = { exists = YUG }
+        YUG = {
+            if = {
+                limit = {
+                    has_government = communism
+                    NOT = { has_country_flag = sr_balkan_federal_state }
+                    NOT = {
+                        has_country_leader = {
+                            character = YUG_sr_balkan_federal_council
+                            ruling_only = yes
+                        }
+                    }
+                    NOT = {
+                        has_country_leader = {
+                            character = YUG_sr_edvard_kardelj
+                            ruling_only = yes
+                        }
+                    }
+                }
+                if = {
+                    limit = { NOT = { has_character = YUG_sr_edvard_kardelj } }
+                    recruit_character = YUG_sr_edvard_kardelj
+                }
+                promote_character = {
+                    character = YUG_sr_edvard_kardelj
+                    ideology = titoism
+                }
+            }
+        }
+    }
+}

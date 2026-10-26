@@ -1,0 +1,16 @@
+characters = {
+    SOV_cosif_kozs_lito = {
+        name = SOV_cosif_kozs_lito
+        portraits = {
+            civilian = {
+                large = GFX_sr_lito_portrait
+            }
+        }
+        country_leader = {
+            ideology = titoism
+            desc = SOV_cosif_kozs_lito_desc
+            expire = "1965.1.1.1"
+            traits = { }
+        }
+    }
+}

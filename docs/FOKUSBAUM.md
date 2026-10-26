@@ -26,9 +26,9 @@ keine Fokuszeilen. Die Darstellung muss noch im Spiel geprüft werden.
 | Schwerpunkt | Tage | Voraussetzungen |
 | --- | ---: | --- |
 | Ein Mandat für Lito | 35 | (Eine Union, viele Völker) |
-| Kader für die Föderation | 35 | (Ein Mandat für Lito) |
-| Ein Mandat der Räte | 35 | (Kader für die Föderation) |
-| Ein Mandat der Parteizentrale | 35 | (Kader für die Föderation) |
+| Agitprop der Völker | 35 | (Ein Mandat für Lito) |
+| Ein Mandat der Räte | 35 | (Agitprop der Völker) |
+| Ein Mandat der Parteizentrale | 35 | (Agitprop der Völker) |
 | Rechenschaft vor der Union | 35 | (Ein Mandat der Räte ODER Ein Mandat der Parteizentrale) |
 | Die Privilegien überprüfen | 56 | (Rechenschaft vor der Union) |
 | Die föderale Verfassung | 56 | (Die Privilegien überprüfen) |

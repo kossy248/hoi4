@@ -1,0 +1,23 @@
+ideas = {
+    country = {
+        sr_union_mass_strikes = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = {
+                industrial_capacity_factory = -0.10
+                production_speed_buildings_factor = -0.10
+                stability_factor = -0.05
+            }
+        }
+        sr_union_sabotage_networks = {
+            picture = generic_industry
+            allowed = { always = yes }
+            removal_cost = -1
+            modifier = {
+                supply_consumption_factor = 0.10
+                production_factory_efficiency_gain_factor = -0.15
+            }
+        }
+    }
+}

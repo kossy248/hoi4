@@ -1,0 +1,7 @@
+sr_union_council = {
+    icon = sr_union_council
+    priority = 100
+    visible_when_empty = yes
+    allowed = { tag = SOV }
+    visible = { has_country_flag = sr_union_initialized }
+}

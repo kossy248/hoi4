@@ -1,4 +1,4 @@
-# Grafiken und Bildplätze — 0.5.3
+# Grafiken und Bildplätze — 0.5.5
 
 Die Mod verwendet rotes Emaille, gealtertes Gold und dunkles Metall für ihre
 Abzeichen. Führerporträt, Flagge und die drei Entscheidungsbilder wurden auf
@@ -30,7 +30,7 @@ in `soviet_renewal/interface/sr_decision_icons.gfx`:
 spriteTypes = {
     spriteType = {
         name = "GFX_decision_sr_proclaim_slavic_union"
-        texturefile = "gfx/interface/decisions/focus_LITO_experts_in_camouflage.dds"
+        texturefile = "gfx/interface/decisions/icons/focus_LITO_experts_in_camouflage.dds"
     }
     spriteType = {
         name = "GFX_decision_category_sr_formable_union"
@@ -49,6 +49,16 @@ bleibt dabei bestehen. Unionsgespräche verwenden das Republikkongressmotiv,
 Regierungsprojekte Werkstätten, Bildung oder Versorgung; Innenpolitik und
 Unionspolitiken verwenden passende Motive des Fokusbaums. Diese Texturen
 werden bewusst mehrfach verwendet. Es sind keine 53 neuen Zeichnungen.
+
+Die **48 kleinen Decision-Symbole** verwenden seit 0.5.5 separate Texturen
+unter `gfx/interface/decisions/icons/`: **32 × 32 Pixel**, DDS/DXT5, ohne
+Mipmaps. Das vollständige Motiv wird proportional in 28 × 28 Pixel eingepasst
+und auf der transparenten Fläche zentriert. So ragt es nicht über die Zeile.
+Die 18 Motive werden weiterhin thematisch mehrfach verwendet.
+
+`tools/build_decision_icons.py` erzeugt diese Dateien aus den vorhandenen
+PNG-Quellen, ersatzweise aus den bisherigen DDS-Dateien. Gemeinsame
+Fokusgrafiken und große Kategorie-Bilder werden dabei nicht überschrieben.
 
 Die acht Agitprop-Decision-Icons und die eigene Agitprop-Kategorie wurden mit
 der bisherigen Nachbildung entfernt; ihre Poster-Registrierung ist gelöscht.
@@ -70,6 +80,8 @@ Die Dateien liegen unter soviet_renewal/gfx/interface/decisions:
 
 - Der jeweilige Grundname endet auf .dds und ist 95 × 85 Pixel groß.
 - Die zusätzliche Variante mit dem Suffix _category.dds ist 100 × 100 Pixel groß.
+- Die kleinen Decision-Versionen liegen im Unterordner `icons` und sind
+  32 × 32 Pixel groß. Der gleichnamige Grundpfad bleibt unverändert erhalten.
 - Beide Varianten verwenden DXT5 mit Transparenz und passen das vollständige
   Motiv ohne Streckung ein.
 

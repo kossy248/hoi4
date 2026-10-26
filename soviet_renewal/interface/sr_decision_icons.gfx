@@ -5,195 +5,195 @@ spriteTypes = {
     # Decisions and missions
     spriteType = {
         name = "GFX_decision_sr_balkan_form_federation"
-        texturefile = "gfx/interface/decisions/focus_LITO_the_molotov_line.dds"
+        texturefile = "gfx/interface/decisions/icons/focus_LITO_the_molotov_line.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_balkan_integrate_federation"
-        texturefile = "gfx/interface/decisions/focus_LITO_the_molotov_line.dds"
+        texturefile = "gfx/interface/decisions/icons/focus_LITO_the_molotov_line.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_balkan_propaganda_albania"
-        texturefile = "gfx/interface/decisions/decision_LITO_eastern_europe.dds"
+        texturefile = "gfx/interface/decisions/icons/decision_LITO_eastern_europe.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_balkan_propaganda_bulgaria"
-        texturefile = "gfx/interface/decisions/decision_LITO_eastern_europe.dds"
+        texturefile = "gfx/interface/decisions/icons/decision_LITO_eastern_europe.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_balkan_propaganda_greece"
-        texturefile = "gfx/interface/decisions/decision_LITO_eastern_europe.dds"
+        texturefile = "gfx/interface/decisions/icons/decision_LITO_eastern_europe.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_balkan_propaganda_romania"
-        texturefile = "gfx/interface/decisions/decision_LITO_eastern_europe.dds"
+        texturefile = "gfx/interface/decisions/icons/decision_LITO_eastern_europe.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_balkan_propaganda_yugoslavia"
-        texturefile = "gfx/interface/decisions/decision_LITO_eastern_europe.dds"
+        texturefile = "gfx/interface/decisions/icons/decision_LITO_eastern_europe.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_balkan_socialist_government_albania"
-        texturefile = "gfx/interface/decisions/decision_LITO_eastern_europe.dds"
+        texturefile = "gfx/interface/decisions/icons/decision_LITO_eastern_europe.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_balkan_socialist_government_bulgaria"
-        texturefile = "gfx/interface/decisions/decision_LITO_eastern_europe.dds"
+        texturefile = "gfx/interface/decisions/icons/decision_LITO_eastern_europe.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_balkan_socialist_government_greece"
-        texturefile = "gfx/interface/decisions/decision_LITO_eastern_europe.dds"
+        texturefile = "gfx/interface/decisions/icons/decision_LITO_eastern_europe.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_balkan_socialist_government_romania"
-        texturefile = "gfx/interface/decisions/decision_LITO_eastern_europe.dds"
+        texturefile = "gfx/interface/decisions/icons/decision_LITO_eastern_europe.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_balkan_socialist_government_yugoslavia"
-        texturefile = "gfx/interface/decisions/decision_LITO_eastern_europe.dds"
+        texturefile = "gfx/interface/decisions/icons/decision_LITO_eastern_europe.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_proclaim_slavic_union"
-        texturefile = "gfx/interface/decisions/focus_LITO_experts_in_camouflage.dds"
+        texturefile = "gfx/interface/decisions/icons/focus_LITO_experts_in_camouflage.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_project_finish_education"
-        texturefile = "gfx/interface/goals/sr_lito_technical_education.dds"
+        texturefile = "gfx/interface/decisions/icons/sr_lito_technical_education.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_project_finish_supply"
-        texturefile = "gfx/interface/goals/sr_lito_supply_corridors.dds"
+        texturefile = "gfx/interface/decisions/icons/sr_lito_supply_corridors.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_project_finish_workshops"
-        texturefile = "gfx/interface/goals/sr_lito_regional_workshops.dds"
+        texturefile = "gfx/interface/decisions/icons/sr_lito_regional_workshops.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_project_start_education"
-        texturefile = "gfx/interface/goals/sr_lito_technical_education.dds"
+        texturefile = "gfx/interface/decisions/icons/sr_lito_technical_education.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_project_start_supply"
-        texturefile = "gfx/interface/goals/sr_lito_supply_corridors.dds"
+        texturefile = "gfx/interface/decisions/icons/sr_lito_supply_corridors.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_project_start_workshops"
-        texturefile = "gfx/interface/goals/sr_lito_regional_workshops.dds"
+        texturefile = "gfx/interface/decisions/icons/sr_lito_regional_workshops.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_story_georgia_promise"
-        texturefile = "gfx/interface/goals/sr_lito_union_charter.dds"
+        texturefile = "gfx/interface/decisions/icons/sr_lito_union_charter.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_story_kazakhstan_promise"
-        texturefile = "gfx/interface/goals/sr_lito_supply_corridors.dds"
+        texturefile = "gfx/interface/decisions/icons/sr_lito_supply_corridors.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_story_public_accountability"
-        texturefile = "gfx/interface/goals/sr_lito_politics_council_mandate.dds"
+        texturefile = "gfx/interface/decisions/icons/sr_lito_politics_council_mandate.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_story_rebuild_confidence"
-        texturefile = "gfx/interface/goals/sr_lito_politics_accountability.dds"
+        texturefile = "gfx/interface/decisions/icons/sr_lito_politics_accountability.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_story_ukraine_promise"
-        texturefile = "gfx/interface/goals/sr_lito_local_investment.dds"
+        texturefile = "gfx/interface/decisions/icons/sr_lito_local_investment.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_union_central_emergency_powers"
-        texturefile = "gfx/interface/goals/sr_lito_politics_central_mandate.dds"
+        texturefile = "gfx/interface/decisions/icons/sr_lito_politics_central_mandate.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_union_consult_armenia"
-        texturefile = "gfx/interface/goals/sr_lito_republic_congress.dds"
+        texturefile = "gfx/interface/decisions/icons/sr_lito_republic_congress.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_union_consult_azerbaijan"
-        texturefile = "gfx/interface/goals/sr_lito_republic_congress.dds"
+        texturefile = "gfx/interface/decisions/icons/sr_lito_republic_congress.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_union_consult_belarus"
-        texturefile = "gfx/interface/goals/sr_lito_republic_congress.dds"
+        texturefile = "gfx/interface/decisions/icons/sr_lito_republic_congress.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_union_consult_estonia"
-        texturefile = "gfx/interface/goals/sr_lito_republic_congress.dds"
+        texturefile = "gfx/interface/decisions/icons/sr_lito_republic_congress.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_union_consult_georgia"
-        texturefile = "gfx/interface/goals/sr_lito_republic_congress.dds"
+        texturefile = "gfx/interface/decisions/icons/sr_lito_republic_congress.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_union_consult_kazakhstan"
-        texturefile = "gfx/interface/goals/sr_lito_republic_congress.dds"
+        texturefile = "gfx/interface/decisions/icons/sr_lito_republic_congress.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_union_consult_kyrgyzstan"
-        texturefile = "gfx/interface/goals/sr_lito_republic_congress.dds"
+        texturefile = "gfx/interface/decisions/icons/sr_lito_republic_congress.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_union_consult_latvia"
-        texturefile = "gfx/interface/goals/sr_lito_republic_congress.dds"
+        texturefile = "gfx/interface/decisions/icons/sr_lito_republic_congress.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_union_consult_lithuania"
-        texturefile = "gfx/interface/goals/sr_lito_republic_congress.dds"
+        texturefile = "gfx/interface/decisions/icons/sr_lito_republic_congress.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_union_consult_moldavia"
-        texturefile = "gfx/interface/goals/sr_lito_republic_congress.dds"
+        texturefile = "gfx/interface/decisions/icons/sr_lito_republic_congress.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_union_consult_russia"
-        texturefile = "gfx/interface/goals/sr_lito_republic_congress.dds"
+        texturefile = "gfx/interface/decisions/icons/sr_lito_republic_congress.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_union_consult_tajikistan"
-        texturefile = "gfx/interface/goals/sr_lito_republic_congress.dds"
+        texturefile = "gfx/interface/decisions/icons/sr_lito_republic_congress.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_union_consult_turkmenistan"
-        texturefile = "gfx/interface/goals/sr_lito_republic_congress.dds"
+        texturefile = "gfx/interface/decisions/icons/sr_lito_republic_congress.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_union_consult_ukraine"
-        texturefile = "gfx/interface/goals/sr_lito_republic_congress.dds"
+        texturefile = "gfx/interface/decisions/icons/sr_lito_republic_congress.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_union_consult_uzbekistan"
-        texturefile = "gfx/interface/goals/sr_lito_republic_congress.dds"
+        texturefile = "gfx/interface/decisions/icons/sr_lito_republic_congress.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_union_delegate_congress"
-        texturefile = "gfx/interface/goals/sr_lito_republic_congress.dds"
+        texturefile = "gfx/interface/decisions/icons/sr_lito_republic_congress.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_union_emergency_compromise"
-        texturefile = "gfx/interface/goals/sr_lito_ratify_compromise.dds"
+        texturefile = "gfx/interface/decisions/icons/sr_lito_ratify_compromise.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_union_emergency_congress"
-        texturefile = "gfx/interface/goals/sr_lito_congress.dds"
+        texturefile = "gfx/interface/decisions/icons/sr_lito_congress.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_union_joint_war_council"
-        texturefile = "gfx/interface/goals/sr_lito_defence_council.dds"
+        texturefile = "gfx/interface/decisions/icons/sr_lito_defence_council.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_union_prepare_budget_reserve"
-        texturefile = "gfx/interface/goals/sr_lito_local_budgets.dds"
+        texturefile = "gfx/interface/decisions/icons/sr_lito_local_budgets.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_union_public_plan_audit"
-        texturefile = "gfx/interface/goals/sr_lito_federal_plan.dds"
+        texturefile = "gfx/interface/decisions/icons/sr_lito_federal_plan.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_union_release_budget_reserve"
-        texturefile = "gfx/interface/goals/sr_lito_local_budgets.dds"
+        texturefile = "gfx/interface/decisions/icons/sr_lito_local_budgets.dds"
     }
     spriteType = {
         name = "GFX_decision_sr_union_republic_amnesty"
-        texturefile = "gfx/interface/goals/sr_lito_constitutional_guarantees.dds"
+        texturefile = "gfx/interface/decisions/icons/sr_lito_constitutional_guarantees.dds"
     }
     # Decision categories
     spriteType = {

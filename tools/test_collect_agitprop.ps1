@@ -30,6 +30,7 @@ try {
     Write-CollectorFixture 'common/ideologies/00_ideologies.txt' 'ideologies = { }'
     Write-CollectorFixture 'common/decisions/SOV_campaigns.txt' 'SOV_propaganda_campaigns = { SOV_propaganda_native = { complete_effect = { SOV_pick_propaganda_campaign_slot_effect = yes } } }'
     Write-CollectorFixture 'common/decisions/categories/SOV_categories.txt' 'SOV_propaganda_campaigns = { icon = generic }'
+    Write-CollectorFixture 'common/national_focus/SOV_focus.txt' 'focus_tree = { focus = { id = SOV_expand_the_agitprop completion_reward = { SOV_unlock_propaganda_campaign_slot_effect = yes } } }'
     Write-CollectorFixture 'common/scripted_effects/SOV_effects.txt' ("# Source with CR only`rSOV_pick_propaganda_campaign_slot_effect = { set_variable = { SOV_poster_left_icon_frame = SOV_new_propaganda_campaign } }`r")
     Write-CollectorFixture 'common/scripted_effects/reset_helper_only.txt' 'SOV_reset_propaganda_campaign_slot_effect = { generic_helper_effect = yes }'
     Write-CollectorFixture 'common/scripted_triggers/SOV_triggers.txt' 'SOV_propaganda_poster_slot_available = { always = yes }'
@@ -61,10 +62,21 @@ guiTypes = {
     Write-CollectorFixture 'common/decisions/unrelated.txt' 'completely_unrelated_decisions = { other_decision = { cost = 15 } }'
     Write-CollectorFixture 'save games/do_not_collect.txt' 'SOV_propaganda_campaigns = private_save_information'
     Write-CollectorFixture 'logs/do_not_collect.txt' 'SOV_propaganda_campaigns = private_log_information'
+    $texturePath = Join-Path $game 'gfx/native.dds'
+    New-Item -ItemType Directory -Path (Split-Path -Parent $texturePath) -Force | Out-Null
+    $ddsHeader = New-Object byte[] 128
+    [Array]::Copy([Text.Encoding]::ASCII.GetBytes('DDS '), 0, $ddsHeader, 0, 4)
+    [Array]::Copy([BitConverter]::GetBytes([uint32]200), 0, $ddsHeader, 12, 4)
+    [Array]::Copy([BitConverter]::GetBytes([uint32]3900), 0, $ddsHeader, 16, 4)
+    [Array]::Copy([Text.Encoding]::ASCII.GetBytes('DXT5'), 0, $ddsHeader, 84, 4)
+    [IO.File]::WriteAllBytes($texturePath, $ddsHeader)
     $before = Get-CollectorSnapshot
     $result = & $Collector -GamePath $game -OutputDirectory $reports -WarningAction SilentlyContinue
     $report = [IO.File]::ReadAllText($result.ReportPath)
-    Assert-Collector ($result.FileCount -eq 9) "Expected exactly nine relevant files, got $($result.FileCount)"
+    Assert-Collector ($result.FileCount -eq 10) "Expected exactly ten relevant files, got $($result.FileCount)"
+    Assert-Collector ($report.Contains('===== BEGIN FILE: common/national_focus/SOV_focus.txt =====')) 'Original focus reward must be collected'
+    Assert-Collector ($report.Contains('gfx/native.dds | 3900x200 | FourCC DXT5')) 'Native poster-atlas dimensions must be reported'
+    Assert-Collector (-not $report.Contains('===== BEGIN FILE: gfx/native.dds =====')) 'Texture pixels must not be included in report'
     Assert-Collector ($report.Contains('===== BEGIN FILE: common/scripted_effects/reset_helper_only.txt =====')) 'Confirmed native effect declaration must be selected even without known variables in its body'
     Assert-Collector ($report.Contains('===== BEGIN FILE: interface/native_window.gui =====')) 'Referenced GUI file must be collected'
     Assert-Collector ($report.Contains('===== BEGIN FILE: interface/native_poster.gfx =====')) 'Sprite referenced by actual GUI must be followed'

@@ -105,14 +105,14 @@ if (-not [string]::IsNullOrWhiteSpace($documents)) {
 }
 if ($insideGame -or $insideMod) { throw 'Der Diagnoseordner muss ausserhalb des Spielordners und des HOI4-Modordners liegen.' }
 
-$seed = '\b(?:GFX_)?SOV_(?:propaganda_[A-Za-z0-9_]*|new_propaganda_campaign|poster_(?:left|center|right)_icon_frame|default_propaganda_[A-Za-z0-9_]*|(?:pick|reset|unlock)_propaganda_campaign_slot_effect|increase_propaganda_campaign_cost_effect|achievement_propaganda_counter_effect)\b'
+$seed = '\b(?:GFX_)?SOV_(?:expand_the_agitprop|propaganda_[A-Za-z0-9_]*|new_propaganda_campaign|poster_(?:left|center|right)_icon_frame|default_propaganda_[A-Za-z0-9_]*|(?:pick|reset|unlock)_propaganda_campaign_slot_effect|increase_propaganda_campaign_cost_effect|achievement_propaganda_counter_effect)\b'
 $selected = @{}
 $warnings = [Collections.Generic.List[string]]::new()
 $warnings.Add('DLC-Unterordner und DLC-Archive wurden nicht durchsucht. Falls benoetigte Originaldateien dort liegen, muessen sie zusaetzlich bereitgestellt werden.')
 $asciiIndex = @{}
 $utf8 = [Text.UTF8Encoding]::new($false, $true)
 $candidateFiles = [Collections.Generic.List[object]]::new()
-foreach ($relativeFolder in @('common/decisions', 'common/scripted_effects', 'common/scripted_triggers', 'common/scripted_guis', 'common/scripted_variables', 'common/on_actions', 'history/countries', 'interface')) {
+foreach ($relativeFolder in @('common/decisions', 'common/national_focus', 'common/scripted_effects', 'common/scripted_triggers', 'common/scripted_guis', 'common/scripted_variables', 'common/on_actions', 'history/countries', 'interface')) {
     $folder = Join-Path $gameRoot $relativeFolder
     if (-not (Test-Path -LiteralPath $folder -PathType Container)) { continue }
     foreach ($file in @(Get-ChildItem -LiteralPath $folder -File -Recurse)) {
@@ -219,9 +219,43 @@ foreach ($name in @($sprites.Keys)) {
     if (-not $foundSprites.ContainsKey($name)) { $warnings.Add("Sprite-Definition nicht gefunden: $name") }
 }
 
+# Read dimensions of referenced DDS textures without collecting their pixels.
+# This distinguishes a multi-frame native atlas from individual poster images.
+$textureMetadata = @{}
+foreach ($entry in @($selected.Values | Where-Object { $_.Relative.EndsWith('.gfx') })) {
+    foreach ($block in (Get-LitoCollectorBlocks -Text $entry.Text)) {
+        if ($block.Key -notin @('spriteType', 'quadTextureSprite')) { continue }
+        $part = $entry.Text.Substring($block.Start, $block.End - $block.Start)
+        $nameMatch = [regex]::Match($part, '\bname\s*=\s*"?(GFX_[A-Za-z0-9_]+)"?')
+        if (-not $nameMatch.Success -or -not $sprites.ContainsKey($nameMatch.Groups[1].Value)) { continue }
+        $textureMatch = [regex]::Match($part, '\btexturefile\s*=\s*"([^"\r\n]+)"')
+        if (-not $textureMatch.Success) { continue }
+        $texture = $textureMatch.Groups[1].Value.Replace('\', '/')
+        if ($textureMetadata.ContainsKey($texture)) { continue }
+        try {
+            if ([IO.Path]::IsPathRooted($texture) -or -not $texture.EndsWith('.dds', [StringComparison]::OrdinalIgnoreCase)) { continue }
+            $path = [IO.Path]::GetFullPath((Join-Path $gameRoot $texture))
+            if (-not $path.StartsWith($gameRoot + [IO.Path]::DirectorySeparatorChar, [StringComparison]::OrdinalIgnoreCase)) { throw 'Texturpfad liegt ausserhalb des Spiels.' }
+            if (-not (Test-Path -LiteralPath $path -PathType Leaf)) { throw 'Textur nicht als lose Datei gefunden; eventuell in einem DLC-Archiv.' }
+            $stream = [IO.File]::OpenRead($path)
+            try {
+                $header = New-Object byte[] 128
+                $read = $stream.Read($header, 0, $header.Length)
+            } finally { $stream.Dispose() }
+            if ($read -ne 128 -or [Text.Encoding]::ASCII.GetString($header, 0, 4) -cne 'DDS ') { throw 'Kein vollstaendiger DDS-Header.' }
+            $textureMetadata[$texture] = ('{0} | {1}x{2} | FourCC {3} | Mipmaps {4}' -f $texture,
+                [BitConverter]::ToUInt32($header, 16), [BitConverter]::ToUInt32($header, 12),
+                [Text.Encoding]::ASCII.GetString($header, 84, 4).Trim([char]0), [BitConverter]::ToUInt32($header, 28))
+        } catch {
+            $textureMetadata[$texture] = ($texture + ' | keine Headerdaten: ' + $_.Exception.Message)
+        }
+    }
+}
+
 $inventory = @(
     @{ Name = 'Kampagnenentscheidungen'; Prefix = 'common/decisions/'; Exclude = 'common/decisions/categories/' },
     @{ Name = 'Entscheidungskategorie'; Prefix = 'common/decisions/categories/'; Exclude = '' },
+    @{ Name = 'Originaler Agitprop-Fokus / Freischaltung'; Prefix = 'common/national_focus/'; Exclude = '' },
     @{ Name = 'Scripted Effects / Initialisierung'; Prefix = 'common/scripted_effects/'; Exclude = '' },
     @{ Name = 'Scripted Triggers'; Prefix = 'common/scripted_triggers/'; Exclude = '' },
     @{ Name = 'Scripted GUI'; Prefix = 'common/scripted_guis/'; Exclude = '' },
@@ -250,6 +284,9 @@ foreach ($entry in @($selected.Values | Sort-Object Relative)) {
     $null = $report.AppendLine(('{0} | {1} Bytes | SHA256 {2} | UTF8-BOM {3} | Zeilenenden {4}' -f $entry.Relative, $entry.Size, $entry.Hash, $entry.Bom, $entry.LineEnds))
 }
 $null = $report.AppendLine('')
+$null = $report.AppendLine('DDS-TEXTURMETADATEN OHNE BILDDATEN')
+foreach ($key in @($textureMetadata.Keys | Sort-Object)) { $null = $report.AppendLine($textureMetadata[$key]) }
+$null = $report.AppendLine('')
 $null = $report.AppendLine('HINWEISE / NICHT GEFUNDENE TEILE')
 if ($warnings.Count -eq 0) { $null = $report.AppendLine('Keine Lesefehler oder fehlenden Dateigruppen erkannt. Die native Abhaengigkeitspruefung bleibt erforderlich.') }
 foreach ($warning in $warnings) { $null = $report.AppendLine($warning); Write-Warning $warning }
@@ -266,9 +303,10 @@ $reportPath = Join-Path $outputRoot ($stem + '.txt')
 [IO.File]::WriteAllText($reportPath, $report.ToString(), [Text.UTF8Encoding]::new($true))
 Write-Host ("Agitprop-Bericht erstellt: $reportPath") -ForegroundColor Green
 Write-Host 'Bitte diese TXT-Datei als Datei an den Chat anhaengen; ihren Inhalt nicht kuerzen oder nur teilweise kopieren.'
+$zipPath = $null
 if ($CreateZip) {
     $zipPath = Join-Path $outputRoot ($stem + '.zip')
     Compress-Archive -LiteralPath $reportPath -DestinationPath $zipPath
     Write-Host ("ZIP-Kopie: $zipPath")
 }
-[pscustomobject]@{ ReportPath = $reportPath; FileCount = $selected.Count; WarningCount = $warnings.Count }
+[pscustomobject]@{ ReportPath = $reportPath; ZipPath = $zipPath; FileCount = $selected.Count; WarningCount = $warnings.Count }

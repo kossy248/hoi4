@@ -1,4 +1,4 @@
-# Grafiken und Bildplätze — 0.5.5
+# Grafiken und Bildplätze — 0.5.6
 
 Die Mod verwendet rotes Emaille, gealtertes Gold und dunkles Metall für ihre
 Abzeichen. Führerporträt, Flagge und die drei Entscheidungsbilder wurden auf
@@ -34,6 +34,10 @@ spriteTypes = {
     }
     spriteType = {
         name = "GFX_decision_category_sr_formable_union"
+        texturefile = "gfx/interface/decisions/icons/focus_LITO_experts_in_camouflage.dds"
+    }
+    spriteType = {
+        name = "GFX_sr_category_focus_LITO_experts_in_camouflage"
         texturefile = "gfx/interface/decisions/focus_LITO_experts_in_camouflage_category.dds"
     }
 }
@@ -55,6 +59,13 @@ unter `gfx/interface/decisions/icons/`: **32 × 32 Pixel**, DDS/DXT5, ohne
 Mipmaps. Das vollständige Motiv wird proportional in 28 × 28 Pixel eingepasst
 und auf der transparenten Fläche zentriert. So ragt es nicht über die Zeile.
 Die 18 Motive werden weiterhin thematisch mehrfach verwendet.
+
+Seit 0.5.6 verwenden auch die **fünf Kategorie-Symbole in den Überschriften**
+die kleinen 32 × 32-Versionen. Die früheren Kategorie-Aliase verweisen ebenfalls
+darauf. Die separaten großen `picture`-Sprites `GFX_sr_category_*` behalten
+ihre 100 × 100 Pixel großen Bilder. So passt das Symbol auch in die
+eingeklappte Kopfzeile, während das große Bild in der geöffneten Kategorie
+erhalten bleibt.
 
 `tools/build_decision_icons.py` erzeugt diese Dateien aus den vorhandenen
 PNG-Quellen, ersatzweise aus den bisherigen DDS-Dateien. Gemeinsame
@@ -102,9 +113,10 @@ den thematisch passenden Ereignisdateien zu.
 
 ## Agitprop-Poster
 
-Die acht geplanten Kampagnen besitzen ungebundene Platzhalterdateien; die
-bisherige Einzelbild-Kategorie wurde entfernt. Die vom Nutzer geplanten Poster
-sind noch nicht geliefert. Titel, Quellnamen und Bonusentwürfe stehen in
+Die acht geplanten Kampagnen besitzen ungebundene Texturdateien; die bisherige
+Einzelbild-Kategorie wurde entfernt. Drei gelieferte Poster aus `Agitprop.rar`
+ersetzen inzwischen die Bildplätze `star`, `peoples` und `light`. Die anderen
+fünf Motive sind noch Platzhalter. Titel, Quellnamen und Bonusentwürfe stehen in
 [AGITPROP_POSTERS.md](AGITPROP_POSTERS.md).
 
 Für eigene Poster sind PNG-Quellen im Verhältnis **3:4** vorgesehen,
@@ -113,6 +125,13 @@ und DDS/DXT5. Das sind vorläufige Dateiformate der bisherigen Quellen. Die
 endgültige Sprite-/Atlas-Zuordnung für die originale Anzeige ist noch offen und
 wird erst anhand der Originaldateien festgelegt. Zunächst nur im installierten
 Modordner ersetzte Bilder vor dem nächsten Update in das Quellpaket übernehmen.
+
+Die drei neuen Original-PNGs liegen in `artwork/agitprop/originals`.
+`artwork/agitprop/manifest.json` hält ihre vorläufige Zuordnung und
+Prüfsummen fest. `tools/build_agitprop_posters.py` passt das vollständige Bild
+proportional auf die vorbereitete Texturfläche ein. Texte, Rahmen und Motive
+werden weder abgeschnitten noch neu gezeichnet. Die native Anbindung ist
+weiterhin offen; die gelieferten Bilder sind für den nächsten Einbau vorbereitet.
 
 ## Porträts
 

@@ -198,22 +198,22 @@ spriteTypes = {
     # Decision categories
     spriteType = {
         name = "GFX_decision_category_sr_balkan_federation"
-        texturefile = "gfx/interface/decisions/focus_LITO_the_molotov_line_category.dds"
+        texturefile = "gfx/interface/decisions/icons/focus_LITO_the_molotov_line.dds"
     }
     spriteType = {
         name = "GFX_decision_category_sr_formable_union"
-        texturefile = "gfx/interface/decisions/focus_LITO_experts_in_camouflage_category.dds"
+        texturefile = "gfx/interface/decisions/icons/focus_LITO_experts_in_camouflage.dds"
     }
     spriteType = {
         name = "GFX_decision_category_sr_government_program"
-        texturefile = "gfx/interface/goals/sr_lito_federal_plan.dds"
+        texturefile = "gfx/interface/decisions/icons/sr_lito_federal_plan.dds"
     }
     spriteType = {
         name = "GFX_decision_category_sr_story_government"
-        texturefile = "gfx/interface/goals/sr_lito_politics_council_mandate.dds"
+        texturefile = "gfx/interface/decisions/icons/sr_lito_politics_council_mandate.dds"
     }
     spriteType = {
         name = "GFX_decision_category_sr_union_council"
-        texturefile = "gfx/interface/goals/sr_lito_republic_congress.dds"
+        texturefile = "gfx/interface/decisions/icons/sr_lito_republic_congress.dds"
     }
 }

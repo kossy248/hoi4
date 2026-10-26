@@ -9,7 +9,7 @@ spriteTypes = {
     }
     spriteType = {
         name = "GFX_decision_category_focus_LITO_experts_in_camouflage"
-        texturefile = "gfx/interface/decisions/focus_LITO_experts_in_camouflage_category.dds"
+        texturefile = "gfx/interface/decisions/icons/focus_LITO_experts_in_camouflage.dds"
     }
     spriteType = {
         name = "GFX_sr_category_focus_LITO_experts_in_camouflage"
@@ -25,7 +25,7 @@ spriteTypes = {
     }
     spriteType = {
         name = "GFX_decision_category_focus_LITO_the_molotov_line"
-        texturefile = "gfx/interface/decisions/focus_LITO_the_molotov_line_category.dds"
+        texturefile = "gfx/interface/decisions/icons/focus_LITO_the_molotov_line.dds"
     }
     spriteType = {
         name = "GFX_sr_category_focus_LITO_the_molotov_line"
@@ -41,7 +41,7 @@ spriteTypes = {
     }
     spriteType = {
         name = "GFX_decision_category_decision_LITO_eastern_europe"
-        texturefile = "gfx/interface/decisions/decision_LITO_eastern_europe_category.dds"
+        texturefile = "gfx/interface/decisions/icons/decision_LITO_eastern_europe.dds"
     }
     spriteType = {
         name = "GFX_sr_category_decision_LITO_eastern_europe"

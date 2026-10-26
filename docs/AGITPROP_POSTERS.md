@@ -4,10 +4,30 @@ Die bisherige eigenständige Entscheidungskategorie mit einem wechselnden Bild
 ist seit **0.5.3 entfernt**. Sie war keine Anbindung an die originalen drei
 Agitprop-Posterplätze. Es gibt derzeit noch keinen eingebauten nativen Ersatz.
 
-Die acht Titel und Bonusentwürfe bleiben als Designvorlage erhalten. Die Motive
-werden später vom Nutzer geliefert. Als Quellen eignen sich **3:4**-Bilder,
-beispielsweise 600 × 800 Pixel. Die bisherigen 150 × 200 DDS/DXT5-Platzhalter
-liegen weiterhin vor, sind aber nicht an eine aktive Oberfläche gebunden.
+Die acht Titel und Bonusentwürfe bleiben als Designvorlage erhalten. Aus dem
+gelieferten Archiv **Agitprop.rar** sind inzwischen **drei eigene Poster**
+übernommen. Ihre Originale liegen unverändert in
+`artwork/agitprop/originals/`; Zuordnung, Abmessungen und SHA-256-Prüfsummen stehen
+in `artwork/agitprop/manifest.json`.
+
+| Geliefertes Motiv | Vorläufige Kampagnenzuordnung | Textur |
+| --- | --- | --- |
+| Lito, Volk, Partei und Einheit | Solange ein Stern über uns brennt | `sr_agitprop_star.dds` |
+| Vier Genossen und Minecraft-Motiv | Elf Völker – ein gemeinsamer Morgen | `sr_agitprop_peoples.dds` |
+| Soldat, Stärke, Ehre und Sieg | Für die Union bis zum letzten Licht | `sr_agitprop_light.dds` |
+
+Diese drei 150 × 200 DDS/DXT5-Dateien verwenden jetzt die gelieferten Poster.
+Das vollständige Bild ist proportional eingepasst und seitlich transparent
+aufgefüllt, damit Schrift und Rahmen nicht abgeschnitten werden. Die übrigen
+fünf Bildplätze zeigen weiterhin vorläufige Abzeichen. Alle acht Texturen sind
+noch ungebunden; diese Bildübernahme aktiviert keine Agitprop-Oberfläche.
+Die neuen Bilder sind ab 0.5.6 als vorbereitete, ungebundene Texturen im Paket
+enthalten. Die Anbindung an die originalen Posterplätze ist weiterhin offen.
+
+`python3 tools/build_agitprop_posters.py` erzeugt die drei Texturen mit
+ImageMagick erneut aus den Originalen. Als weitere Quellen eignen sich
+**3:4**-Bilder, beispielsweise 600 × 800 Pixel. Die endgültigen Abmessungen der
+nativen Anzeige werden erst mit ihren Originaldateien abgestimmt.
 
 Die endgültigen Frame-IDs, Texturdateien, Freischaltungen und die mögliche
 gleichzeitige Belegung werden anhand der vollständigen Original-GUI und ihrer
@@ -26,7 +46,7 @@ Laufzeiten sind Entwürfe, keine derzeit auswählbaren Entscheidungen.
 | Die Erde gehört den Arbeitenden | 85 | 180 Tage | Unterhaltskosten verbesserter Beziehungen −20 %; tägliche politische Macht +0,10. Nur im Frieden verfügbar. Fokus: `sr_lito_balkan_partnership`. | `sr_agitprop_earth.dds` |
 | Für die Union bis zum letzten Licht | 90 | 90 Tage | Erholungsrate des Heeres +6 %; Kriegsunterstützung +5 Prozentpunkte; Nachschubverbrauch −3 %. Nur im Krieg verfügbar. Fokus: `sr_lito_army_homeland_defence`. | `sr_agitprop_light.dds` |
 
-Die acht ungebundenen Dateien liegen unter
+Die acht vorbereiteten, noch ungebundenen Dateien liegen unter
 `soviet_renewal/gfx/interface/agitprop/`. Die alte Registrierung
 `interface/sr_agitprop_icons.gfx` und ihre Decision-Icons wurden entfernt.
 

@@ -1,0 +1,40 @@
+{
+  "source_archive": "Agitprop.rar",
+  "source_archive_sha256": "92e184cd7e4282b85f3fcd315432eab8806b94b50d2d4787fcd9b4e9ef6346ed",
+  "native_integration": "pending_original_game_sources",
+  "texture_size": [150, 200],
+  "fit": "proportional_centered_without_cropping",
+  "posters": [
+    {
+      "slot": "star",
+      "campaign_title": "Solange ein Stern über uns brennt",
+      "subject": "Lito und die Einheit von Volk, Partei und Union",
+      "source": "artwork/agitprop/originals/19d24946-d6a2-4617-bd47-e087881d7f5e.png",
+      "archive_entry": "Agitprop/19d24946-d6a2-4617-bd47-e087881d7f5e.png",
+      "source_sha256": "8c11c348f46d63d50a26468083539e5b8349a2b79b84f44905347814c7ba0714",
+      "source_size": [1047, 1502],
+      "texture": "soviet_renewal/gfx/interface/agitprop/sr_agitprop_star.dds"
+    },
+    {
+      "slot": "peoples",
+      "campaign_title": "Elf Völker – ein gemeinsamer Morgen",
+      "subject": "Vier Genossen, Gemeinschaft und Minecraft-Motiv",
+      "source": "artwork/agitprop/originals/69e82ffa-9577-486e-b5ef-136e8fcc8458.png",
+      "archive_entry": "Agitprop/69e82ffa-9577-486e-b5ef-136e8fcc8458.png",
+      "source_sha256": "fcf9041405db8b396a009a110c318499b2ecef969f2aceeb02f6efd95dea50ca",
+      "source_size": [1024, 1536],
+      "texture": "soviet_renewal/gfx/interface/agitprop/sr_agitprop_peoples.dds"
+    },
+    {
+      "slot": "light",
+      "campaign_title": "Für die Union bis zum letzten Licht",
+      "subject": "Soldat, Stärke, Ehre und Sieg",
+      "source": "artwork/agitprop/originals/bd0da187-61e6-4ab4-b843-f81fa906f466.png",
+      "archive_entry": "Agitprop/bd0da187-61e6-4ab4-b843-f81fa906f466.png",
+      "source_sha256": "0f8c97c4a24041b6fecee810273fef5438655bbded03d876083e94f7ff499346",
+      "source_size": [1047, 1503],
+      "texture": "soviet_renewal/gfx/interface/agitprop/sr_agitprop_light.dds"
+    }
+  ],
+  "remaining_placeholder_slots": ["steel", "councils", "sky", "horizon", "earth"]
+}

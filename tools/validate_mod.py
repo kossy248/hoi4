@@ -182,7 +182,9 @@ def check():
     for path, nodes in scripts.items():
         if path.startswith('common/decisions/'):
             for category_id, _, category in nodes:
-                required_loc.add(category_id)
+                # Native categories retain their localization from the game.
+                if category_id != 'SOV_propaganda_campaigns':
+                    required_loc.add(category_id)
                 if '/categories/' not in path:
                     for decision_id, _, decision in category:
                         required_loc.update((decision_id, decision_id+'_desc'))

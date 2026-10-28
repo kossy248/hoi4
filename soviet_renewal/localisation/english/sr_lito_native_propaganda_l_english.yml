@@ -1,0 +1,10 @@
+﻿l_english:
+ sr_lito_propaganda_star:0 "As Long as a Star Burns Above Us"
+ sr_lito_propaganda_star_poster_tt:0 "§Y$sr_lito_propaganda_star$§!\n\n$sr_lito_propaganda_star_desc$"
+ sr_lito_propaganda_star_desc:0 "Lito's face stands for a promise: the Union must remember its people. In railway stations, workshops and villages, his poster recalls the shared star above our republics.\n\nDuring the campaign: stability +4 percentage points; war support +3 percentage points. The poster occupies one free Agitprop slot for 180 days."
+ sr_lito_propaganda_peoples:0 "Eleven Peoples – One Shared Tomorrow"
+ sr_lito_propaganda_peoples_poster_tt:0 "§Y$sr_lito_propaganda_peoples$§!\n\n$sr_lito_propaganda_peoples_desc$"
+ sr_lito_propaganda_peoples_desc:0 "Different languages, landscapes and lives meet in a shared future. Our comrades carry forward the promise of a Union whose strength grows from solidarity.\n\nDuring the campaign: stability +4 percentage points; daily political power +0.05. On launch: +5 trust and +0.02 Union balance towards preservation. The poster occupies one free Agitprop slot for 180 days."
+ sr_lito_propaganda_light:0 "For the Union Until the Last Light"
+ sr_lito_propaganda_light_poster_tt:0 "§Y$sr_lito_propaganda_light$§!\n\n$sr_lito_propaganda_light_desc$"
+ sr_lito_propaganda_light_desc:0 "Behind every soldier stand families, workshops and a homeland. This poster calls on the army to stand together and defend the republics with courage and discipline.\n\nDuring the campaign: army recovery rate +6%; war support +5 percentage points; supply consumption −3%. The poster occupies one free Agitprop slot for 180 days."

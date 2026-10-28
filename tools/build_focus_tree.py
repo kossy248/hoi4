@@ -13,7 +13,7 @@ from focus_data import core, civil, military, politics, story, expansion
 
 ROOT = Path(__file__).resolve().parents[1]
 MOD = ROOT/'soviet_renewal'
-VERSION = '0.6.0'
+VERSION = '0.6.1'
 # Native continuous-focus palette uses interface coordinates, not focus rows.
 # Keep it below the ordinary tree, whose final focus is on row 15.
 CONTINUOUS_FOCUS_POSITION = {'x': 50, 'y': 2500}

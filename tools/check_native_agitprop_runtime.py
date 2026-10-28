@@ -10,7 +10,7 @@ from pathlib import Path
 import argparse
 import operator
 
-from validate_mod import TOKEN, one, parse, values
+from validate_mod import TOKEN, one, parse, values, walk
 
 
 NATIVE_EFFECTS = (
@@ -27,10 +27,11 @@ UNLOCKED = 'sr_lito_native_agitprop_unlocked'
 READY = 'sr_lito_native_agitprop_ready'
 FRAMES = tuple(f'SOV_poster_{side}_icon_frame' for side in ('left', 'center', 'right'))
 CAMPAIGNS = (
-    'SOV_propaganda_hit_of_hammer',
-    'SOV_propaganda_high_yield',
-    'SOV_propaganda_motherland_calls',
+    'sr_lito_propaganda_star',
+    'sr_lito_propaganda_peoples',
+    'sr_lito_propaganda_light',
 )
+CAMPAIGN_FRAMES = dict(zip(CAMPAIGNS, (7, 11, 3)))
 COMPARE = {
     '=': operator.eq, '==': operator.eq, '>': operator.gt, '<': operator.lt,
     '>=': operator.ge, '<=': operator.le, '!=': operator.ne,
@@ -84,9 +85,12 @@ class NativeWorld:
         self.focuses = set()
         self.day, self.power = 0.0, 500.0
         self.at_war, self.enemy_is_major = False, True
+        self.debug = False
+        self.dlcs = {'La Resistance'}
         self.surrender_progress = 0.0
         self.active, self.cooldowns, self.scheduled = {}, {}, []
         self.unlock_calls = 0
+        self.balance = 0.0
 
     def number(self, text):
         try:
@@ -106,6 +110,8 @@ class NativeWorld:
         if key in self.triggers:
             return self.trigger(self.triggers[key]) == (value == 'yes')
         if key == 'always': return value == 'yes'
+        if key == 'is_debug': return self.debug == (value == 'yes')
+        if key == 'has_dlc': return value.strip('"') in self.dlcs
         if key == 'tag': return self.tag == value
         if key == 'original_tag': return self.original_tag == value
         if key == 'has_country_flag': return value in self.flags
@@ -156,6 +162,13 @@ class NativeWorld:
                     elif key == 'add_to_variable': self.variables[name] = self.variables.get(name, 0.0) + amount
                     else: self.variables[name] = self.variables.get(name, 0.0) * amount
             elif key == 'clear_variable': self.variables.pop(value, None)
+            elif key == 'clamp_variable':
+                variable = one(value, 'var')
+                self.variables[variable] = min(self.number(one(value, 'max')),
+                    max(self.number(one(value, 'min')), self.variables.get(variable, 0.0)))
+            elif key == 'add_power_balance_value':
+                assert one(value, 'id') == 'sr_union_balance'
+                self.balance += self.number(one(value, 'value'))
             elif key == 'set_country_flag':
                 if isinstance(value, list):
                     self.flags[one(value, 'flag')] = self.day + self.number(one(value, 'days'))
@@ -173,11 +186,15 @@ class NativeWorld:
         body = self.decisions[campaign]
         return (campaign not in self.active and self.day >= self.cooldowns.get(campaign, 0.0)
                 and self.power >= self.number(one(body, 'cost'))
-                and self.trigger(one(self.category, 'allowed'))
+                and self.visible(campaign)
+                and self.trigger(one(body, 'available')))
+
+    def visible(self, campaign):
+        body = self.decisions[campaign]
+        return (self.trigger(one(self.category, 'allowed'))
                 and self.trigger(one(self.category, 'visible'))
                 and self.trigger(one(body, 'allowed'))
-                and self.trigger(one(body, 'visible'))
-                and self.trigger(one(body, 'available')))
+                and self.trigger(one(body, 'visible')))
 
     def take(self, campaign):
         if not self.ready(campaign): return False
@@ -215,14 +232,22 @@ def check(game, mod):
                                    {'SOV_propaganda_campaigns'})['SOV_propaganda_campaigns']
     decisions = {key: body for key, _, body in extract_root_blocks(mod/'common/decisions/SOV.txt',
                  {'SOV_propaganda_campaigns'})['SOV_propaganda_campaigns']}
+    original_decisions = dict((key, body) for key, _, body in extract_root_blocks(
+        game/'common/decisions/SOV.txt', {'SOV_propaganda_campaigns'})['SOV_propaganda_campaigns'])
+    custom_decisions = dict((key, body) for key, _, body in one(parse(
+        (mod/'common/decisions/sr_lito_native_propaganda.txt').read_text(encoding='utf-8-sig')),
+        'SOV_propaganda_campaigns'))
+    assert set(custom_decisions) == set(CAMPAIGNS)
+    assert not set(decisions) & set(custom_decisions), 'Custom campaigns must have independent decision IDs'
+    decisions.update(custom_decisions)
 
     def world(**kwargs):
         return NativeWorld(effects, triggers, category, decisions, **kwargs)
 
     first = world(); first.sync()
     assert READY in first.flags and UNLOCKED not in first.flags and first.frames() == (1, 1, 1)
-    assert not first.ready('SOV_propaganda_transport')
-    assert all(first.variables[one(decisions[key], 'cost')] == 15 for key in decisions if key.startswith('SOV_propaganda_'))
+    assert not any(first.visible(key) for key in CAMPAIGNS)
+    assert all(first.variables[one(decisions[key], 'cost')] == 15 for key in CAMPAIGNS)
     first.flags[UNLOCKED] = None; first.sync()
     assert PRIMARY not in first.focuses and first.frames() == (2, 1, 1)
     first.flags[COUNCILS] = None; first.sync(); assert first.frames() == (2, 2, 1)
@@ -236,9 +261,35 @@ def check(game, mod):
     assert reordered.frames() == (2, 2, 2) and reordered.unlock_calls == 3
     print('PASS: milestones completed before the Agitprop focus are recovered without premature unlocks.')
 
-    first.at_war = True
+    # Test with every historical focus unlocked, debug mode enabled and all DLCs:
+    # Vanilla choices must stay hidden even when their old gates would pass.
+    historical_focuses = {value for body in original_decisions.values()
+                          for key, _, value in walk(one(body, 'visible')) if key == 'has_completed_focus'}
+    first.focuses.update(historical_focuses)
+    first.debug = True
+    assert {key for key in decisions if first.visible(key)} == set(CAMPAIGNS)
+    print('PASS: all 24 Vanilla campaigns and four debug controls are hidden; exactly three custom choices remain.')
+
+    # Lito's exclusion guard must not change visibility outside Lito's SOV.
+    for kwargs in ({'initialized': False}, {'tag': 'GER'}):
+        foreign = world(**kwargs)
+        foreign.focuses.update(historical_focuses)
+        foreign.flags.update({READY: None, UNLOCKED: None})
+        for debug in (False, True):
+            foreign.debug = debug
+            for fast in (False, True):
+                flag = 'SOV_debug_fast_propaganda_campaigns_flag'
+                if fast: foreign.flags[flag] = None
+                else: foreign.flags.pop(flag, None)
+                for key, original in original_decisions.items():
+                    assert foreign.trigger(one(decisions[key], 'visible')) == foreign.trigger(one(original, 'visible')), key
+                assert not any(foreign.visible(key) for key in CAMPAIGNS)
+    print('PASS: historical campaign visibility is unchanged outside Lito; custom campaigns remain scoped to Lito.')
+
+    assert not first.at_war
     for key in CAMPAIGNS: assert first.take(key), key
     assert first.frames() == (7, 11, 3)
+    assert first.variables['sr_story_trust'] == 55 and first.balance == 0.02
     assert first.variables['SOV_propaganda_campaigns_taken'] == 3
     assert first.scheduled == [
         ('NSB_soviet_propaganda_capmaign_events.101', 150),
@@ -246,27 +297,50 @@ def check(game, mod):
         ('NSB_soviet_propaganda_capmaign_events.103', 150),
     ]
     before = (dict(first.variables), dict(first.flags), first.power, first.unlock_calls)
-    assert not first.take('SOV_propaganda_transport')
+    assert not first.take(CAMPAIGNS[0])
     assert (first.variables, first.flags, first.power, first.unlock_calls) == before
     first.sync()
     assert (first.variables, first.flags, first.power, first.unlock_calls) == before
-    print('PASS: three native campaigns occupy all slots; a fourth and repeated sync cannot charge or erase an active slot.')
+    print('PASS: all three custom campaigns activate in peace through the native picker; repeated activation/sync cannot charge or erase active slots.')
 
     scripted_gui = one(parse((mod/'common/scripted_guis/SOV_propaganda_campaigns_scripted_gui.txt').read_text(encoding='utf-8-sig')),
                        'scripted_gui')
     gui_triggers = one(one(scripted_gui, 'sov_propaganda_campaigns_ui'), 'triggers')
+    window = one(one(parse((mod/'interface/sov_propaganda_campaigns_scripted_gui.gui').read_text(
+        encoding='utf-8-sig')), 'guiTypes'), 'containerWindowType')
+    icons = {one(icon, 'name').strip('"'): icon for icon in values(window, 'iconType')}
+    for side in ('left', 'center', 'right'):
+        for art in ('star', 'peoples', 'light'):
+            icon = icons[f'sr_lito_poster_{side}_{art}']
+            assert one(icon, 'pdx_tooltip') == f'sr_lito_propaganda_{art}_poster_tt'
+            assert one(icon, 'spriteType').strip('"') == f'GFX_sr_lito_native_poster_{art}'
     shown = {key for key, _, body in gui_triggers if key.startswith('sr_lito_poster_') and first.trigger(body)}
     assert shown == {'sr_lito_poster_left_star_visible', 'sr_lito_poster_center_peoples_visible',
                      'sr_lito_poster_right_light_visible'}
     assert all(not first.trigger(one(gui_triggers, f'propaganda_poster_{side}_visible'))
                for side in ('left', 'center', 'right'))
-    print('PASS: actual prepared GUI triggers select the three supplied posters for the matching native campaign frames.')
+    for side, frame in zip(('left', 'center', 'right'), FRAMES):
+        for frame_id in range(1, 27):
+            probe = world(); probe.flags.update({READY: None, UNLOCKED: None})
+            probe.variables.update(dict(zip(FRAMES, (1, 1, 1))))
+            probe.variables[frame] = frame_id
+            assert probe.trigger(one(gui_triggers, f'propaganda_poster_{side}_visible')) == (frame_id in (1, 2))
+            art = {7: 'star', 11: 'peoples', 3: 'light'}.get(frame_id)
+            shown = {key for key, _, body in gui_triggers
+                     if key.startswith(f'sr_lito_poster_{side}_') and probe.trigger(body)}
+            expected = {f'sr_lito_poster_{side}_{art}_visible'} if art else set()
+            assert shown == expected, (side, frame_id, shown)
+            probe.flags.pop('sr_lito_initialized')
+            assert probe.trigger(one(gui_triggers, f'propaganda_poster_{side}_visible'))
+            assert not any(probe.trigger(body) for key, _, body in gui_triggers
+                           if key.startswith(f'sr_lito_poster_{side}_'))
+    print('PASS: all 24 active native frame IDs hide Vanilla art in each Lito slot; only the three supplied posters appear, while locked/empty slots and non-Lito graphics stay intact.')
 
     first.advance(179); assert len(first.active) == 3
     first.advance(1); assert not first.active and first.frames() == (2, 2, 2)
     for key in CAMPAIGNS: assert first.variables[one(decisions[key], 'cost')] == 30
     assert first.variables['SOV_propaganda_campaigns_taken'] == 3
-    assert not first.ready(CAMPAIGNS[0]) and first.ready('SOV_propaganda_transport')
+    assert not any(first.ready(key) for key in CAMPAIGNS)
     assert not any(first.trigger(body) for key, _, body in gui_triggers if key.startswith('sr_lito_poster_'))
     assert all(first.trigger(one(gui_triggers, f'propaganda_poster_{side}_visible'))
                for side in ('left', 'center', 'right'))
@@ -285,6 +359,20 @@ def check(game, mod):
     assert UNLOCKED in old.flags
     print('PASS: old-save active frames, raised costs, counters and political trust survive synchronization.')
 
+    for campaign, frame_id in CAMPAIGN_FRAMES.items():
+        for occupied in FRAMES:
+            collision = world(); collision.sync()
+            collision.flags.update({UNLOCKED: None, COUNCILS: None, ACADEMY: None}); collision.sync()
+            collision.variables[occupied] = frame_id
+            before = (dict(collision.variables), dict(collision.flags), collision.power, collision.balance)
+            assert not collision.take(campaign), (campaign, occupied)
+            assert (collision.variables, collision.flags, collision.power, collision.balance) == before
+            assert any(collision.ready(key) for key in CAMPAIGNS if key != campaign)
+    capped = world(); capped.sync(); capped.flags[UNLOCKED] = None; capped.sync()
+    capped.variables['sr_story_trust'] = 99
+    assert capped.take('sr_lito_propaganda_peoples') and capped.variables['sr_story_trust'] == 100
+    print('PASS: old-save frame collisions block only the matching custom campaign in every slot, and the trust bonus respects its cap.')
+
     for kwargs in ({'tag': 'GER'}, {'initialized': False}):
         excluded = world(**kwargs)
         excluded.flags.update({UNLOCKED: None, COUNCILS: None, ACADEMY: None})
@@ -292,7 +380,7 @@ def check(game, mod):
         excluded.sync()
         assert (excluded.variables, excluded.flags) == snapshot and READY not in excluded.flags
     print('PASS: foreign countries and uninitialized Soviets are unaffected.')
-    print('7 bounded AST scenarios passed. This is not an HOI4 engine, AI, ageing-event or GUI-rendering test.')
+    print('10 bounded AST scenarios passed. This is not an HOI4 engine, AI, ageing-event or GUI-rendering test.')
 
 
 if __name__ == '__main__':

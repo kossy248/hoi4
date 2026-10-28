@@ -1,7 +1,7 @@
 {
   "source_archive": "Agitprop.rar",
   "source_archive_sha256": "92e184cd7e4282b85f3fcd315432eab8806b94b50d2d4787fcd9b4e9ef6346ed",
-  "native_integration": "local_vanilla_gui_bridge_0.6.0",
+  "native_integration": "local_vanilla_gui_custom_only_0.6.1",
   "texture_size": [
     150,
     200
@@ -10,6 +10,7 @@
   "posters": [
     {
       "slot": "star",
+      "custom_campaign": "sr_lito_propaganda_star",
       "campaign_title": "Solange ein Stern über uns brennt",
       "subject": "Lito und die Einheit von Volk, Partei und Union",
       "source": "artwork/agitprop/originals/19d24946-d6a2-4617-bd47-e087881d7f5e.png",
@@ -25,6 +26,7 @@
     },
     {
       "slot": "peoples",
+      "custom_campaign": "sr_lito_propaganda_peoples",
       "campaign_title": "Elf Völker – ein gemeinsamer Morgen",
       "subject": "Vier Genossen, Gemeinschaft und Minecraft-Motiv",
       "source": "artwork/agitprop/originals/69e82ffa-9577-486e-b5ef-136e8fcc8458.png",
@@ -40,6 +42,7 @@
     },
     {
       "slot": "light",
+      "custom_campaign": "sr_lito_propaganda_light",
       "campaign_title": "Für die Union bis zum letzten Licht",
       "subject": "Soldat, Stärke, Ehre und Sieg",
       "source": "artwork/agitprop/originals/bd0da187-61e6-4ab4-b843-f81fa906f466.png",

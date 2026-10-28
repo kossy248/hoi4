@@ -1,9 +1,9 @@
-# Originales Agitprop für Lito — 0.6.0
+# Originales Agitprop mit eigenen Kampagnen — 0.6.1
 
-Die Anbindung verwendet die echten sowjetischen Kampagnen, Slot-Effekte,
-Scripted-GUI und GUI-Elemente der lokalen HOI4-Installation. Die frühere
-Einzelbild-Nachbildung bleibt entfernt. Es wird kein eigenes Drei-Poster-System
-an ihre Stelle gesetzt.
+Die Anbindung verwendet die echten sowjetischen Slot-Effekte, Scripted-GUI und
+GUI-Elemente der lokalen HOI4-Installation. Innerhalb dieses Systems stehen unter
+Lito ausschließlich drei eigene Kampagnen mit den drei gelieferten Postern zur
+Auswahl. Die frühere Einzelbild-Nachbildung bleibt entfernt.
 
 ## Freischaltung
 
@@ -20,11 +20,18 @@ Der erste Platz entspricht `SOV_expand_the_agitprop`. **„Räte in den Betriebe
 werden auch erkannt, wenn sie bereits vor dem Agitprop-Fokus abgeschlossen
 wurden. Vorhandene Spielstände werden beim nächsten Spieltag synchronisiert.
 
-Die Kategorie und neun Basiskampagnen akzeptieren zusätzlich den Lito-Fokus.
-Eine kollektivistische und drei Komsomol-Kampagnen akzeptieren die passenden
-beiden Meilensteine. Andere Vanilla-Fokusbedingungen bleiben bestehen. Damit
-sind aktuell 13 der 24 Originalkampagnen an Litos Baum angebunden; die übrigen
-werden nicht pauschal freigeschaltet.
+Der Agitprop-Fokus öffnet alle drei eigenen Kampagnen. Jede benötigt einen freien
+Platz und darf nur einmal gleichzeitig laufen; alle drei sind im Frieden und
+Krieg verfügbar. Die beiden weiteren Foki ergänzen ausschließlich Plätze.
+Sämtliche 24 Vanilla-Kampagnen und die nativen Debug-Auswahlen werden für die von
+Lito geführte Sowjetunion ausgeblendet. Außerhalb dieses Szenarios bleiben ihre
+ursprünglichen Bedingungen erhalten.
+
+| Kampagne | Eigene Boni während der Laufzeit |
+| --- | --- |
+| Solange ein Stern über uns brennt | Stabilität +4 Prozentpunkte; Kriegsunterstützung +3 Prozentpunkte |
+| Elf Völker – ein gemeinsamer Morgen | Stabilität +4 Prozentpunkte; täglich +0,05 politische Macht; zusätzlich beim Start +5 Vertrauen, höchstens 100, und +0,02 Unionsbalance |
+| Für die Union bis zum letzten Licht | Erholungsrate des Heeres +6 %; Kriegsunterstützung +5 Prozentpunkte; Nachschubverbrauch −3 % |
 
 ## Originaler Laufzeitvertrag
 
@@ -42,6 +49,13 @@ Fallback darf keine laufende rechte Kampagne löschen. Bestehende Frames,
 Kosten und Kampagnenzähler werden deshalb erhalten; nur fehlende Variablen
 werden aus der echten Ländergeschichte ergänzt.
 
+Auch noch aktive Vanilla-Kampagnen aus älteren Spielständen werden nicht
+abgebrochen oder durch neue Boni ersetzt. Sie laufen regulär aus; bis dahin
+bleibt ihr Platz belegt und ihr Countdown sichtbar. Ihre Vanilla-Postermotive
+werden unter Lito bereits ausgeblendet. Eine eigene Kampagne mit derselben
+nativen Frame-ID wartet auf das Ende der bisherigen Kampagne, damit die
+Rücksetzung keinen anderen laufenden Platz treffen kann.
+
 ## Bilder in der originalen GUI
 
 Die drei gelieferten 150×200-DDS werden bei den tatsächlichen Kampagnen-IDs
@@ -50,10 +64,11 @@ Die drei gelieferten 150×200-DDS werden bei den tatsächlichen Kampagnen-IDs
 
 Die ursprünglichen drei Poster-Properties mit den dynamischen
 `GetPropaganda…SlotAge`-Bildern und die drei Countdowntexte bleiben erhalten.
-Zusätzliche Bildfelder übernehmen exakt Position und Tooltip des Originals.
-Nur während einer passenden eigenen Kampagne wird das ursprüngliche Bildfeld
-ausgeblendet und das gelieferte Bild angezeigt. Bei Ende, leerem/gesperrtem
-Platz oder anderen Kampagnen erscheint wieder die Originalgrafik. Die Bilder
+Zusätzliche Bildfelder übernehmen die Position des Originals und zeigen
+eigene Tooltips mit Kampagnentiteln und Boni.
+Die passenden eigenen Kampagnen zeigen jeweils das gelieferte Bild. Unter Lito
+bleiben die ursprünglichen Bildfelder nur für leere oder gesperrte Plätze
+sichtbar; andere Vanilla-Postermotive werden nicht mehr angezeigt. Die Bilder
 selbst werden nicht neu gezeichnet oder gealtert.
 
 Die bereitgestellte GUI-Datei hat eine ungeschlossene äußere `guiTypes`-Klammer.
@@ -74,6 +89,8 @@ veröffentlicht; sie werden erst lokal beim Nutzer gelesen.
 
 Die gelieferten Originaldateien wurden anhand der SHA-256-Werte des Berichts
 bytegleich rekonstruiert. Mit ihnen werden Installation, wiederholte Anwendung,
-Rücksetzung bei Fehlern und die Laufzeitbedingungen offline geprüft. Ein
-laufender HOI4-Spieltest ist in der Cloud nicht verfügbar. Nach Updates des
-Spiels muss die lokale Anbindung erneut vorbereitet werden.
+Rücksetzung bei Fehlern, die Auswahl eigener Kampagnen und die Laufzeitbedingungen
+offline geprüft. Die native Anbindung aus 0.6.0 wurde vom Nutzer im Spiel
+bestätigt. Ein laufender HOI4-Spieltest von 0.6.1 ist in der Cloud nicht
+verfügbar. Nach Updates des Spiels muss die lokale Anbindung erneut vorbereitet
+werden. Weitere Poster werden erst ergänzt, sobald der Nutzer sie fertig hat.

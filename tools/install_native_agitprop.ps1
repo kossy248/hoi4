@@ -197,6 +197,26 @@ function Install-LitoNativeAgitprop {
             $visible = Get-LitoNativeChild -Source $decisions -Entry $campaign -Name 'visible'
             Add-LitoNativeAliases -Source $decisions -Entry $visible -Edits $decisionEdits -Counts $decisionCounts
         }
+        # Keep the native mechanics and any running save-game campaigns, while
+        # removing every original campaign/debug choice from Lito's selection.
+        # Other Soviet starts retain their original visibility conditions.
+        $hideOriginal = 'NOT = { AND = { tag = SOV has_country_flag = sr_lito_initialized } }'
+        $originalChoices = @(Get-LitoNativeChildren -Source $decisions -Entry $campaignRoot | Where-Object { $_.IsBlock })
+        if ($originalChoices.Count -ne 28) { throw 'Die originale Agitprop-Auswahl besitzt unbekannte Zusatzentscheidungen.' }
+        foreach ($choice in $originalChoices) {
+            $visible = Get-LitoNativeChild -Source $decisions -Entry $choice -Name 'visible'
+            $guards = 0
+            foreach ($condition in @(Get-LitoNativeChildren -Source $decisions -Entry $visible)) {
+                if ($condition.Name -ceq 'NOT' -and $condition.IsBlock) {
+                    $conditionText = $decisions.Text.Substring($condition.Start, $condition.End - $condition.Start)
+                    if (Test-LitoNativePictureSameTokens -Left $conditionText -Right $hideOriginal) { $guards++ }
+                }
+            }
+            if ($guards -gt 1) { throw "Mehrfache Lito-Auswahlsperre: $($choice.Name)." }
+            if ($guards -eq 0) {
+                $decisionEdits.Add([pscustomobject]@{ Start = $decisions.Tokens[$visible.Open].End; End = $decisions.Tokens[$visible.Open].End; Text = "`n            $hideOriginal`n" })
+            }
+        }
         if ($decisionCounts.SOV_expand_the_agitprop -ne 9 -or $decisionCounts.SOV_collectivist_propaganda -ne 1 -or $decisionCounts.SOV_the_komsomol -ne 3) {
             throw 'Die originalen Kampagnen besitzen eine unbekannte Agitprop-Freischaltstruktur.'
         }
@@ -266,7 +286,7 @@ function Install-LitoNativeAgitprop {
             if ($null -ne $rollbackError) { throw [IO.IOException]::new('Die vorbereitete Agitprop-Anbindung konnte nach einem Schreibfehler nicht zurueckgesetzt werden.', $rollbackError) }
             throw $commitError
         }
-        Write-Host ('Originales Agitprop vorbereitet: 24 Vanilla-Kampagnen, drei native Posterplaetze; {0} Moddateien angepasst.' -f $committed.Count) -ForegroundColor Green
+        Write-Host ('Litos Agitprop vorbereitet: nur eigene Kampagnen und Poster, drei native Posterplaetze; {0} Moddateien angepasst.' -f $committed.Count) -ForegroundColor Green
         return $true
     } catch {
         if ($null -ne $rollbackError) { throw }

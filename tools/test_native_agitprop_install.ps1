@@ -28,6 +28,35 @@ function Assert-NativeSnapshot {
     Assert-Native ($Before.Count -eq $After.Count) 'Staged file inventory changed unexpectedly'
     foreach ($key in $Before.Keys) { Assert-Native ($After.ContainsKey($key) -and $Before[$key] -ceq $After[$key]) ('File changed: ' + $key) }
 }
+function Assert-NativeCustomChoices {
+    param([string]$Stage)
+    $nativeText = [IO.File]::ReadAllText((Join-Path $Stage 'common/decisions/SOV.txt'))
+    $tokens = Get-ClausewitzTokens -Text $nativeText -SourceName 'prepared native decisions'
+    $category = @(Get-LitoScriptEntries -Tokens $tokens | Where-Object { $_.Name -ceq 'SOV_propaganda_campaigns' })
+    Assert-Native ($category.Count -eq 1) 'Native campaign category is not unique'
+    $originalChoices = @(Get-LitoScriptEntries -Tokens $tokens -Open $category[0].Open -Close $category[0].Close)
+    Assert-Native ($originalChoices.Count -eq 28) 'Expected all 24 historical campaigns and four debug controls'
+    foreach ($choice in $originalChoices) {
+        $visible = @(Get-LitoScriptEntries -Tokens $tokens -Open $choice.Open -Close $choice.Close | Where-Object { $_.Name -ceq 'visible' })
+        Assert-Native ($visible.Count -eq 1) ('Expected one visibility block: ' + $choice.Name)
+        $guards = @(Get-LitoScriptEntries -Tokens $tokens -Open $visible[0].Open -Close $visible[0].Close | Where-Object { $_.Name -ceq 'NOT' -and $_.IsBlock })
+        $found = 0
+        foreach ($guard in $guards) {
+            $and = @(Get-LitoScriptEntries -Tokens $tokens -Open $guard.Open -Close $guard.Close)
+            if ($and.Count -ne 1 -or $and[0].Name -cne 'AND' -or -not $and[0].IsBlock) { continue }
+            $terms = @(Get-LitoScriptEntries -Tokens $tokens -Open $and[0].Open -Close $and[0].Close)
+            if ($terms.Count -eq 2 -and @($terms | Where-Object { $_.Name -ceq 'tag' -and $_.Value -ceq 'SOV' }).Count -eq 1 -and
+                @($terms | Where-Object { $_.Name -ceq 'has_country_flag' -and $_.Value -ceq 'sr_lito_initialized' }).Count -eq 1) { $found++ }
+        }
+        Assert-Native ($found -eq 1) ('Missing unique Lito-only exclusion guard: ' + $choice.Name)
+    }
+    $customText = [IO.File]::ReadAllText((Join-Path $Stage 'common/decisions/sr_lito_native_propaganda.txt'))
+    $customTokens = Get-ClausewitzTokens -Text $customText -SourceName 'custom native campaigns'
+    $customRoot = @(Get-LitoScriptEntries -Tokens $customTokens)
+    Assert-Native ($customRoot.Count -eq 1 -and $customRoot[0].Name -ceq 'SOV_propaganda_campaigns') 'Custom campaigns must extend the native category'
+    $customIds = @(Get-LitoScriptEntries -Tokens $customTokens -Open $customRoot[0].Open -Close $customRoot[0].Close | ForEach-Object { $_.Name } | Sort-Object)
+    Assert-Native (($customIds -join ',') -ceq 'sr_lito_propaganda_light,sr_lito_propaganda_peoples,sr_lito_propaganda_star') 'Exactly three custom campaign IDs are required'
+}
 
 try {
     $GameRoot = [IO.Path]::GetFullPath($GameRoot).TrimEnd([char[]]'\/')
@@ -61,6 +90,8 @@ try {
     Assert-Native ($categoryText.Contains('NOT = { SOV = { has_country_flag = sr_lito_initialized } }')) 'Historical category guards were lost'
     Assert-Native ($categoryText.Contains('has_country_flag = sr_lito_native_agitprop_unlocked')) 'Lito focus alias missing'
     Write-Host 'PASS: native installation after historical guards preserves guards and exposes validated readiness'
+    Assert-NativeCustomChoices -Stage $stage
+    Write-Host 'PASS: all 28 original choices have a unique Lito exclusion and three own campaigns extend the native category'
 
     $before = Get-NativeSnapshot -Root $stage
     Assert-Native (Install-LitoNativeAgitprop -GameRoot $GameRoot -StagedMod $stage) 'Repeated native installation failed'
@@ -81,7 +112,7 @@ try {
         Assert-Native ($gameBefore[$relative] -ceq $after) ('Original game source changed: ' + $relative)
     }
     Write-Host 'PASS: all inspected original game sources remain byte-identical'
-    Write-Host '4 native-source installation scenarios passed. No HOI4 engine or GUI rendering test.'
+    Write-Host '5 native-source installation scenarios passed. No HOI4 engine or GUI rendering test.'
 } finally {
     if (Test-Path -LiteralPath $tempRoot) { Remove-Item -LiteralPath $tempRoot -Recurse -Force }
 }

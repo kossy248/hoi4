@@ -95,9 +95,9 @@ function Install-LitoNativeAgitpropPictures {
     $campaignTokens = Get-ClausewitzTokens -Text $campaignSource.Text -SourceName $campaignPath
     $category = Get-DirectBlock -Tokens $campaignTokens -Close $campaignTokens.Count -Name 'SOV_propaganda_campaigns'
     $mapping = @(
-        @{ Art = 'light'; Campaign = 'SOV_propaganda_motherland_calls' },
-        @{ Art = 'star'; Campaign = 'SOV_propaganda_hit_of_hammer' },
-        @{ Art = 'peoples'; Campaign = 'SOV_propaganda_high_yield' }
+        @{ Art = 'light'; Campaign = 'SOV_propaganda_motherland_calls'; ExpectedId = 3 },
+        @{ Art = 'star'; Campaign = 'SOV_propaganda_hit_of_hammer'; ExpectedId = 7 },
+        @{ Art = 'peoples'; Campaign = 'SOV_propaganda_high_yield'; ExpectedId = 11 }
     )
     $ids = @{}
     foreach ($item in $mapping) {
@@ -115,6 +115,7 @@ function Install-LitoNativeAgitpropPictures {
         if ($idFields.Count -ne 1 -or $idFields[0].Value -notmatch '^[1-9][0-9]*$') { throw "Keine eindeutige native Poster-ID fuer $($item.Campaign)." }
         $id = [int]$idFields[0].Value
         if ($id -le 2 -or $ids.Values -contains $id) { throw 'Unerwartete oder doppelte native Poster-ID.' }
+        if ($id -ne $item.ExpectedId) { throw "Die native Poster-ID passt nicht zu Litos eigener Kampagne: $($item.Campaign)." }
         $ids[$item.Art] = $id
         $texturePath = Join-Path $StagedMod ("gfx/interface/agitprop/sr_agitprop_$($item.Art).dds")
         $dds = [IO.File]::ReadAllBytes($texturePath)
@@ -187,8 +188,11 @@ function Install-LitoNativeAgitpropPictures {
     foreach ($position in @('left', 'center', 'right')) {
         $frameName = "SOV_poster_${position}_icon_frame"
         $gate = 'tag = SOV has_country_flag = sr_lito_initialized has_country_flag = sr_lito_native_agitprop_unlocked'
-        $matches = ($mapping | ForEach-Object { "check_variable = { var = $frameName value = $($ids[$_.Art]) compare = equals }" }) -join ' '
-        $hide = 'NOT = { AND = { ' + $gate + ' OR = { ' + $matches + ' } } }'
+        # Original campaign artwork stays hidden for Lito, including campaigns
+        # still running in older saves. Locked/empty native placeholders remain.
+        $hide = 'OR = { NOT = { AND = { tag = SOV has_country_flag = sr_lito_initialized } } ' +
+            "check_variable = { var = $frameName value = 1 compare = equals } " +
+            "check_variable = { var = $frameName value = 2 compare = equals } }"
         $nativeTrigger = "propaganda_poster_${position}_visible"
         $existing = @($triggerFields | Where-Object { $_.Name -ceq $nativeTrigger })
         if ($existing.Count -gt 1 -or ($existing.Count -eq 1 -and -not $existing[0].IsBlock)) { throw "Unerwarteter Trigger: $nativeTrigger" }
@@ -196,7 +200,7 @@ function Install-LitoNativeAgitpropPictures {
             if ($existing.Count -ne 1) { throw "Vorhandene Poster-Anpassung ist unvollstaendig: $nativeTrigger" }
             $existingHides = 0
             foreach ($condition in @(Get-LitoScriptEntries -Tokens $scriptTokens -Open $existing[0].Open -Close $existing[0].Close)) {
-                if ($condition.Name -ceq 'NOT' -and $condition.IsBlock) {
+                if ($condition.Name -ceq 'OR' -and $condition.IsBlock) {
                     $conditionText = $scriptSource.Text.Substring($condition.Start, $condition.End - $condition.Start)
                     if (Test-LitoNativePictureSameTokens -Left $conditionText -Right $hide) { $existingHides++ }
                 }
@@ -230,6 +234,9 @@ function Install-LitoNativeAgitpropPictures {
             $edits = [Collections.Generic.List[object]]::new()
             $nameToken = $gui.Tokens[$nameField.Open]
             $edits.Add([pscustomobject]@{ Position = $nameToken.Start - $icon.Start; Length = $nameToken.End - $nameToken.Start; Text = '"' + $newName + '"' })
+            $tooltipField = Get-LitoNativePictureField -Tokens $gui.Tokens -Entry $icon -Name 'pdx_tooltip'
+            $tooltipToken = $gui.Tokens[$tooltipField.Open]
+            $edits.Add([pscustomobject]@{ Position = $tooltipToken.Start - $icon.Start; Length = $tooltipToken.End - $tooltipToken.Start; Text = 'sr_lito_propaganda_' + $art + '_poster_tt' })
             $edits.Add([pscustomobject]@{ Position = $gui.Tokens[$icon.Open].End - $icon.Start; Length = 0; Text = $guiSource.Newline + '            spriteType = "GFX_sr_lito_native_poster_' + $art + '"' + $guiSource.Newline })
             $clone = Add-LitoNativePictureEdits -Text $clone -Edits $edits
             if ($alreadyInstalled) {

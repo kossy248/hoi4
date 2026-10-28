@@ -1,4 +1,4 @@
-# Sowjetunion: Litos Union — 0.6.0
+# Sowjetunion: Litos Union — 0.6.1
 
 Eine alternative Sowjetunion unter **Cosif Kozs Lito**, einem fiktiven, von Josip
 Broz Tito inspirierten Staatsführer mit jugoslawischen Wurzeln. Lito blieb nach
@@ -7,7 +7,7 @@ Kommunismus und verbindet Arbeiterselbstverwaltung, föderale Mitsprache und
 außenpolitische Eigenständigkeit.
 
 Die Geschichte steht in [LORE.md](LORE.md), die Änderungen in
-[docs/CHANGELOG_0.5.md](docs/CHANGELOG_0.5.md), der vollständige Fokusbaum in
+[docs/CHANGELOG_0.6.1.md](docs/CHANGELOG_0.6.1.md), der vollständige Fokusbaum in
 [docs/FOKUSBAUM.md](docs/FOKUSBAUM.md).
 
 ## Inhalt
@@ -21,11 +21,11 @@ Die Geschichte steht in [LORE.md](LORE.md), die Änderungen in
   Verhandlungen und die Verfassung der späteren Slawischen Union.
 - **Drei aktive Regierungsprojekte** mit Zwischenentscheidungen, sichtbaren
   Fristen und Abschlussbedingungen im Fokusbaum.
-- **Originales sowjetisches Agitprop:** „Agitprop der Völker“ öffnet die native
-  Kategorie mit ihrem ersten Posterplatz. Räte und Akademien ergänzen die zwei
-  weiteren Plätze. Kosten, Kampagnenboni, Ablauf und Rücksetzung stammen aus
-  dem lokalen Vanilla-Spiel. Drei gelieferte eigene Poster ersetzen passende
-  Bilder in der originalen Oberfläche.
+- **Agitprop mit drei eigenen Kampagnen und Postern:** „Agitprop der Völker“
+  öffnet die native Kategorie mit ihrem ersten Posterplatz. Räte und Akademien
+  ergänzen die zwei weiteren Plätze. Oberfläche, Kostensteigerung, Ablauf und
+  Rücksetzung stammen aus dem lokalen Vanilla-Spiel; Titel und Boni sind Litos
+  eigene. Vanilla-Kampagnen und ihre Poster werden unter Lito ausgeblendet.
 - **Unionsbalance und Republikwiderstand:** fünfzehn registrierte Republiken,
   örtliche Räte, Streiks, Sabotage und acht zusätzliche politische Maßnahmen.
 - **Balkanpolitik:** kommunistische Parteien beeinflussen, Regierungen
@@ -94,9 +94,9 @@ sowjetische Agitprop-Kategorie mit ihrem ersten Posterplatz.
 
 | Schwerpunkt | Agitprop-Freischaltung |
 | --- | --- |
-| Agitprop der Völker | Erster Platz und neun originale Basiskampagnen |
-| Räte in den Betrieben | Ein weiterer Platz und die kollektivistische Kampagne |
-| Die Akademien vernetzen | Ein weiterer Platz und drei Wissens-/Jugendkampagnen |
+| Agitprop der Völker | Erster Platz und die drei eigenen Kampagnen |
+| Räte in den Betrieben | Zweiter Platz |
+| Die Akademien vernetzen | Dritter Platz |
 
 Die beiden ergänzenden Plätze werden erst nach dem Agitprop-Fokus verfügbar.
 Bereits abgeschlossene Meilensteine werden dabei berücksichtigt. Bestehende
@@ -106,16 +106,22 @@ Spieltag; laufende Kampagnen, ihre Kosten und Zähler werden erhalten.
 Die Mechanik verwendet **Vanilla-Effekte und die originale Oberfläche**:
 180 Tage Laufzeit, anschließend 90 Tage Abklingzeit und zunächst 15 politische
 Macht pro Kampagne. Die Kosten der jeweiligen Kampagne verdoppeln sich nach
-Ablauf. Verfügbarkeitsbedingungen wie Frieden, Krieg oder Feindkontrolle bleiben
-original. Weitere originale Kampagnen behalten ihre späteren Vanilla-Fokusgates;
-aktuell sind 13 Kampagnen an Litos drei Meilensteine angebunden.
+Ablauf. Alle drei Kampagnen sind im Frieden und Krieg verfügbar, benötigen einen
+freien Platz und können jeweils nur einmal gleichzeitig laufen.
 
-Deine drei Poster erscheinen bei den originalen Kampagnen
-`SOV_propaganda_motherland_calls`, `SOV_propaganda_hit_of_hammer` und
-`SOV_propaganda_high_yield`. Texte, Motive und Ränder bleiben erhalten. Der
-native Hintergrund, Countdown und die anderen Vanilla-Poster bleiben bestehen.
-Die eigenen Bilder sind unverändert; die nativen Alterungsereignisse laufen
-weiter, erzeugen aber keine neu gezeichneten Fassungen deiner Bilder.
+| Eigene Kampagne | Boni während der Laufzeit |
+| --- | --- |
+| Solange ein Stern über uns brennt | Stabilität +4 Prozentpunkte; Kriegsunterstützung +3 Prozentpunkte |
+| Elf Völker – ein gemeinsamer Morgen | Stabilität +4 Prozentpunkte; täglich +0,05 politische Macht; beim Start +5 Vertrauen und +0,02 Unionsbalance |
+| Für die Union bis zum letzten Licht | Erholungsrate des Heeres +6 %; Kriegsunterstützung +5 Prozentpunkte; Nachschubverbrauch −3 % |
+
+Jede Kampagne zeigt genau eines der drei gelieferten Poster. Texte, Motive und
+Ränder bleiben erhalten. Der native Hintergrund und Countdown bleiben bestehen;
+die 24 Vanilla-Kampagnen, Debug-Auswahlen und Vanilla-Postermotive erscheinen
+unter Lito nicht mehr. Leere und gesperrte Plätze behalten ihre nativen Anzeigen.
+Bereits laufende Vanilla-Kampagnen aus älteren Spielständen laufen ohne Abbruch
+aus, ihre Postermotive werden dabei ausgeblendet. Die nativen Alterungsereignisse
+laufen weiter, erzeugen aber keine neu gezeichneten Fassungen deiner Bilder.
 Details: [Posterzuordnung](docs/AGITPROP_POSTERS.md).
 
 Der Installer prüft die Originaldateien und bereitet nur lokale Modkopien vor.
@@ -322,7 +328,7 @@ Der Diagramm-Neuaufbau benötigt zusätzlich Graphviz. Die Daten unter
 tools/focus_data sind die maßgebliche Fokusquelle; generierte Skripte,
 Lokalisierungen und Diagramme gehören zum selben Stand.
 
-**Version 0.6.0 wurde in dieser Cloud nicht mit HOI4 ausgeführt.** Die bisherigen
-Spielrückmeldungen des Nutzers betrafen ältere Fassungen. Quellen-
+**Version 0.6.1 wurde in dieser Cloud nicht mit HOI4 ausgeführt.** Die native
+Agitprop-Anbindung aus 0.6.0 wurde vom Nutzer im Spiel bestätigt. Quellen-
 und künstliche Installationstests ersetzen keine Prüfung der Agentur, GUI,
 Ereignisse, Flaggen und historischen DLC-Ketten in einer laufenden Partie.

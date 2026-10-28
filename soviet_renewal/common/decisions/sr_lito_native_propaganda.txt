@@ -1,0 +1,149 @@
+# Own campaigns in the original Soviet propaganda category. Native effects own
+# slot selection, countdowns, aging, reset, repeat cooldown and escalating costs.
+# Reused frame IDs match the three supplied posters; each ID may occupy one slot.
+SOV_propaganda_campaigns = {
+    sr_lito_propaganda_star = {
+        priority = 60
+        icon = sr_lito_propaganda_star
+        allowed = { original_tag = SOV }
+        visible = {
+            tag = SOV
+            has_country_flag = sr_lito_initialized
+            has_country_flag = sr_lito_native_agitprop_ready
+            has_country_flag = sr_lito_native_agitprop_unlocked
+        }
+        available = {
+            SOV_propaganda_poster_slot_available = yes
+            NOT = {
+                OR = {
+                    check_variable = { var = SOV_poster_left_icon_frame value = 7 compare = equals }
+                    check_variable = { var = SOV_poster_center_icon_frame value = 7 compare = equals }
+                    check_variable = { var = SOV_poster_right_icon_frame value = 7 compare = equals }
+                }
+            }
+        }
+        days_remove = SOV_default_propaganda_campaign_duration
+        days_re_enable = SOV_default_propaganda_campaign_cooldown
+        cost = SOV_propaganda_hit_of_hammer_cost
+        modifier = {
+            stability_factor = 0.04
+            war_support_factor = 0.03
+        }
+        complete_effect = {
+            set_variable = { SOV_new_propaganda_campaign = 7 }
+            SOV_pick_propaganda_campaign_slot_effect = yes
+            SOV_achievement_propaganda_counter_effect = yes
+        }
+        remove_effect = {
+            set_variable = { SOV_propaganda_campaign_to_remove = 7 }
+            SOV_reset_propaganda_campaign_slot_effect = yes
+            set_variable = { SOV_propaganda_cost = SOV_propaganda_hit_of_hammer_cost }
+            SOV_increase_propaganda_campaign_cost_effect = yes
+            set_variable = { SOV_propaganda_hit_of_hammer_cost = SOV_propaganda_cost }
+            clear_variable = SOV_propaganda_cost
+            custom_effect_tooltip = SOV_propaganda_campaign_cooldown_tt
+        }
+        ai_will_do = {
+            base = 1
+            modifier = { factor = 0 check_variable = { SOV_propaganda_hit_of_hammer_cost > 90 } }
+        }
+    }
+
+    sr_lito_propaganda_peoples = {
+        priority = 59
+        icon = sr_lito_propaganda_peoples
+        allowed = { original_tag = SOV }
+        visible = {
+            tag = SOV
+            has_country_flag = sr_lito_initialized
+            has_country_flag = sr_lito_native_agitprop_ready
+            has_country_flag = sr_lito_native_agitprop_unlocked
+        }
+        available = {
+            SOV_propaganda_poster_slot_available = yes
+            NOT = {
+                OR = {
+                    check_variable = { var = SOV_poster_left_icon_frame value = 11 compare = equals }
+                    check_variable = { var = SOV_poster_center_icon_frame value = 11 compare = equals }
+                    check_variable = { var = SOV_poster_right_icon_frame value = 11 compare = equals }
+                }
+            }
+        }
+        days_remove = SOV_default_propaganda_campaign_duration
+        days_re_enable = SOV_default_propaganda_campaign_cooldown
+        cost = SOV_propaganda_high_yield_cost
+        modifier = {
+            stability_factor = 0.04
+            political_power_gain = 0.05
+        }
+        complete_effect = {
+            set_variable = { SOV_new_propaganda_campaign = 11 }
+            SOV_pick_propaganda_campaign_slot_effect = yes
+            SOV_achievement_propaganda_counter_effect = yes
+            add_to_variable = { sr_story_trust = 5 }
+            clamp_variable = { var = sr_story_trust min = 0 max = 100 }
+            add_power_balance_value = { id = sr_union_balance value = 0.02 }
+        }
+        remove_effect = {
+            set_variable = { SOV_propaganda_campaign_to_remove = 11 }
+            SOV_reset_propaganda_campaign_slot_effect = yes
+            set_variable = { SOV_propaganda_cost = SOV_propaganda_high_yield_cost }
+            SOV_increase_propaganda_campaign_cost_effect = yes
+            set_variable = { SOV_propaganda_high_yield_cost = SOV_propaganda_cost }
+            clear_variable = SOV_propaganda_cost
+            custom_effect_tooltip = SOV_propaganda_campaign_cooldown_tt
+        }
+        ai_will_do = {
+            base = 1
+            modifier = { factor = 0 check_variable = { SOV_propaganda_high_yield_cost > 90 } }
+        }
+    }
+
+    sr_lito_propaganda_light = {
+        priority = 58
+        icon = sr_lito_propaganda_light
+        allowed = { original_tag = SOV }
+        visible = {
+            tag = SOV
+            has_country_flag = sr_lito_initialized
+            has_country_flag = sr_lito_native_agitprop_ready
+            has_country_flag = sr_lito_native_agitprop_unlocked
+        }
+        available = {
+            SOV_propaganda_poster_slot_available = yes
+            NOT = {
+                OR = {
+                    check_variable = { var = SOV_poster_left_icon_frame value = 3 compare = equals }
+                    check_variable = { var = SOV_poster_center_icon_frame value = 3 compare = equals }
+                    check_variable = { var = SOV_poster_right_icon_frame value = 3 compare = equals }
+                }
+            }
+        }
+        days_remove = SOV_default_propaganda_campaign_duration
+        days_re_enable = SOV_default_propaganda_campaign_cooldown
+        cost = SOV_propaganda_motherland_calls_cost
+        modifier = {
+            army_morale_factor = 0.06
+            war_support_factor = 0.05
+            supply_consumption_factor = -0.03
+        }
+        complete_effect = {
+            set_variable = { SOV_new_propaganda_campaign = 3 }
+            SOV_pick_propaganda_campaign_slot_effect = yes
+            SOV_achievement_propaganda_counter_effect = yes
+        }
+        remove_effect = {
+            set_variable = { SOV_propaganda_campaign_to_remove = 3 }
+            SOV_reset_propaganda_campaign_slot_effect = yes
+            set_variable = { SOV_propaganda_cost = SOV_propaganda_motherland_calls_cost }
+            SOV_increase_propaganda_campaign_cost_effect = yes
+            set_variable = { SOV_propaganda_motherland_calls_cost = SOV_propaganda_cost }
+            clear_variable = SOV_propaganda_cost
+            custom_effect_tooltip = SOV_propaganda_campaign_cooldown_tt
+        }
+        ai_will_do = {
+            base = 1
+            modifier = { factor = 0 check_variable = { SOV_propaganda_motherland_calls_cost > 90 } }
+        }
+    }
+}

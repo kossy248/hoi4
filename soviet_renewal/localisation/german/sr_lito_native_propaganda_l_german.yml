@@ -1,0 +1,10 @@
+﻿l_german:
+ sr_lito_propaganda_star:0 "Solange ein Stern über uns brennt"
+ sr_lito_propaganda_star_poster_tt:0 "§Y$sr_lito_propaganda_star$§!\n\n$sr_lito_propaganda_star_desc$"
+ sr_lito_propaganda_star_desc:0 "Litos Gesicht steht für ein Versprechen: Die Union darf ihre Menschen nicht vergessen. In Bahnhöfen, Werkhallen und Dörfern erinnert sein Plakat an den gemeinsamen Stern über unseren Republiken.\n\nWährend der Kampagne: Stabilität +4 Prozentpunkte; Kriegsunterstützung +3 Prozentpunkte. Das Poster belegt einen freien Agitprop-Platz für 180 Tage."
+ sr_lito_propaganda_peoples:0 "Elf Völker – ein gemeinsamer Morgen"
+ sr_lito_propaganda_peoples_poster_tt:0 "§Y$sr_lito_propaganda_peoples$§!\n\n$sr_lito_propaganda_peoples_desc$"
+ sr_lito_propaganda_peoples_desc:0 "Verschiedene Sprachen, Landschaften und Lebenswege treffen sich in einer gemeinsamen Zukunft. Unsere Genossen tragen das Versprechen einer Union weiter, deren Stärke aus Zusammenhalt erwächst.\n\nWährend der Kampagne: Stabilität +4 Prozentpunkte; tägliche politische Macht +0,05. Bei Beginn: +5 Vertrauen und +0,02 Unionsbalance in Richtung Erhaltung. Das Poster belegt einen freien Agitprop-Platz für 180 Tage."
+ sr_lito_propaganda_light:0 "Für die Union bis zum letzten Licht"
+ sr_lito_propaganda_light_poster_tt:0 "§Y$sr_lito_propaganda_light$§!\n\n$sr_lito_propaganda_light_desc$"
+ sr_lito_propaganda_light_desc:0 "Hinter jedem Soldaten stehen Familien, Werkstätten und die Heimat. Dieses Plakat ruft die Armee dazu auf, füreinander einzustehen und die Republiken mit Mut und Disziplin zu verteidigen.\n\nWährend der Kampagne: Erholungsrate des Heeres +6 %; Kriegsunterstützung +5 Prozentpunkte; Nachschubverbrauch −3 %. Das Poster belegt einen freien Agitprop-Platz für 180 Tage."
